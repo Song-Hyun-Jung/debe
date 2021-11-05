@@ -34,7 +34,7 @@ td{
 </head>
 <body>
 	<div align="left" style="padding:0px 0px 0px 50px">
-		<img src="../images/schoolLogo.jpg" width="280px" height="100px" id="displayLogo">
+		<img src="../../images/schoolLogo.jpg" width="280px" height="100px" id="displayLogo">
 	</div>
 	<hr size="5" width="100%" align="left" color="#a9173d" noshade>
 	<div align="center" style="padding:30px 0px 0px 0px">

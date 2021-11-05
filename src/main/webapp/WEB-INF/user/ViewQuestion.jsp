@@ -51,7 +51,7 @@ td{
 			<tr>
 				<td class="info">제목</td>
 				<td align="center" colspan="3"><input id="title" type="text" name="questionTitle" size="75"></td>
-				<td align="right" width="10px" height="10px"><input type="image" src="../images/beforeBookmark.jpg"  style="max-width:40%"></td>
+				<td align="right" width="10px" height="10px"><input type="image" src="../../images/beforeBookmark.jpg"  style="max-width:40%"></td>
 			</tr>
 			<tr height="50">
 				<td class="info">해결상태</td>
@@ -82,7 +82,7 @@ td{
 		<table class="answers">
 			<tr class="answerInfo" style="padding:10px 0px 10px 0px">
 				<td>답변자:  경험치: </td>
-				<td align="right"><input type="image" src="../images/adoptButton.jpg" style="max-width:10%"></td>
+				<td align="right"><input type="image" src="../../images/adoptButton.jpg" style="max-width:10%"></td>
 			</tr>
 			<tr class="answerInfo">
 				<td colspan="2"><textarea cols=100 rows=15 class="code" name="answerCodes"></textarea></td>

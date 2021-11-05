@@ -45,7 +45,7 @@ hr{
 			<tr height="30" width="70">
 				<td class="info">문제</td>
 				<td align="center" colspan="2"><input type="text" name="title" size="70"></td>
-				<td width="40px" height="40px"><input type="image" src="../images/beforeBookmark.jpg" class="imageAlign" style="max-width:80%"></td>
+				<td width="40px" height="40px"><input type="image" src="../../images/beforeBookmark.jpg" class="imageAlign" style="max-width:80%"></td>
 			</tr>
 			<tr class="recommendInfo" >
 				<td colspan="4">작성자:  &nbsp; 경험치:   </td>
@@ -62,7 +62,7 @@ hr{
 				<td colspan="2"  align="right" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="답변하기"></td>
 			</tr>
 			<tr>
-				<td colspan="4" align="right"><input type="image" src="../images/beforeEmpathize.jpg" style="max-width:100%"></td>				
+				<td colspan="4" align="right"><input type="image" src="../../images/beforeEmpathize.jpg" style="max-width:100%"></td>				
 			</tr>
 		</table>
 	</form>
