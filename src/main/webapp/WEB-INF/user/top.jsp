@@ -14,7 +14,7 @@
 </head>
 <body>
 		<table id="topLayout">
-			<tr><td><img src="../../schoolLogo.jpg" width="250px" height="100px"></td><td width="70%"></td><td>솜솜님, 안녕하세요</td></tr>
+			<tr><td><img src="../../images/schoolLogo.jpg" width="250px" height="100px"></td><td width="70%"></td><td>솜솜님, 안녕하세요</td></tr>
 		</table>
 		<nav>
 			<table id="menu">

@@ -39,9 +39,7 @@ td.info-right{
 hr{
 	color:#a9173d;
 }
-td{
-	border:solid;
-}
+
 </style>
 </head>
 <body>
