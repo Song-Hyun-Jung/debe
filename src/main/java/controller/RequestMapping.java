@@ -93,7 +93,7 @@ public class RequestMapping {
         //한 질문 조회
         mappings.put("/user/viewquestion", new ViewQuestionController());
         //질문 북마크
-        mappings.put("/user/bookmarkQuestion", new BookmarkController());
+    mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
         
         
         
@@ -119,7 +119,7 @@ public class RequestMapping {
         //문제 추천하기
         mappings.put("/user/recommendCount", new UpdateRecommendCountController());
         //추천문제 북마크
-        mappings.put("/user/bookmarkRecommend", new BookmarkController());
+        mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());
         
         
         */
