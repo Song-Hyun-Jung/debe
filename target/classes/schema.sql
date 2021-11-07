@@ -1,4 +1,3 @@
-
 CREATE SEQUENCE sequenceAnswerId
 	INCREMENT BY 1
 	START WITH 1;
@@ -48,7 +47,7 @@ ALTER TABLE Post
 
 CREATE TABLE Question
 (
-	language             VARCHAR2(30) DEFAULT  'JAVA'  NOT NULL ,
+	questionLanguage     VARCHAR2(30) DEFAULT  'JAVA'  NOT NULL ,
 	solve                CHAR DEFAULT  'n'  NOT NULL  CONSTRAINT  questionSolve CHECK (solve IN ('y', 'n')),
 	questionAdopt        CHAR DEFAULT  'n'  NOT NULL  CONSTRAINT  questionAdopt_1551414205 CHECK (questionAdopt IN ('y', 'n')),
 	postId               INTEGER NOT NULL ,
@@ -64,7 +63,7 @@ ALTER TABLE Question
 CREATE TABLE Recommend
 (
 	difficulty           VARCHAR2(10) DEFAULT  'mid'  NOT NULL  CONSTRAINT  recommendDifficulty_925832157 CHECK (difficulty IN ('high', 'mid', 'low')),
-	count                INT DEFAULT  0  NOT NULL  CONSTRAINT  recommendCount_889328931 CHECK (count >= 0),
+	recommendCount       INT DEFAULT  0  NOT NULL  CONSTRAINT  recommendCount_1113143039 CHECK (recommendCount >= 0),
 	algorithm            VARCHAR2(2000) NOT NULL ,
 	postId               INTEGER NOT NULL 
 );

@@ -57,8 +57,10 @@ td.info{
 						<option value="1">C언어</option>
 						<option value="2">JAVA</option>
 						<option value="3">Python</option>
-						<option value="4">C++</option>
-						<option value="5">기타</option>
+						<option value="4">SQL</option>
+						<option value="5">HTML</option>
+						<option value="6">C++</option>
+						<option value="7">기타</option>
 					</select>
 				</td>
 				<td> </td>
