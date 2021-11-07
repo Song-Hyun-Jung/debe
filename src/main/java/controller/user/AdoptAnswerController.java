@@ -1,10 +1,14 @@
 package controller.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.Answer;
+import model.Question;
 
 public class AdoptAnswerController implements Controller{
 

@@ -93,7 +93,7 @@ public class RequestMapping {
         //한 질문 조회
         mappings.put("/user/viewquestion", new ViewQuestionController());
         //질문 북마크
-    mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
+    	mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
         
         
         
