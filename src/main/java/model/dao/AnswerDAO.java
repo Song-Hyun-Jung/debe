@@ -2,6 +2,8 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Answer;
 import model.Question;
@@ -20,6 +22,37 @@ public class AnswerDAO {
 	}
 	
 	//문제별 답변 조회
+	public List<Answer> findAnswers(int postId) throws SQLException {
+        String sql = "SELECT answerContent, answerAdopt, answerDate, userId, answerId, postId "
+    				+ "FROM QuestionAnswer "
+        		    + "WHERE postId = ?"
+    				+ "ORDER BY answerAdopt DESC, postId";
+		jdbcUtil.setSqlAndParameters(sql, null);		
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();					
+			List<Answer> answers = new ArrayList<Answer>();	
+			while (rs.next()) {
+				Answer answer = new Answer(
+						rs.getInt("answerId"),
+						rs.getInt("postId"),
+						rs.getString("answerContent"),
+						rs.getString("answerAdopt"),
+						rs.getDate("answerDate"),
+						rs.getInt("userId")
+					);
+				answers.add(answer);				
+			}		
+			return answers;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
 	//답변 등록
 	public int addAnswer(int questionCode, Answer answer) throws SQLException {
 		// answerAdopt는 기본값 'n', answerDate는 sysdate, answerId에는 시퀀스 값이 들어감. 
