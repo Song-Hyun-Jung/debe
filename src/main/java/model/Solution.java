@@ -63,6 +63,8 @@ public class Solution{
 		this.userId = userId;
 	}
 	
+	public Solution() { }
+	
 	//각 답변 별 평균 구해서 반환
 	public float avgScore(float score) {
 		return (solutionScore + score) / 2;

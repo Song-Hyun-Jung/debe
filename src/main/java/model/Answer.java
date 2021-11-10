@@ -61,6 +61,13 @@ public class Answer{
 		this.answerDate = answerDate;
 		this.userId = userId;
 	}
+	public Answer(int postId, String answerContent, int userId) { //답변 등록시 사용하는 생성자.
+		// answerAdopt는 기본값 'n', answerDate는 sysdate, answerId에는 시퀀스 값이 들어감. 
+		super();
+		this.postId = postId;
+		this.answerContent = answerContent;
+		this.userId = userId;
+	}
 	
 	
 }

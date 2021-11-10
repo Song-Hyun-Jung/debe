@@ -92,6 +92,8 @@ public class Recommend{
 		this.algorithm = algorithm;
 	}
 	
+	public Recommend() { }
+	
 	//문제 추천수 증가
 	public int addRecommendCount() {
 		return recommendCount + 1;

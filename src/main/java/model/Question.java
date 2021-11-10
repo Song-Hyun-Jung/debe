@@ -102,5 +102,10 @@ public class Question{
 		this.subjectId = subjectId;
 	}
 	
+	public Question(int postId, String title) {//마이페이지 나의 질문 조회에서 사용할 생성자
+		super();
+		this.postId = postId;
+		this.title = title;
+	}
 	
 }
