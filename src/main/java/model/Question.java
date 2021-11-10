@@ -3,18 +3,18 @@ package model;
 import java.sql.Date;
 
 /**
- *吏덈Ц 愿�由щ�� �쐞�빐 �븘�슂�븳 �룄硫붿씤 �겢�옒�뒪. Question �뀒�씠釉붽낵 ���쓳
+ *질문 관리를 위해 필요한 도메인 클래스. Question 테이블과 대응
  */
 public class Question{
-	private int postId; //寃뚯떆湲� id
-	private String title; //吏덈Ц �젣紐�
-	private Date postDate; //吏덈Ц �옉�꽦�씪
-	private String postContent; //吏덈Ц �궡�슜
-	private int userId; //吏덈Ц�옄
-	private String questionLanguage; //吏덈Ц �궗�슜�뼵�뼱
-	private String solve; //吏덈Ц �빐寃� �긽�깭
-	private String questionAdopt; //吏덈Ц 梨꾪깮 �긽�깭
-	private int subjectId; //吏덈Ц 愿��젴 怨쇰ぉ
+	private int postId; //게시글 id
+	private String title; //질문 제목
+	private Date postDate; //질문 작성일
+	private String postContent; //질문 내용
+	private int userId; //질문자
+	private String questionLanguage; //질문 사용언어
+	private String solve; //질문 해결 상태
+	private String questionAdopt; //질문 채택 상태
+	private int subjectId; //질문 관련 과목
 	
 	public int getPostId() {
 		return postId;
