@@ -17,10 +17,10 @@ public class AddQuestionController implements Controller{
 		
 		HttpSession session = request.getSession();	
 		
-		Question question = new Question(	//postDate,postId,solve,questionAdoptëŠ” DBì— insert ì‹œ sysdate,sequence,ê¸°ë³¸ê°’ìœ¼ë¡œ ì§€ì •, ì‚¬ìš©ìê°€ ì…ë ¥í•˜ëŠ” ê°’ ì•„ë‹˜
+		Question question = new Question(	//postDate,postId,solve,questionAdopt´Â DB¿¡ insert ½Ã sysdate,sequence,±âº»°ªÀ¸·Î ÁöÁ¤, »ç¿ëÀÚ°¡ ÀÔ·ÂÇÏ´Â °ª ¾Æ´Ô
 				request.getParameter("title"),
 				request.getParameter("questionContent"),
-				Integer.parseInt(UserSessionUtils.getLoginUserId(session)),	//userIdë„ request parameterë¡œ ë°›ì§€ ì•Šê³  sessionì—ì„œ ë°›ìŒ
+				Integer.parseInt(UserSessionUtils.getLoginUserId(session)),	//userIdµµ request parameter·Î ¹ŞÁö ¾Ê°í session¿¡¼­ ¹ŞÀ½
 				request.getParameter("questionLanguage"),
 				Integer.parseInt(request.getParameter("subjectId"))
 				);
@@ -28,10 +28,11 @@ public class AddQuestionController implements Controller{
 		
 		QuestionManager manager = QuestionManager.getInstance();
 		
-		manager.addQuestion(question);		//ì§ˆë¬¸ ì¶”ê°€
+		manager.addQuestion(question);		//Áú¹® Ãß°¡
 		
-		return "redirect:/user/viewquestion";	// /user/viewquestionë¡œ redirectí•˜ë©´ í•œ ì§ˆë¬¸ ì¡°íšŒ ìš”ì²­ì´ ë°œìƒí•˜ê³  DispatcherServletìœ¼ë¡œ ëŒì•„ì™€ì„œ 
-												// ViewQuesetionControllerë¡œ ì „ë‹¬ë˜ì–´ í•´ë‹¹ ì§ˆë¬¸ ì¡°íšŒ í™”ë©´ ì¶œë ¥
+		return "redirect:/user/viewquestion";	// /user/viewquestion·Î redirectÇÏ¸é ÇÑ Áú¹® Á¶È¸ ¿äÃ»ÀÌ ¹ß»ıÇÏ°í DispatcherServletÀ¸·Î µ¹¾Æ¿Í¼­ 
+												// ViewQuesetionController·Î Àü´ŞµÇ¾î ÇØ´ç Áú¹® Á¶È¸ È­¸é Ãâ·Â
 	}
 
 }
+

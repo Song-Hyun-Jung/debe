@@ -15,24 +15,24 @@ public class DeleteQuestionContoller implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		
-		int questionCode = Integer.parseInt(request.getParameter("questionCode"));	//deleteí•  questionCode
-		String postUserId = request.getParameter("userId");			//deleteí•  questionì„ ì‘ì„±í•œ userId, ì‚­ì œ ê¶Œí•œ í™•ì¸ ìœ„í•´
+		int questionCode = Integer.parseInt(request.getParameter("questionCode"));	//deleteÇÒ questionCode
+		String postUserId = request.getParameter("userId");			//deleteÇÒ questionÀ» ÀÛ¼ºÇÑ userId, »èÁ¦ ±ÇÇÑ È®ÀÎ À§ÇØ
 		
 		QuestionManager manager = QuestionManager.getInstance();		
 		HttpSession session = request.getSession();	
 		
-		if (UserSessionUtils.isLoginUser("admin", session)	// ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ìì¸ ê²½ìš°
-				   || 												// ë˜ëŠ” 
-				(!UserSessionUtils.isLoginUser("admin", session) &&  // ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ìê°€ ì•„ë‹ˆì§€ë§Œ
-				  UserSessionUtils.isLoginUser(postUserId, session))) { // ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ì‘ì„±í•œ ì§ˆë¬¸ì¸ ê²½ìš°
+		if (UserSessionUtils.isLoginUser("admin", session)	// ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚÀÎ °æ¿ì
+				   || 												// ¶Ç´Â 
+				(!UserSessionUtils.isLoginUser("admin", session) &&  // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚ°¡ ¾Æ´ÏÁö¸¸
+				  UserSessionUtils.isLoginUser(postUserId, session))) { // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ Áú¹®ÀÎ °æ¿ì
 					
-				manager.deleteQuestion(questionCode);				// ì§ˆë¬¸ ì‚­ì œ
+				manager.deleteQuestion(questionCode);				// Áú¹® »èÁ¦
 				
-				return "/user/DisplayQuestion.jsp";		// ì§ˆë¬¸ ëª©ë¡ í™”ë©´ìœ¼ë¡œ ì´ë™ (forwarding)	
+				return "/user/DisplayQuestion.jsp";		// Áú¹® ¸ñ·Ï È­¸éÀ¸·Î ÀÌµ¿ (forwarding)	
 			}
 			
-		//ê´€ë¦¬ì ì•„ë‹ˆê³  ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ì‘ì„±í•œ ì§ˆë¬¸ì´ ì•„ë‹Œ ê²½ìš° ì§ˆë¬¸ ì‚­ì œ ëª»í•˜ëŠ”ë° htmlì—ì„œ ì‚­ì œ ë²„íŠ¼ ì•ˆ ë³´ì´ê²Œ ì„¤ì •í•  ê±°ë©´ ë”°ë¡œ ì•ˆ í•´ë„ ë˜ê³ 
-		//htmlì—ì„œ ì„¤ì • ëª» í•˜ë©´ ì—¬ê¸°ì„œ êµ¬í˜„í•˜ê¸°.
+		//°ü¸®ÀÚ ¾Æ´Ï°í ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ Áú¹®ÀÌ ¾Æ´Ñ °æ¿ì Áú¹® »èÁ¦ ¸øÇÏ´Âµ¥ html¿¡¼­ »èÁ¦ ¹öÆ° ¾È º¸ÀÌ°Ô ¼³Á¤ÇÒ °Å¸é µû·Î ¾È ÇØµµ µÇ°í
+		//html¿¡¼­ ¼³Á¤ ¸ø ÇÏ¸é ¿©±â¼­ ±¸ÇöÇÏ±â.
 		
 		return "/user/DisplayQuestion.jsp";
 	}

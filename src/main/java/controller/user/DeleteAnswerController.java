@@ -13,23 +13,23 @@ public class DeleteAnswerController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int answerCode = Integer.parseInt(request.getParameter("answerCode"));
-		String postUserId = request.getParameter("userId");		//deleteí•  answerì„ ì‘ì„±í•œ userId
+		String postUserId = request.getParameter("userId");		//deleteÇÒ answerÀ» ÀÛ¼ºÇÑ userId
 		
 		AnswerManager manager = AnswerManager.getInstance();		
 		HttpSession session = request.getSession();	
 		
-		if (UserSessionUtils.isLoginUser("admin", session)	// ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ìì¸ ê²½ìš°
-				   || 												// ë˜ëŠ” 
-				(!UserSessionUtils.isLoginUser("admin", session) &&  // ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ìê°€ ì•„ë‹ˆì§€ë§Œ
-				  UserSessionUtils.isLoginUser(postUserId, session))) { // ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ì‘ì„±í•œ ë‹µë³€ì¸ ê²½ìš°
+		if (UserSessionUtils.isLoginUser("admin", session)	// ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚÀÎ °æ¿ì
+				   || 												// ¶Ç´Â 
+				(!UserSessionUtils.isLoginUser("admin", session) &&  // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚ°¡ ¾Æ´ÏÁö¸¸
+				  UserSessionUtils.isLoginUser(postUserId, session))) { // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ ´äº¯ÀÎ °æ¿ì
 					
-				manager.deleteAnswer(answerCode);				// ë‹µë³€ ì‚­ì œ
+				manager.deleteAnswer(answerCode);				// ´äº¯ »èÁ¦
 				
 				return "redirect:/user/viewquestion";
 			}
 			
-		//ê´€ë¦¬ì ì•„ë‹ˆê³  ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ì‘ì„±í•œ ë‹µë³€ì´ ì•„ë‹Œ ê²½ìš° ë‹µë³€ ì‚­ì œ ëª»í•˜ëŠ”ë° htmlì—ì„œ ì‚­ì œ ë²„íŠ¼ ì•ˆ ë³´ì´ê²Œ ì„¤ì •í•  ê±°ë©´ ë”°ë¡œ ì•ˆ í•´ë„ ë˜ê³ 
-		//htmlì—ì„œ ì„¤ì • ëª» í•˜ë©´ ì—¬ê¸°ì„œ êµ¬í˜„í•˜ê¸°.
+		//°ü¸®ÀÚ ¾Æ´Ï°í ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ ´äº¯ÀÌ ¾Æ´Ñ °æ¿ì ´äº¯ »èÁ¦ ¸øÇÏ´Âµ¥ html¿¡¼­ »èÁ¦ ¹öÆ° ¾È º¸ÀÌ°Ô ¼³Á¤ÇÒ °Å¸é µû·Î ¾È ÇØµµ µÇ°í
+		//html¿¡¼­ ¼³Á¤ ¸ø ÇÏ¸é ¿©±â¼­ ±¸ÇöÇÏ±â.
 		
 		return "redirect:/user/viewquestion";
 	}

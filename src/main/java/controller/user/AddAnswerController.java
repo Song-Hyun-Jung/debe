@@ -15,17 +15,18 @@ public class AddAnswerController implements Controller{
 		
 		HttpSession session = request.getSession();	
 		
-		Answer answer = new Answer(		//answerId, answerAdoptëŠ” dbì— insert ì‹œì— sequence, ê¸°ë³¸ê°’ìœ¼ë¡œ ì§€ì •, answerDateëŠ” insertì‹œ sysdateë¡œ
-				Integer.parseInt(request.getParameter("questionCode")),		//ë‹µë³€ ì–´ëŠ ì§ˆë¬¸ì— ë‹¬ì•˜ëŠ”ì§€, í•´ë‹¹ ì§ˆë¬¸ì˜ postId
+		Answer answer = new Answer(		//answerId, answerAdopt´Â db¿¡ insert ½Ã¿¡ sequence, ±âº»°ªÀ¸·Î ÁöÁ¤, answerDate´Â insert½Ã sysdate·Î
+				Integer.parseInt(request.getParameter("questionCode")),		//´äº¯ ¾î´À Áú¹®¿¡ ´Ş¾Ò´ÂÁö, ÇØ´ç Áú¹®ÀÇ postId
 				request.getParameter("answerContent"),
 				Integer.parseInt(UserSessionUtils.getLoginUserId(session))
 				);
 		
 		AnswerManager manager = AnswerManager.getInstance();
 		
-		manager.addAnswer(answer);	//Answer ê°ì²´ ì¶”ê°€
+		manager.addAnswer(answer);	//Answer °´Ã¼ Ãß°¡
 		
-		return "redirect:/user/viewquestion";	//ViewQuestion.jspë¡œ redirect
+		return "redirect:/user/viewquestion";	//ViewQuestion.jsp·Î redirect
 	}
 
 }
+
