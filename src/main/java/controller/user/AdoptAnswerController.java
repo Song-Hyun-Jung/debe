@@ -15,23 +15,24 @@ public class AdoptAnswerController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		Question question = request.getParameter("Question");
-		String userId = question.getUserId();
-		Answer answer = request.getParameter("Answer");
-		List<Answer> answerList = null;
+		String postUserId = request.getParameter("userId");	//ë‹µë³€ ì±„íƒí•  ì§ˆë¬¸ ì‘ì„±ì id
+		String questionCode = request.getParameter("questionCode");		//ì±„íƒí•  ë‹µë³€ì˜ ì§ˆë¬¸ id
+		String answerCode = request.getParameter("answerCode");			//ì±„íƒí•  ë‹µë³€ id
+		
 		AnswerManager answerManager = AnswerManager.getInstance();	
 		HttpSession session = request.getSession();	
 		
-		if (UserSessionUtils.isLoginUser(userId, session)) { // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ÇØ´ç questionÀÇ ÀÛ¼ºÀÚ(question°´Ã¼ÀÇ userId)ÀÏ °æ¿ì		
-				answerManager.AdoptAnswer(question, answer);	//ÇØ´ç questionÀÇ ÇØ´ç answer Ã¤ÅÃ
+		if (UserSessionUtils.isLoginUser(postUserId, session)) { // í˜„ì¬ ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ í•´ë‹¹ questionì˜ ì‘ì„±ì(questionê°ì²´ì˜ userId)ì¼ ê²½ìš°		
+				answerManager.AdoptAnswer(questionCode, answerCode);	//í•´ë‹¹ questionì˜ í•´ë‹¹ answer ì±„íƒ
 				
 				return "redirect:/user/viewquestion";
 			}
 		
-		//°ü¸®ÀÚ ¾Æ´Ï°í ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ Áú¹®ÀÌ ¾Æ´Ñ °æ¿ì Áú¹® »èÁ¦ ¸øÇÏ´Âµ¥ html¿¡¼­ »èÁ¦ ¹öÆ° ¾È º¸ÀÌ°Ô ¼³Á¤ÇÒ °Å¸é µû·Î ¾È ÇØµµ µÇ°í
-				//html¿¡¼­ ¼³Á¤ ¸ø ÇÏ¸é ¿©±â¼­ ±¸ÇöÇÏ±â.
+		//ê´€ë¦¬ì ì•„ë‹ˆê³  ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ì‘ì„±í•œ ì§ˆë¬¸ì´ ì•„ë‹Œ ê²½ìš° ì§ˆë¬¸ ì‚­ì œ ëª»í•˜ëŠ”ë° htmlì—ì„œ ì‚­ì œ ë²„íŠ¼ ì•ˆ ë³´ì´ê²Œ ì„¤ì •í•  ê±°ë©´ ë”°ë¡œ ì•ˆ í•´ë„ ë˜ê³ 
+				//htmlì—ì„œ ì„¤ì • ëª» í•˜ë©´ ì—¬ê¸°ì„œ êµ¬í˜„í•˜ê¸°.
 
 		return "redirect:/user/viewquestion";
 	}
 
 }
+
