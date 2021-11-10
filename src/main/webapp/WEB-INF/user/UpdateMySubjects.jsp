@@ -19,8 +19,8 @@
    <form>
 	<table>
 		<tr>
-			<td id="subject">
-				<input type="checkbox" name="interesting" value="0" checked>프로그래밍논리의이해 <br/> 
+			<td id="subject"> <!-- checkbox->radio -->
+				<input type="checkbox" name="interesting" value="0" checked>프로그래밍논리의이해 <br/> <!-- value값 과목코드로 바꿀것 --> 
 				<input type="checkbox" name="interesting" value="1">인터넷프로그래밍<br/>
 				<input type="checkbox" name="interesting" value="2">컴퓨터프로그래밍 <br/>
 				<input type="checkbox" name="interesting" value="3">이산수학<br/>
