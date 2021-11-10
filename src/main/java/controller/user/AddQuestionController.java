@@ -1,7 +1,11 @@
 package controller.user;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.Question;
@@ -11,13 +15,23 @@ public class AddQuestionController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		Question question = request.getParameter("Question");
+		HttpSession session = request.getSession();	
+		
+		Question question = new Question(	//postDate,postId,solve,questionAdoptëŠ” DBì— insert ì‹œ sysdate,sequence,ê¸°ë³¸ê°’ìœ¼ë¡œ ì§€ì •, ì‚¬ìš©ìê°€ ì…ë ¥í•˜ëŠ” ê°’ ì•„ë‹˜
+				request.getParameter("title"),
+				request.getParameter("questionContent"),
+				Integer.parseInt(UserSessionUtils.getLoginUserId(session)),	//userIdë„ request parameterë¡œ ë°›ì§€ ì•Šê³  sessionì—ì„œ ë°›ìŒ
+				request.getParameter("questionLanguage"),
+				Integer.parseInt(request.getParameter("subjectId"))
+				);
+		
+		
 		QuestionManager manager = QuestionManager.getInstance();
 		
-		manager.addQuestion(question);		//Áú¹® Ãß°¡
+		manager.addQuestion(question);		//ì§ˆë¬¸ ì¶”ê°€
 		
-		return "redirect:/user/viewquestion";	// /user/viewquestion·Î redirectÇÏ¸é ÇÑ Áú¹® Á¶È¸ ¿äÃ»ÀÌ ¹ß»ıÇÏ°í DispatcherServletÀ¸·Î µ¹¾Æ¿Í¼­ 
-												// ViewQuesetionController·Î Àü´ŞµÇ¾î ÇØ´ç Áú¹® Á¶È¸ È­¸é Ãâ·Â
+		return "redirect:/user/viewquestion";	// /user/viewquestionë¡œ redirectí•˜ë©´ í•œ ì§ˆë¬¸ ì¡°íšŒ ìš”ì²­ì´ ë°œìƒí•˜ê³  DispatcherServletìœ¼ë¡œ ëŒì•„ì™€ì„œ 
+												// ViewQuesetionControllerë¡œ ì „ë‹¬ë˜ì–´ í•´ë‹¹ ì§ˆë¬¸ ì¡°íšŒ í™”ë©´ ì¶œë ¥
 	}
 
 }
