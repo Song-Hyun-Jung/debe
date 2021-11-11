@@ -12,8 +12,8 @@ public class DeleteAnswerController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		Answer deletedAnswer = request.getParameter("Answer");	//Answer객체 받아옴
-		String postUserId = deletedAnswer.getUserId();		//delete할 answer을 작성한 userId
+		int answerCode = Integer.parseInt(request.getParameter("answerCode"));
+		String postUserId = request.getParameter("userId");		//delete할 answer을 작성한 userId
 		
 		AnswerManager manager = AnswerManager.getInstance();		
 		HttpSession session = request.getSession();	
@@ -23,7 +23,7 @@ public class DeleteAnswerController implements Controller{
 				(!UserSessionUtils.isLoginUser("admin", session) &&  // 로그인한 사용자가 관리자가 아니지만
 				  UserSessionUtils.isLoginUser(postUserId, session))) { // 로그인한 사용자가 작성한 답변인 경우
 					
-				manager.deleteAnswer(deletedAnswer);				// 답변 삭제
+				manager.deleteAnswer(answerCode);				// 답변 삭제
 				
 				return "redirect:/user/viewquestion";
 			}
@@ -35,3 +35,4 @@ public class DeleteAnswerController implements Controller{
 	}
 
 }
+

@@ -14,8 +14,9 @@ public class DeleteQuestionContoller implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		Question deletedQuestion = request.getParameter("Question");	//question객체 받아옴
-		String postUserId = deletedQuestion.getUserId();		//delete할 question을 작성한 userId
+		
+		int questionCode = Integer.parseInt(request.getParameter("questionCode"));	//delete할 questionCode
+		String postUserId = request.getParameter("userId");			//delete할 question을 작성한 userId, 삭제 권한 확인 위해
 		
 		QuestionManager manager = QuestionManager.getInstance();		
 		HttpSession session = request.getSession();	
@@ -25,7 +26,7 @@ public class DeleteQuestionContoller implements Controller{
 				(!UserSessionUtils.isLoginUser("admin", session) &&  // 로그인한 사용자가 관리자가 아니지만
 				  UserSessionUtils.isLoginUser(postUserId, session))) { // 로그인한 사용자가 작성한 질문인 경우
 					
-				manager.deleteQuestion(deletedQuestion);				// 질문 삭제
+				manager.deleteQuestion(questionCode);				// 질문 삭제
 				
 				return "/user/DisplayQuestion.jsp";		// 질문 목록 화면으로 이동 (forwarding)	
 			}

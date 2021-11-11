@@ -23,41 +23,42 @@ public class AnswerDAO {
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
 	
-	//문제별 답변 조회
-	public List<Answer> findAnswers(int postId) throws SQLException {
-        String sql = "SELECT answerContent, answerAdopt, answerDate, userId, answerId, postId "
-    				+ "FROM QuestionAnswer "
-        		    + "WHERE postId = ?"
-    				+ "ORDER BY answerAdopt DESC, postId";
-		jdbcUtil.setSqlAndParameters(sql, null);		
-					
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();					
-			List<Answer> answers = new ArrayList<Answer>();	
-			while (rs.next()) {
-				Answer answer = new Answer(
-						rs.getInt("answerId"),
-						rs.getInt("postId"),
-						rs.getString("answerContent"),
-						rs.getString("answerAdopt"),
-						rs.getDate("answerDate"),
-						rs.getInt("userId")
-					);
-				answers.add(answer);				
-			}		
-			return answers;					
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		
-		}
-		return null;
-	}
+	 //문제별 답변 조회
+	   public List<Answer> findAnswers(int questionCode) throws SQLException {
+	        String sql = "SELECT answerContent, answerAdopt, answerDate, userId, answerId, postId "
+	                + "FROM QuestionAnswer "
+	                  + "WHERE postId = ?"
+	                + "ORDER BY answerAdopt DESC, answerId";
+	        Object[] param = new Object[] {questionCode};   
+	      jdbcUtil.setSqlAndParameters(sql, param);      
+	               
+	      try {
+	         ResultSet rs = jdbcUtil.executeQuery();               
+	         List<Answer> answers = new ArrayList<Answer>();   
+	         while (rs.next()) {
+	            Answer answer = new Answer(
+	                  rs.getInt("answerId"),
+	                  rs.getInt("postId"),
+	                  rs.getString("answerContent"),
+	                  rs.getString("answerAdopt"),
+	                  rs.getDate("answerDate"),
+	                  rs.getInt("userId")
+	               );
+	            answers.add(answer);            
+	         }      
+	         return answers;               
+	         
+	      } catch (Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         jdbcUtil.close();      
+	      }
+	      return null;
+	   }
 	
 	//답변 등록
 	public int addAnswer(int questionCode, Answer answer) throws SQLException {
-		// answerAdopt는 기본값 'n', answerDate는 sysdate, answerId에는 시퀀스 값이 들어감. 
+		// answerAdopt는 기본값 'n', answerDate는 기본값으로 sysdate, answerId에는 시퀀스 값이 들어감. 
 		String sql = "INSERT INTO QuestionAnswer(answerContent, postId, userId, answerId) "
 				+ "VALUES (?, ?, ?, SEQUENCEANSWERID.nextval)";		
 		Object[] param = new Object[] {answer.getAnswerContent(), questionCode, answer.getUserId() };				
@@ -142,7 +143,7 @@ public class AnswerDAO {
 	}
 	*/
 	//트랜잭션
-	public void adoptAnswer(Question question, Answer answer) {
+	public void adoptAnswer(int questionCode, int answerCode) {
 		PreparedStatement pStmt = null;
 		ConnectionManager connectionManager = new ConnectionManager();
 		Connection conn = connectionManager.getConnection();
@@ -152,14 +153,14 @@ public class AnswerDAO {
 					+ "SET answeradopt='y' "
 					+ "WHERE answerId=?";
 			pStmt = conn.prepareStatement(sql1);
-			pStmt.setInt(1, answer.getAnswerId());
+			pStmt.setInt(1, answerCode);
 			if(pStmt.executeUpdate() != 1) { throw new Exception(); }
 			pStmt.close();
 			String sql2 = "UPDATE Question "
 					+ "SET questionAdopt='y' "
 					+ "WHERE postId=?";
 			pStmt = conn.prepareStatement(sql2);
-			pStmt.setInt(1, question.getPostId());
+			pStmt.setInt(1, questionCode);
 			if(pStmt.executeUpdate() != 1) { throw new Exception(); }
 			conn.commit();
 		} 
@@ -178,11 +179,11 @@ public class AnswerDAO {
 	}
 	
 	//답변 채택 'y', 'n'상태 조회->체크마크 표시 위함
-	public String checkAdoptState(Answer answer) throws SQLException {
+	public String checkAdoptState(int answerId) throws SQLException {
         String sql = "SELECT answerAdopt "
         			+ "FROM QuestionAnswer "
         			+ "WHERE answerId=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {answer.getAnswerId()});
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {answerId});
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();

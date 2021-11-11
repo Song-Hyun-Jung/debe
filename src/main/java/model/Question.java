@@ -3,18 +3,18 @@ package model;
 import java.sql.Date;
 
 /**
- *Áú¹® °ü¸®¸¦ À§ÇØ ÇÊ¿äÇÑ µµ¸ŞÀÎ Å¬·¡½º. Question Å×ÀÌºí°ú ´ëÀÀ
+ *ì§ˆë¬¸ ê´€ë¦¬ë¥¼ ìœ„í•´ í•„ìš”í•œ ë„ë©”ì¸ í´ë˜ìŠ¤. Question í…Œì´ë¸”ê³¼ ëŒ€ì‘
  */
 public class Question{
-	private int postId; //°Ô½Ã±Û id
-	private String title; //Áú¹® Á¦¸ñ
-	private Date postDate; //Áú¹® ÀÛ¼ºÀÏ
-	private String postContent; //Áú¹® ³»¿ë
-	private int userId; //Áú¹®ÀÚ
-	private String questionLanguage; //Áú¹® »ç¿ë¾ğ¾î
-	private String solve; //Áú¹® ÇØ°á »óÅÂ
-	private String questionAdopt; //Áú¹® Ã¤ÅÃ »óÅÂ
-	private int subjectId; //Áú¹® °ü·Ã °ú¸ñ
+	private int postId; //ê²Œì‹œê¸€ id
+	private String title; //ì§ˆë¬¸ ì œëª©
+	private Date postDate; //ì§ˆë¬¸ ì‘ì„±ì¼
+	private String postContent; //ì§ˆë¬¸ ë‚´ìš©
+	private int userId; //ì§ˆë¬¸ì
+	private String questionLanguage; //ì§ˆë¬¸ ì‚¬ìš©ì–¸ì–´
+	private String solve; //ì§ˆë¬¸ í•´ê²° ìƒíƒœ
+	private String questionAdopt; //ì§ˆë¬¸ ì±„íƒ ìƒíƒœ
+	private int subjectId; //ì§ˆë¬¸ ê´€ë ¨ ê³¼ëª©
 	
 	public int getPostId() {
 		return postId;
@@ -71,7 +71,7 @@ public class Question{
 		this.subjectId = subjectId;
 	}
 	
-	//»ı¼ºÀÚ
+	//ìƒì„±ì
 	public Question(int postId, String title, Date postDate, String postContent, int userId, String questionLanguage,
 			String solve, String questionAdopt, int subjectId) {
 		super();
@@ -85,27 +85,18 @@ public class Question{
 		this.questionAdopt = questionAdopt;
 		this.subjectId = subjectId;
 	}
-	public Question(int postId, String title, Date postDate, String postContent, int userId) {
-		super();
-		this.postId = postId;
+	
+	public Question(String title, String postContent, int userId, String questionLanguage, int subjectId) {
 		this.title = title;
-		this.postDate = postDate;
 		this.postContent = postContent;
 		this.userId = userId;
-	}
-	public Question(int postId, String questionLanguage, String solve, String questionAdopt, int subjectId) {
-		super();
-		this.postId = postId;
 		this.questionLanguage = questionLanguage;
-		this.solve = solve;
-		this.questionAdopt = questionAdopt;
 		this.subjectId = subjectId;
 	}
 	
-	public Question(int postId, String title) {//¸¶ÀÌÆäÀÌÁö ³ªÀÇ Áú¹® Á¶È¸¿¡¼­ »ç¿ëÇÒ »ı¼ºÀÚ
+	public Question(int postId, String title) {//ë§ˆì´í˜ì´ì§€ ë‚˜ì˜ ì§ˆë¬¸ ì¡°íšŒì—ì„œ ì‚¬ìš©í•  ìƒì„±ì
 		super();
 		this.postId = postId;
 		this.title = title;
 	}
-	
 }
