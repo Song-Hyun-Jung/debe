@@ -67,7 +67,7 @@ public class AnswerManager {
 		return;
 	}
 
-	//답변 객체들 가져오기
+	//답변 객체들 가져오기->구현해야함
 	public List<Answer> displayAllAnswer(String viewQuestionCode) throws SQLException{
 		try {
 			List<Answer> answers = new ArrayList<Answer>();
