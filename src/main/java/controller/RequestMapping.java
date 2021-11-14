@@ -5,6 +5,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.user.AddAnswerController;
+import controller.user.AdoptAnswerController;
+import controller.user.BookmarkQuestionController;
+import controller.user.DeleteAnswerController;
+import controller.user.ViewQuestionController;
+
 /*//나중에 수정해야함
 import controller.user.*;
 import controller.comm.*;
@@ -22,7 +28,7 @@ public class RequestMapping {
     	
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
-        
+     
         /*
         //로그인
         //로그인 폼으로 이동
@@ -82,6 +88,9 @@ public class RequestMapping {
         mappings.put("/user/addquestion", new AddQuestionController());
         //질문 삭제
         mappings.put("/user/deletequestion", new DeleteQuestionController());
+        */
+        
+        
         //답변 폼 이동
         mappings.put("/user/addanswer/form", new ForwardController("/user/AddAnswer.jsp"));
         //답변 등록
@@ -90,13 +99,15 @@ public class RequestMapping {
         mappings.put("/user/deleteanswer", new DeleteAnswerController());
         //답변 채택
         mappings.put("/user/adoptanswer", new AdoptAnswerController());
+        
+        
         //한 질문 조회
-        mappings.put("/user/viewquestion", new ViewQuestionController());
+       // mappings.put("/user/viewquestion", new ViewQuestionController());
         //질문 북마크
-    	mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
+    	//mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
         
         
-        
+        /*
         //추천문제
         //문제 리스트 조회
         mappings.put("/user/list", new ListRecommendController());
@@ -121,8 +132,8 @@ public class RequestMapping {
         //추천문제 북마크
         mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());
         
-        
         */
+        
         
         logger.info("Initialized Request Mapping!");
         

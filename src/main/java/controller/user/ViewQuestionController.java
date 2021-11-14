@@ -16,6 +16,7 @@ public class ViewQuestionController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+
 		int viewQuestionCode = Integer.parseInt(request.getParameter("questionCode"));
 		QuestionManager questionManager = QuestionManager.getInstance();
 		AnswerManager answerManager = AnswerManager.getInstance();

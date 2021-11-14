@@ -77,9 +77,9 @@ public class AnswerDAO {
 	}
 	
 	//답변 삭제
-	public int deleteAnswer(Answer answer) throws SQLException {
+	public int deleteAnswer(int answerCode) throws SQLException {
 		String sql = "DELETE FROM QuestionAnswer WHERE answerId=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {answer.getAnswerId()});	// JDBCUtil에 delete문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {answerCode});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
 			int result = jdbcUtil.executeUpdate();	
