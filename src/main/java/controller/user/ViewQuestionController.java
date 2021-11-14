@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.Question;
+import model.service.QuestionManager;
+import model.service.AnswerManager;
 import model.Answer;
 
 public class ViewQuestionController implements Controller{
@@ -14,7 +16,7 @@ public class ViewQuestionController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String viewQuestionCode = request.getParameter("questionCode");
+		int viewQuestionCode = Integer.parseInt(request.getParameter("questionCode"));
 		QuestionManager questionManager = QuestionManager.getInstance();
 		AnswerManager answerManager = AnswerManager.getInstance();
 		Question question = null;

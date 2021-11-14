@@ -1,10 +1,13 @@
 package controller.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.Question;
+import model.service.QuestionManager;
 
 public class ListQuestionController implements Controller{
 
