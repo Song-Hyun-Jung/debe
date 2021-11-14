@@ -8,7 +8,7 @@ import controller.Controller;
 import model.service.QuestionManager;
 
 
-public class DeleteQuestionContoller implements Controller{
+public class DeleteQuestionController implements Controller{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -87,7 +87,7 @@ public class RequestMapping {
         //질문 등록
         mappings.put("/user/addquestion", new AddQuestionController());
         //질문 삭제
-        mappings.put("/user/deletequestion", new DeleteQuestionContoller());
+        mappings.put("/user/deletequestion", new DeleteQuestionController());
         */
         
         
