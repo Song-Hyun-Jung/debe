@@ -28,7 +28,7 @@ public class RequestMapping {
     	
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
-     
+       
         /*
         //로그인
         //로그인 폼으로 이동
@@ -102,7 +102,7 @@ public class RequestMapping {
         
         
         //한 질문 조회
-       // mappings.put("/user/viewquestion", new ViewQuestionController());
+         mappings.put("/user/viewquestion", new ViewQuestionController());
         //질문 북마크
     	//mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
         

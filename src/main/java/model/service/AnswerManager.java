@@ -68,10 +68,10 @@ public class AnswerManager {
 	}
 
 	//답변 객체들 가져오기->구현해야함
-	public List<Answer> displayAllAnswer(String viewQuestionCode) throws SQLException{
+	public List<Answer> displayAllAnswer(int viewQuestionCode) throws SQLException{
 		try {
 			List<Answer> answers = new ArrayList<Answer>();
-			answers = answerDAO.findAnswers(Integer.parseInt(viewQuestionCode));
+			answers = answerDAO.findAnswers(viewQuestionCode);
 			if(answers != null)
 				return answers;
 		}
