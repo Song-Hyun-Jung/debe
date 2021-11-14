@@ -5,9 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.Question;
 import model.User;
+import model.service.QuestionManager;
 import model.service.UserManager;
+
 
 public class DeleteQuestionContoller implements Controller{
 

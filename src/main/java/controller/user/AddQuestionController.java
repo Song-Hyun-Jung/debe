@@ -1,14 +1,13 @@
 package controller.user;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.Question;
+import model.service.QuestionManager;
 
 public class AddQuestionController implements Controller{
 
