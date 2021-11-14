@@ -28,14 +28,17 @@ table.answers{
 </style>
 <script>
 function addAnswer() {
-	if (form.textarea.value == "") {
+	//빈칸일때 아직 안막아짐...
+	if ($("#answerCodes").val().length == 0) {
 		alert("내용을 입력하십시오.");
-		form.textarea.focus();
+		$("#answerCodes").focus();
 		return false;
 	}
-	form.action = targetUri;
-	form.method="POST";
-	form.submit();
+	else{
+		form.action = targetUri;
+		form.method="POST";
+		form.submit();
+	}
 }
 </script>
 </head>

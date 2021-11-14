@@ -27,8 +27,9 @@ public class RequestMapping {
     	
     	
         mappings.put("/", new ForwardController("index.jsp"));
-        mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
-       
+        //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
+        mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));
+        
         /*
         //로그인
         //로그인 폼으로 이동
@@ -89,7 +90,6 @@ public class RequestMapping {
         //질문 삭제
         mappings.put("/user/deletequestion", new DeleteQuestionController());
         */
-        
         
         //답변 폼 이동
         mappings.put("/user/addanswer/form", new ForwardController("/user/AddAnswer.jsp"));
