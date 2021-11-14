@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.Answer;
+import model.service.AnswerManager;
 
 public class DeleteAnswerController implements Controller{
 

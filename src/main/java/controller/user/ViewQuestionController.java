@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.Question;
+import model.service.AnswerManager;
 import model.Answer;
 
 public class ViewQuestionController implements Controller{
@@ -15,7 +16,7 @@ public class ViewQuestionController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String viewQuestionCode = request.getParameter("questionCode");
-		QuestionManager questionManager = QuestionManager.getInstance();
+		QuestionManager questionManager = Question.getInstance();
 		AnswerManager answerManager = AnswerManager.getInstance();
 		Question question = null;
 		List<Answer> answerList = null;
