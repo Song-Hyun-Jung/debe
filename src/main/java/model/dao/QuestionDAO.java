@@ -12,7 +12,7 @@ public class QuestionDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public QuestionDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ı¼º
+		jdbcUtil = new JDBCUtil();	// JDBCUtil ê°ì²´ ìƒì„±
 	}
 	
 	public List<Question> displayAllQuestion() throws SQLException {
@@ -50,7 +50,7 @@ public class QuestionDAO {
 	}
 	
 	
-	public Question displayQuestion(int questionCode) throws SQLException {	//Áú¹® ¹İÈ¯, ÀÌ Áú¹®¿¡ ÇØ´çÇÏ´Â ´äÀº AnswerDAO¿¡¼­ findAnswers È£Ãâ
+	public Question displayQuestion(int questionCode) throws SQLException {	//ì§ˆë¬¸ ë°˜í™˜, ì´ ì§ˆë¬¸ì— í•´ë‹¹í•˜ëŠ” ë‹µì€ AnswerDAOì—ì„œ findAnswers í˜¸ì¶œ
 		
 		String sql = "SELECT postid, title, postdate, postcontent, userid, questionlanguage, solve, questionadopt, subjectid "
 				+ "FROM Question "
@@ -85,23 +85,23 @@ public class QuestionDAO {
 		return null;
 	}
 	
-	public int deleteQuestion(int postId) throws SQLException {
+	public int deleteQuestion(int questionCode) throws SQLException {
 		
-		int resultAnswer = 0;		//»èÁ¦µÈ ´äº¯ °³¼ö
-		int resultQuestion = 0;		//»èÁ¦µÈ Çà °³¼ö
+		int resultAnswer = 0;		//ì‚­ì œëœ ë‹µë³€ ê°œìˆ˜
+		int resultQuestion = 0;		//ì‚­ì œëœ í–‰ ê°œìˆ˜
 		String deleteAnswerSql = "DELETE FROM Questionanswer WHERE postId = ?";
 		String deleteQuestionSql = "DELETE FROM Question WHERE postId = ?";
     
-	    Object[] param = new Object[] {postId};
+	    Object[] param = new Object[] {questionCode};
 		
 					
 		try {
 			jdbcUtil.setSqlAndParameters(deleteAnswerSql, param);		
-			resultAnswer = jdbcUtil.executeUpdate();	//Áú¹®¿¡ ÇØ´çÇÏ´Â ´äº¯µé »èÁ¦
-			jdbcUtil.close();	//ÀÌ°Å ÇÏ´Â °ÇÁö ¾È ÇÏ´Â °ÇÁö Àß ¸ô°ÚÀ½..
+			resultAnswer = jdbcUtil.executeUpdate();	//ì§ˆë¬¸ì— í•´ë‹¹í•˜ëŠ” ë‹µë³€ë“¤ ì‚­ì œ
+			jdbcUtil.close();	//ì´ê±° í•˜ëŠ” ê±´ì§€ ì•ˆ í•˜ëŠ” ê±´ì§€ ì˜ ëª°ê² ìŒ..
 			
 			jdbcUtil.setSqlAndParameters(deleteQuestionSql, param);		
-			resultQuestion = jdbcUtil.executeUpdate();			//Áú¹® »èÁ¦	
+			resultQuestion = jdbcUtil.executeUpdate();			//ì§ˆë¬¸ ì‚­ì œ	
 				
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
@@ -112,7 +112,7 @@ public class QuestionDAO {
 			jdbcUtil.close();	
 		}
 		
-		return resultQuestion;		//Áú¹® »èÁ¦ ¾È µÇ¸é 0 ¹İÈ¯, »èÁ¦ µÆÀ¸¸é 1 ¹İÈ¯
+		return resultQuestion;		//ì§ˆë¬¸ ì‚­ì œ ì•ˆ ë˜ë©´ 0 ë°˜í™˜, ì‚­ì œ ëìœ¼ë©´ 1 ë°˜í™˜
 	}
 	
 	public int addQuestion(Question question) throws SQLException {
@@ -126,15 +126,15 @@ public class QuestionDAO {
 		try {
 			jdbcUtil.setSqlAndParameters(sql1, param);	
 			result = jdbcUtil.executeUpdate();
-			ResultSet rs = jdbcUtil.getGeneratedKeys();		//»ı¼ºµÈ pk(postid)°ªÀ» Æ÷ÇÔÇÑ resultset°´Ã¼ ¹İÈ¯
+			ResultSet rs = jdbcUtil.getGeneratedKeys();		//ìƒì„±ëœ pk(postid)ê°’ì„ í¬í•¨í•œ resultsetê°ì²´ ë°˜í™˜
 			int postId = 0;
 			if(rs.next()) {
 				postId = rs.getInt(1);
 			}
-			jdbcUtil.close();		//ÇØ¾ß ÇÏ´Â °ÇÁö ¾Æ´ÑÁö Àß ¸ğ¸£°ÚÀ½
+			jdbcUtil.close();		//í•´ì•¼ í•˜ëŠ” ê±´ì§€ ì•„ë‹Œì§€ ì˜ ëª¨ë¥´ê² ìŒ
 			
 			String sql2 = "INSERT INTO QUESTION (questionlanguage, postId, subjectid) VALUES (?, ?, ?) ";
-			//Áú¹® Ãß°¡ÇÒ ¶§ questionLanguage ÇÊ¼ö ¼±ÅÃÀ¸·Î ÇÏ±â ¾È ±×·¯¸é º¹Àâ....
+			//ì§ˆë¬¸ ì¶”ê°€í•  ë•Œ questionLanguage í•„ìˆ˜ ì„ íƒìœ¼ë¡œ í•˜ê¸° ì•ˆ ê·¸ëŸ¬ë©´ ë³µì¡....
 			Object[] param2 = new Object[] {question.getQuestionLanguage(), postId, question.getSubjectId()};
 			
 			jdbcUtil.setSqlAndParameters(sql2, param2);		
@@ -149,7 +149,7 @@ public class QuestionDAO {
 			jdbcUtil.close();	
 		}
 		
-		return result;		//sql1, sql2 µÑ ´Ù Á¦´ë·Î ¼öÇàÇßÀ¸¸é 2, ¾Æ´Ï¸é 1 ¶Ç´Â 0
+		return result;		//sql1, sql2 ë‘˜ ë‹¤ ì œëŒ€ë¡œ ìˆ˜í–‰í–ˆìœ¼ë©´ 2, ì•„ë‹ˆë©´ 1 ë˜ëŠ” 0
 	}
 	
 }
