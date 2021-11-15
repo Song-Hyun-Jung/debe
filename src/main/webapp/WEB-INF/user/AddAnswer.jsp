@@ -26,15 +26,16 @@ table.answers{
 }
 </style>
 <script>
-function addAnswer() {
-	if (form.textarea.value == "") {
+function addAnswer(targetUri) {
+	alert(${param.questionId});
+	if (addMyAnswer.answerCodes.value == "") {
 		alert("내용을 입력하십시오.");
-		form.textarea.focus();
+		addMyAnswer.answerCodes.focus();
 		return false;
 	}
-	form.action = targetUri;
-	form.method="POST";
-	form.submit();
+	addMyAnswer.action = targetUri;
+	addMyAnswer.method="POST";
+	addMyAnswer.submit();
 }
 </script>
 </head>
@@ -44,7 +45,7 @@ function addAnswer() {
 <%session.setAttribute("userId", "20170001"); %>
 
 	<div align="center">
-	<form name=addMyAnswer method=post action="<c:url value='/user/addanswer'/>">
+	<form name=addMyAnswer method=post>
 		<table class="answers">
 			<tr class="answerInfo" style="padding:10px 0px 10px 0px">
 				<td colspan="2">답변자:${userNickname}&nbsp;&nbsp;&nbsp;경험치:${userLevel}</td>
@@ -54,7 +55,9 @@ function addAnswer() {
 			</tr>
 			<tr>
 				<td colspan="2" align="right" style="padding:10px 0px 0px 0px">
-				<input id="btnSubmit" type="submit" value="등록" onClick="addAnswer()"></td>
+				<input id="btnSubmit" type="submit" value="등록" onclick="addAnswer('<c:url value ='/user/addanswer'>
+												<c:param name='questionCode' value='${param.questionCode}'/>
+												</c:url>')"></td>
 			</tr>
 		</table>
 	</form>

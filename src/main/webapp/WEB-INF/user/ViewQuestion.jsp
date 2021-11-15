@@ -42,10 +42,18 @@ hr{
 }
 
 </style>
+<script type="text/javascript"></script>
+<script>
+function addAnswer(targetUri) {
+	questionInfo.action = targetUri;
+	questionInfo.method="GET";
+	questionInfo.submit();
+}
+</script>
 </head>
 <body>
 	<div align="center">
-	<form name=questionInfo method=post>
+	<form name="questionInfo">
 		<table>
 			<tr>
 				<td class="info">제목</td>
@@ -63,13 +71,19 @@ hr{
 			<tr>
 				<td class="info">질문자:</td>
 				<td>${Question.userId}</td>		<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
-				<td> </td>
-				<td class="info-right" colspan="2">과목명, 질문날짜</td>
+				<td> </td>						<!-- 과목명 수정해야함 -->
+				<td class="info-right" colspan="2">과목명:${Question.subjectId}&nbsp;&nbsp;질문날짜: ${Question.postDate}</td>
 			</tr>
 			<tr>
 				<td style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="글 삭제"></td>
 				<td colspan="3"></td>
-				<td><input id="btnSubmit" type="submit" value="답변등록"></td>			
+				
+				<td> <input id="btnSubmit" type="button" value="답변등록"
+							onclick="addAnswer('<c:url value ='/user/addanswer/form'>
+												<c:param name='questionCode' value='${Question.postId}'/>
+												</c:url>')">
+							
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -84,6 +98,7 @@ hr{
 				<td>답변자:${answer.userId}  경험치: </td>
 				<td align="right">
 					<img src=<c:url value='/images/adoptButton.jpg' /> id="adoptState${answer.answerId}" style="max-width:10%" >
+					<!-- 
 					<script>
 					//조건별 이미지 뜨도록...아직 안됨...
 						var tmp = "<c:out value='${answer.answerAdopt}'/>";
@@ -92,7 +107,8 @@ hr{
 						if(tmp == 'y'){
 							alert('y');
 						}
-					</script>			
+					</script>		
+					-->	
 				</td>
 			</tr>
 			<tr class="answerInfo">

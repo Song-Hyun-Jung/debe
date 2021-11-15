@@ -20,7 +20,11 @@ td {
 	background-color: rgb(137, 21, 52);
 }
 </style>
-
+<script>
+function goQuestion(targetUri) {
+	addMyAnswer.action = targetUri;
+}
+</script>
 </head>
 <body>
 
