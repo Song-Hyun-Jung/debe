@@ -85,14 +85,14 @@ public class QuestionDAO {
 		return null;
 	}
 	
-	public int deleteQuestion(int postId) throws SQLException {
+	public int deleteQuestion(int questionCode) throws SQLException {
 		
 		int resultAnswer = 0;		//삭제된 답변 개수
 		int resultQuestion = 0;		//삭제된 행 개수
 		String deleteAnswerSql = "DELETE FROM Questionanswer WHERE postId = ?";
 		String deleteQuestionSql = "DELETE FROM Question WHERE postId = ?";
     
-	    Object[] param = new Object[] {postId};
+	    Object[] param = new Object[] {questionCode};
 		
 					
 		try {
