@@ -16,9 +16,8 @@ public class QuestionDAO {
 	}
 	
 	public List<Question> displayAllQuestion() throws SQLException {
-        String sql = "SELECT postid, title, postdate, postcontent, userid, questionlanguage, solve, questionadopt, subjectid "
-    				+ "FROM Question "
-    				+ "ORDER BY postdate, postId";
+        String sql = "SELECT * FROM Question q, POST  p "
+    				+ "WHERE q.postid = p.postid ORDER BY postdate, q.postId";
         
 		jdbcUtil.setSqlAndParameters(sql, null);		
 					
@@ -37,7 +36,8 @@ public class QuestionDAO {
 						rs.getString("questionadopt"),
 						rs.getInt("subjectid")
 					);
-				questions.add(question);				
+				questions.add(question);
+				System.out.println("question 출력 위해 list에 add하기: "+question.getPostId()+question.getPostDate()+question.getSolve()+question.getTitle()+question.getUserId());
 			}		
 			return questions;					
 			

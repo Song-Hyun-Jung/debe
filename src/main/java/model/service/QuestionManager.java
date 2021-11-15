@@ -36,7 +36,7 @@ public class QuestionManager {
 		System.out.println("addQuestion questionCode°ª : "+questionCode);
 		System.out.println("addQuestion result°ª : "+result);
 		
-		return questionCode;
+		return result;
 	}
 	
 	public void deleteQuestion(int questionCode) throws SQLException {

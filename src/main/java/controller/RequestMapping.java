@@ -32,7 +32,9 @@ public class RequestMapping {
         mappings.put("/", new ForwardController("index.jsp"));
         //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
         //mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));		//답변등록 테스트
-        mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
+        //mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
+        mappings.put("/user/login/form", new ListQuestionController());	//질문 리스트 조회 테스트
+        
         
         /*
         //로그인
