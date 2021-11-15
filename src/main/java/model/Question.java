@@ -15,7 +15,14 @@ public class Question{
 	private String solve; //질문 해결 상태
 	private String questionAdopt; //질문 채택 상태
 	private int subjectId; //질문 관련 과목
+	private String subjectTitle; 	//질문 관련 과목 이름, subjectId에 대한 이름
 	
+	public String getSubjectTitle() {
+		return subjectTitle;
+	}
+	public void setSubjectTitle(String subjectTitle) {
+		this.subjectTitle = subjectTitle;
+	}
 	public int getPostId() {
 		return postId;
 	}
@@ -73,7 +80,7 @@ public class Question{
 	
 	//생성자
 	public Question(int postId, String title, Date postDate, String postContent, int userId, String questionLanguage,
-			String solve, String questionAdopt, int subjectId) {
+			String solve, String questionAdopt, int subjectId, String subjectTitle) {
 		super();
 		this.postId = postId;
 		this.title = title;
@@ -84,6 +91,7 @@ public class Question{
 		this.solve = solve;
 		this.questionAdopt = questionAdopt;
 		this.subjectId = subjectId;
+		this.subjectTitle = subjectTitle;
 	}
 	
 	public Question(String title, String postContent, int userId, String questionLanguage, int subjectId) {

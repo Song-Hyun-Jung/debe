@@ -62,7 +62,7 @@ td {
 	
 	<c:forEach var="question" items="${questionList}">
 		<tr>
-			<td>${question.subjectId}</td>
+			<td>${question.subjectTitle}</td>
 			<td>${question.title}</td>
 			<td>${question.solve}</td>
 			<td>${question.postDate}</td>
