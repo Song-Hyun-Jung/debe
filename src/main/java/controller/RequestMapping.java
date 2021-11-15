@@ -6,9 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.AddAnswerController;
+import controller.user.AddQuestionController;
 import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.DeleteAnswerController;
+import controller.user.DeleteQuestionController;
+import controller.user.ListQuestionController;
 import controller.user.ViewQuestionController;
 
 /*//나중에 수정해야함
@@ -28,7 +31,8 @@ public class RequestMapping {
     	
         mappings.put("/", new ForwardController("index.jsp"));
         //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
-        mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));
+        //mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));		//답변등록 테스트
+        mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
         
         /*
         //로그인
@@ -80,6 +84,8 @@ public class RequestMapping {
         //북마크에서 추천문제 항목 선택
         mappings.put("/user/goRecommend", new goRecommendController());
         
+        */
+        
         //질문하기
         //질문 리스트 조회
         mappings.put("/user/questionlist", new ListQuestionController());
@@ -89,7 +95,7 @@ public class RequestMapping {
         mappings.put("/user/addquestion", new AddQuestionController());
         //질문 삭제
         mappings.put("/user/deletequestion", new DeleteQuestionController());
-        */
+        
         
         
         //답변 폼 이동

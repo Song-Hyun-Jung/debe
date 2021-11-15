@@ -115,30 +115,47 @@ public class QuestionDAO {
 		return resultQuestion;		//질문 삭제 안 되면 0 반환, 삭제 됐으면 1 반환
 	}
 	
-	public int addQuestion(Question question) throws SQLException {
+	public int addQuestionPost(Question question) throws SQLException {		//1.post table에 넣기
 		
 		int result = 0;
+		int postId = 0;
 		
-		String sql1 = "INSERT INTO POST (postid, title, postcontent, userid) "
-    		    + "VALUES (SEQUENCEPOSTID.nextval, ?, ?, ?) ";
+		String sql1 = "INSERT INTO POST (postid, title, postcontent, userid) VALUES (SEQUENCEPOSTID.nextval, ?, ?, ?) ";
 		Object[] param = new Object[] {question.getTitle(), question.getPostContent(), question.getUserId()};
+		System.out.println("제목, 내용, userid : "+question.getTitle()+question.getPostContent()+question.getUserId());
+		jdbcUtil.setSqlAndParameters(sql1, param);	
+		String key[] = {"postId"};
 		
 		try {
-			jdbcUtil.setSqlAndParameters(sql1, param);	
-			result = jdbcUtil.executeUpdate();
-			ResultSet rs = jdbcUtil.getGeneratedKeys();		//생성된 pk(postid)값을 포함한 resultset객체 반환
-			int postId = 0;
-			if(rs.next()) {
-				postId = rs.getInt(1);
-			}
-			jdbcUtil.close();		//해야 하는 건지 아닌지 잘 모르겠음
-			
-			String sql2 = "INSERT INTO QUESTION (questionlanguage, postId, subjectid) VALUES (?, ?, ?) ";
-			//질문 추가할 때 questionLanguage 필수 선택으로 하기 안 그러면 복잡....
-			Object[] param2 = new Object[] {question.getQuestionLanguage(), postId, question.getSubjectId()};
-			
-			jdbcUtil.setSqlAndParameters(sql2, param2);		
-			result += jdbcUtil.executeUpdate();	
+			result = jdbcUtil.executeUpdate(key);
+			ResultSet rs = jdbcUtil.getGeneratedKeys();
+			if(rs.next()) { postId = rs.getInt(1); }
+			System.out.println("구한 postId 값: "+postId);
+		
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		
+		return postId;		//추가한 질문의 postId값 return
+	}
+	
+	
+public int addQuestionQ(Question question, int postId) throws SQLException {		//2. question table에 넣기
+		
+		int result = 0;
+
+		String sql2 = "INSERT INTO QUESTION (questionlanguage, postId, subjectid) VALUES (?, ?, ?) ";
+		Object[] param2 = new Object[] {question.getQuestionLanguage(), postId, question.getSubjectId()};
+		jdbcUtil.setSqlAndParameters(sql2, param2);
+		
+		try {
+			System.out.println("언어, postid, subjectid값 : "+question.getQuestionLanguage() + postId + question.getSubjectId());
+			result = jdbcUtil.executeUpdate();	
 			
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
@@ -149,7 +166,6 @@ public class QuestionDAO {
 			jdbcUtil.close();	
 		}
 		
-		return result;		//sql1, sql2 둘 다 제대로 수행했으면 2, 아니면 1 또는 0
+		return result;		//제대로 들어갔으면 1 아니면 0
 	}
-	
 }

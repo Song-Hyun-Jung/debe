@@ -28,12 +28,20 @@ public class QuestionManager {
 		return questionDAO.displayAllQuestion();
 	}
 	
-	public void addQuestion(Question question) throws SQLException {
-		questionDAO.addQuestion(question);
+	public int addQuestion(Question question) throws SQLException {
+		//int result = questionDAO.addQuestion(question);
+		int questionCode = questionDAO.addQuestionPost(question);
+		int result = questionDAO.addQuestionQ(question, questionCode);
+
+		System.out.println("addQuestion questionCode°ª : "+questionCode);
+		System.out.println("addQuestion result°ª : "+result);
+		
+		return questionCode;
 	}
 	
 	public void deleteQuestion(int questionCode) throws SQLException {
-		questionDAO.deleteQuestion(questionCode);
+		int result = questionDAO.deleteQuestion(questionCode);
+		System.out.println("deleteQuestion result°ª : "+ result);
 	}
 	
 	public Question displayQuestion(int questionCode) throws SQLException {

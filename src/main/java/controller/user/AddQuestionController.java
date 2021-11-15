@@ -24,13 +24,16 @@ public class AddQuestionController implements Controller{
 				Integer.parseInt(request.getParameter("subjectId"))
 				);
 		
-		
+		System.out.println("addquestionController에서 userid값: "+Integer.parseInt(UserSessionUtils.getLoginUserId(session)));
 		QuestionManager manager = QuestionManager.getInstance();
 		
-		manager.addQuestion(question);		//질문 추가
+		int questionCode = manager.addQuestion(question);		//질문 추가하고 해당 질문의 questionCode 값 가져옴
 		
-		return "redirect:/user/viewquestion";	// /user/viewquestion로 redirect하면 한 질문 조회 요청이 발생하고 DispatcherServlet으로 돌아와서 
-												// ViewQuesetionController로 전달되어 해당 질문 조회 화면 출력
+		request.setAttribute("questionCode", questionCode);		//viewquestion으로 가서 이 questinoCode에 해당하는 질문 조회
+		System.out.println("addquestionController에서 questionCode값: "+questionCode);
+		
+		return "redirect:/user/questionlist";	// /user/questionlist로 redirect하면 한 질문 조회 요청이 발생하고 DispatcherServlet으로 돌아와서 
+												// ListQuestionController로 전달되어 질문 목록 화면 출력
 	}
 
 }
