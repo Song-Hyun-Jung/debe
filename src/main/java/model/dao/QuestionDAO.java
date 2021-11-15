@@ -52,9 +52,9 @@ public class QuestionDAO {
 	
 	public Question displayQuestion(int questionCode) throws SQLException {	//질문 반환, 이 질문에 해당하는 답은 AnswerDAO에서 findAnswers 호출
 		
-		String sql = "SELECT postid, title, postdate, postcontent, userid, questionlanguage, solve, questionadopt, subjectid "
-				+ "FROM Question "
-    		    + "WHERE postId = ?"
+		String sql = "SELECT postid, title, postdate, postcontent, userid, questionlanguage, solve, questionadopt, subjectid, subjectTitle "
+				+ "FROM Question q, Post p, Subject s "
+    		    + "WHERE q.postId = p.postId and q.subjectId = s.subjectId and postId = ?"
 				+ "ORDER BY postdate, postId";
     
 	    Object[] param = new Object[] {questionCode};
@@ -72,7 +72,8 @@ public class QuestionDAO {
 					rs.getString("questionlanguage"),
 					rs.getString("solve"),
 					rs.getString("questionadopt"),
-					rs.getInt("subjectid")
+					rs.getInt("subjectid"),
+					rs.getString("subjectTitle")
 				);			
 	
 			return question;					
