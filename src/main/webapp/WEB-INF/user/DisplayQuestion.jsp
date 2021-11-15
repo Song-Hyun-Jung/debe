@@ -63,7 +63,12 @@ td {
 	<c:forEach var="question" items="${questionList}">
 		<tr>
 			<td>${question.subjectTitle}</td>
-			<td>${question.title}</td>
+			<td>
+				<a href="<c:url value ='/user/viewquestion'>
+							<c:param name='questionCode' value='${question.postId}' />
+						</c:url>"> ${question.title}
+				</a>
+			</td>			<!-- 제목 누르면 해당 질문글 viewQuestion -->
 			<td>${question.solve}</td>
 			<td>${question.postDate}</td>
 		</tr>

@@ -52,32 +52,33 @@ public class QuestionDAO {
 	
 	public Question displayQuestion(int questionCode) throws SQLException {	//질문 반환, 이 질문에 해당하는 답은 AnswerDAO에서 findAnswers 호출
 		
-		String sql = "SELECT postid, title, postdate, postcontent, userid, questionlanguage, solve, questionadopt, subjectid, subjectTitle "
+		String sql = "SELECT q.postid, p.title, p.postdate, p.postcontent, p.userid, q.questionlanguage, q.solve, q.questionadopt, s.subjectid, s.subjectTitle "
 				+ "FROM Question q, Post p, Subject s "
-    		    + "WHERE q.postId = p.postId and q.subjectId = s.subjectId and postId = ?"
-				+ "ORDER BY postdate, postId";
+    		    + "WHERE q.postId = p.postId and q.subjectId = s.subjectId and q.postId = ?"
+				+ "ORDER BY p.postdate, q.postId";
     
 	    Object[] param = new Object[] {questionCode};
 		jdbcUtil.setSqlAndParameters(sql, param);		
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();					
-			
-			Question question = new Question(
-					rs.getInt("postId"),
-					rs.getString("title"),
-					rs.getDate("postdate"),
-					rs.getString("postcontent"),
-					rs.getInt("userid"),
-					rs.getString("questionlanguage"),
-					rs.getString("solve"),
-					rs.getString("questionadopt"),
-					rs.getInt("subjectid"),
-					rs.getString("subjectTitle")
-				);			
-	
-			return question;					
-			
+			if(rs.next()) {
+				Question question = new Question(
+						rs.getInt("postId"),
+						rs.getString("title"),
+						rs.getDate("postdate"),
+						rs.getString("postcontent"),
+						rs.getInt("userid"),
+						rs.getString("questionlanguage"),
+						rs.getString("solve"),
+						rs.getString("questionadopt"),
+						rs.getInt("subjectid"),
+						rs.getString("subjectTitle")
+					);			
+		
+				return question;
+			}
+							
 		} catch (Exception ex) { 
 			ex.printStackTrace();} 
 		finally {

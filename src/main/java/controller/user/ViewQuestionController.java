@@ -19,7 +19,7 @@ public class ViewQuestionController implements Controller{
 		final Logger LOG = Logger.getGlobal();
 		LOG.info("불러왔음");
 
-		int viewQuestionCode = (int) request.getAttribute("questionCode");
+		int viewQuestionCode = Integer.parseInt(request.getParameter("questionCode"));
 		QuestionManager questionManager = QuestionManager.getInstance();
 		AnswerManager answerManager = AnswerManager.getInstance();
 		Question question = null;
@@ -29,7 +29,10 @@ public class ViewQuestionController implements Controller{
 		question = questionManager.displayQuestion(viewQuestionCode);
 		answerList = answerManager.displayAllAnswer(viewQuestionCode);	//questionCode에 해당하는 답변 모두 가져옴
 		
-		LOG.info(String.valueOf(answerList.get(0).getAnswerContent()));
+		//LOG.info(String.valueOf(answerList.get(0).getAnswerContent()));		//answer 없는 질문 조회 시 오류남
+		System.out.println("questionCode값, question제목: "+viewQuestionCode + question.getTitle());
+		
+		
 		request.setAttribute("Question", question);
 		request.setAttribute("AnswerList", answerList);
 		

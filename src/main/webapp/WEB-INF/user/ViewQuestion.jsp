@@ -49,20 +49,20 @@ hr{
 		<table>
 			<tr>
 				<td class="info">제목</td>
-				<td align="center" colspan="3"><input id="title" type="text" name="questionTitle" size="75"></td>
+				<td align="center" colspan="3"><input id="title" type="text" name="questionTitle" value="${Question.title}" size="75"></td>
 				<td align="right" width="10px" height="10px"><input type="image" src="<c:url value='/images/beforeBookmark.jpg' />"  style="max-width:40%"></td>
 			</tr>
 			<tr height="50">
 				<td class="info">해결상태</td>
-				<td>미해결</td>
+				<td>${Question.solve}</td>	<!-- y면 해결 n면 미해결으로 뜨도록 나중에 수정 -->
 				<td colspan="3"> </td>
 			</tr>
 			<tr>
-				<td colspan="5"><textarea cols=100 rows=15 class="code" name="questionCode"></textarea></td>
+				<td colspan="5"><textarea cols=100 rows=15 class="code" name="questionCode">${Question.postContent}</textarea></td>
 			</tr>
 			<tr>
 				<td class="info">질문자:</td>
-				<td>솜솜</td>
+				<td>${Question.userId}</td>		<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
 				<td> </td>
 				<td class="info-right" colspan="2">과목명, 질문날짜</td>
 			</tr>
