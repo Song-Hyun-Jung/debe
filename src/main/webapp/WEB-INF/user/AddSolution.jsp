@@ -13,21 +13,21 @@
 	color:white;
 	font-size:15px;
 }
-table{
-	position: static;
-}
 tr.answerInfo{
 	border-collapse:collapse;
 	border:1px solid black;
 	height:40px;
 }
 table.answers{
+	position:static;
 	border-collapse:collapse;
 }
 </style>
 </head>
 <body>
-
+	<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
 	<div align="center">
 	<form name=addMySolution method=post>
 		<table class="answers">

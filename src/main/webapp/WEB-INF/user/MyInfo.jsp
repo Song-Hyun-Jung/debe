@@ -6,15 +6,15 @@
 <meta charset="UTF-8">
 <title>MyInfo</title>
 <style>
-table {
+table.mypage{
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
-td {
+td.info{
 	height: 20px;
 }
-div{
+div.mypage{
 	width: 60%;
 }
 .button {
@@ -27,16 +27,16 @@ div{
 </head>
 <body>
 
-	<div>
+	<div class="mypage">
 		<b>My Page</b>
 		<p>
 	</div>
 	
 	<b>수강과목</b> 
 	<p>
-	<table border="1" width="60%" height="100px">
+	<table border="1" width="60%" height="100px" class="mypage">
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 	</table> 
 	<div align="right">
@@ -46,24 +46,24 @@ div{
 	
 	<b>나의 질문</b> 
 	<p>
-	<table border="1" width="60%">
+	<table border="1" width="60%" class="mypage">
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 	</table> 
 

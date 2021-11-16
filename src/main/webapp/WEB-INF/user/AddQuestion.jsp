@@ -22,12 +22,12 @@ function addQuestion() {
 	background-color:#a9173d;
 	color:white;
 }
-#menu{
+#question{
 	position: relative;
 	top:0px;
 	left:250px;
 }
-table{
+table.answers{
 	position: static;
 }
 td.info{
@@ -40,15 +40,18 @@ td.info{
 <%session.setAttribute("userNickname", "김"); %>
 <%session.setAttribute("userLevel", 1); %>
 <%session.setAttribute("userId", "20190001"); %>
+	
+	<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
 
-
-	<div id="menu"><h2>질문하기</h2></div>
+	<div id="question"><h2>질문하기</h2></div>
 	<div align="center">
 	<form name=addQuestion method=post action="<c:url value='/user/addquestion' />">
-		<table>
+		<table class="answers">
 			<tr height="30" width="70">
 				<td class="info">제목</td>
-				<td align="center" colspan="4"><input type="text" name="title" size="70"></td>
+				<td align="center" colspan="4"><input type="text" name="title" size="70" style="height:25px"></td>
 				<td><input id="btnSubmit" type="submit" value="등록" onclick="addQuestion()"></td>
 			</tr>
 			<tr height="50">

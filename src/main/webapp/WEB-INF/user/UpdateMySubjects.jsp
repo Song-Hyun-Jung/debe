@@ -8,18 +8,21 @@
 <style>
 	#btnSubjectUpdate {background-color:#a9173d; color:white; width:70px;}
 	#subjectUpdateBtn {text-align:right;}
-	td {width:250px;}
-	table {border:1px solid green;}
+	td.info{width:250px;}
+	table.subject{border:1px solid green;}
 </style>
 </head>
 <body>
+<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+</div>
  <h2>수강 과목 수정</h2>
  <h5>&nbsp;&nbsp;&nbsp;-수강 과목</h5>
   <div align="center">
    <form>
-	<table>
+	<table class="subject">
 		<tr>
-			<td id="subject"> <!-- checkbox->radio -->
+			<td id="subject"  class="info"> <!-- checkbox->radio -->
 				<input type="checkbox" name="interesting" value="0" checked>프로그래밍논리의이해 <br/> <!-- value값 과목코드로 바꿀것 --> 
 				<input type="checkbox" name="interesting" value="1">인터넷프로그래밍<br/>
 				<input type="checkbox" name="interesting" value="2">컴퓨터프로그래밍 <br/>
@@ -31,7 +34,7 @@
 				<input type="checkbox" name="interesting" value="8">데이터통신<br/>
 				<input type="checkbox" name="interesting" value="9">컴퓨터구조<br/>
 			</td>
-			<td id="subject">
+			<td id="subject"  class="info">
 				<input type="checkbox" name="interesting" value="10">자료구조<br/>
 				<input type="checkbox" name="interesting" value="11">웹프로그래밍<br/>
 				<input type="checkbox" name="interesting" value="12">데이터베이스개론<br/>
@@ -43,7 +46,7 @@
 				<input type="checkbox" name="interesting" value="18">시스템/네트워크보안<br/>						
 				<input type="checkbox" name="interesting" value="19">시스템프로그래밍<br/>
 			</td>
-			<td id="subject">
+			<td id="subject"  class="info">
 				<input type="checkbox" name="interesting" value="20">모바일응용<br/>
 				<input type="checkbox" name="interesting" value="21">데이터베이스프로그래밍<br/>
 				<input type="checkbox" name="interesting" value="22">알고리즘<br/>
@@ -51,8 +54,8 @@
 				<input type="checkbox" name="interesting" value="24">IoT응용<br/>
 			</td>
 		</tr>
-		<tr> <td>&nbsp;</td> </tr>
-		<tr> <td id="subjectUpdateBtn" colspan="3"><input id="btnSubjectUpdate" type="submit" value="수정"></td> </tr>
+		<tr> <td class="info">&nbsp;</td> </tr>
+		<tr> <td id="subjectUpdateBtn" colspan="3" class="info"><input id="btnSubjectUpdate" type="submit" value="수정"></td> </tr>
 	 </table>
 	</form>
 	</div>

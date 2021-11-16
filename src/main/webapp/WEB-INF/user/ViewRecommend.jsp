@@ -13,14 +13,12 @@
 	color:white;
 	font-size:15px;
 }
-table{
-	position: static;
-}
 tr.recommendInfo{
 	border-collapse:collapse;
 	border:1px solid black;
 }
 table.collapse{
+	position:static;
 	border-collapse:collapse;
 }
 
@@ -39,6 +37,9 @@ hr{
 </style>
 </head>
 <body>
+	<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
 	<div align="center">
 	<form name=recommendInfo method=post>
 		<table class="collapse">

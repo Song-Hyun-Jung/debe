@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>MainpageList</title>
 <style>
-table {
+table.main{
 	width: 100%;
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
-td {
+td.info{
 	height: 20px;
 }
 
@@ -25,24 +25,24 @@ td {
 <b>미해결 질문</b>
 </div>
 
-<table border="1">
+<table border="1" class="main">
 	<tr>
-		<td></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
-		<td></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
-		<td></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
-		<td></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
-		<td></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
-		<td></td>
+		<td class="info"></td>
 	</tr>
 	
 </table>

@@ -11,6 +11,10 @@
 </style>
 </head>
 <body>
+	<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
+	
 	<div>
 		<table border="1" id="mainLayout">
 			<tr>

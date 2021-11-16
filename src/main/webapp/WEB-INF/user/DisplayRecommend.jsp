@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>DisplayRecommend</title>
 <style>
-table {
+table.recommend{
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
-td {
+td.info{
 	height: 20px;
 }
 .button {
@@ -24,7 +24,9 @@ td {
 
 </head>
 <body>
-
+<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+</div>
 <div>
 <b>추천 코딩 문제</b>
 </div>
@@ -37,7 +39,7 @@ td {
 	<button type="button" class="button">정렬</button>
 </div>
 
-<table border="1" width="100%">
+<table border="1" width="100%" class="recommend">
 	<colgroup>
 		<col style="width:45%">
 		<col style="width:20%">
@@ -55,11 +57,11 @@ td {
 	</tr>
 
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
 		<td></td>

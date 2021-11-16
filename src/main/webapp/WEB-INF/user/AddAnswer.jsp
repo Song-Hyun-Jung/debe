@@ -13,8 +13,10 @@
 	color:white;
 	font-size:15px;
 }
-table{
-	position: static;
+#answer{
+	position: relative;
+	top:0px;
+	left:250px;
 }
 tr.answerInfo{
 	border-collapse:collapse;
@@ -22,6 +24,7 @@ tr.answerInfo{
 	height:40px;
 }
 table.answers{
+	position:static;
 	border-collapse:collapse;
 }
 </style>
@@ -43,7 +46,11 @@ function addAnswer(targetUri) {
 <%session.setAttribute("userNickname", "최"); %>
 <%session.setAttribute("userLevel", 2); %>
 <%session.setAttribute("userId", "20170001"); %>
-
+	
+	<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
+	<div id="answer"><h2>답변하기</h2></div>
 	<div align="center">
 	<form name=addMyAnswer method=post>
 		<table class="answers">

@@ -17,7 +17,7 @@
 	top:0px;
 	left:250px;
 }
-table{
+table.recommend{
 	position: static;
 }
 td.info{
@@ -27,10 +27,13 @@ td.info{
 </style>
 </head>
 <body>
+	<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
 	<div id="menu"><h2>문제등록 하기</h2></div>
 	<div align="center">
 	<form name=addRecommend method=post>
-		<table>
+		<table class="recommend">
 			<tr height="30" width="70">
 				<td class="info">제목</td>
 				<td colspan="2"><input type="text" name="title" size="80"></td>
