@@ -11,6 +11,7 @@ import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.DeleteAnswerController;
 import controller.user.DeleteQuestionController;
+import controller.user.GoAnswerController;
 import controller.user.ListQuestionController;
 import controller.user.ViewQuestionController;
 
@@ -33,7 +34,7 @@ public class RequestMapping {
         //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
         //mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));		//답변등록 테스트
         //mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
-        mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
+         mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
         
         
         /*
@@ -101,9 +102,9 @@ public class RequestMapping {
         
         
         //답변 폼 이동
-        mappings.put("/user/addanswer/form", new ForwardController("/user/AddAnswer.jsp"));
+        mappings.put("/user/addanswer/form", new GoAnswerController());
         //답변 등록
-        mappings.put("/user/addanswer", new AddAnswerController());
+        mappings.put("/user/registeranswer", new AddAnswerController());
         //답변 삭제
         mappings.put("/user/deleteanswer", new DeleteAnswerController());
         //답변 채택

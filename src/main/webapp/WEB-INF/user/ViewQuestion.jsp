@@ -45,6 +45,7 @@ hr{
 <script type="text/javascript"></script>
 <script>
 function addAnswer(targetUri) {
+	alert(${Question.postId});
 	questionInfo.action = targetUri;
 	questionInfo.method="GET";
 	questionInfo.submit();
@@ -77,11 +78,9 @@ function addAnswer(targetUri) {
 			<tr>
 				<td style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="글 삭제"></td>
 				<td colspan="3"></td>
-				
-				<td> <input id="btnSubmit" type="button" value="답변등록"
-							onclick="addAnswer('<c:url value ='/user/addanswer/form'>
-												<c:param name='questionCode' value='${Question.postId}'/>
-												</c:url>')">
+			
+				<td><input type="hidden" name="questionId" value="${Question.postId}" /><input id="btnSubmit" type="button" value="답변등록"
+							onclick="addAnswer('<c:url value ='/user/addanswer/form' />')">
 							
 				</td>
 			</tr>
