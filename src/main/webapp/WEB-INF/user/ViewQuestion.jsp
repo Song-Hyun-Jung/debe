@@ -23,6 +23,12 @@ function addAnswer(targetUri) {
 #title{
 	height:20px;
 }
+#showImg{
+	visibility:visibility;
+}
+#noShowImg{
+	visibility:hidden;
+}
 tr.answerInfo{
 	border-collapse:collapse;
 	border:1px solid black;
@@ -92,16 +98,8 @@ hr{
 			<tr class="answerInfo" style="padding:10px 0px 10px 0px">
 				<td>답변자:${answer.userId}  경험치: </td>
 				<td align="right">
-					<img src=<c:url value='/images/adoptButton.jpg' /> id="adoptState${answer.answerId}" style="max-width:10%" >
-					<script>
-					//조건별 이미지 뜨도록...아직 안됨...
-						var tmp = "<c:out value='${answer.answerAdopt}'/>";
-						vat answerId = "<c:out value='${answer.answerId}'/>";
-						var adoptImage = document.getElementById("adoptState"+answerId);
-						if(tmp == 'y'){
-							alert('y');
-						}
-					</script>			
+					<c:if test="${answer.answerAdopt eq 'y'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="showImg" style="max-width:10%"></c:if>	
+					<c:if test="${answer.answerAdopt eq 'n'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="noShowImg" style="max-width:10%"></c:if>	
 				</td>
 			</tr>
 			<tr class="answerInfo">
