@@ -54,7 +54,7 @@ hr{
 		<table>
 			<tr>
 				<td class="info">제목</td>
-				<td align="center" colspan="3"><input id="title" type="text" name="questionTitle" value="${Question.title}" size="75" style="height:25px"></td>
+				<td align="center" colspan="3"><input readonly id="title" type="text" name="questionTitle" value="${Question.title}" size="75" style="height:25px"></td>
 				<td align="right" width="10px" height="10px"><input type="image" src="<c:url value='/images/beforeBookmark.jpg' />"  style="max-width:40%"></td>
 			</tr>
 			<tr height="50">
@@ -63,7 +63,7 @@ hr{
 				<td colspan="3"> </td>
 			</tr>
 			<tr>
-				<td colspan="5"><textarea cols=110 rows=15 class="code" name="questionContent">${Question.postContent}</textarea></td>
+				<td colspan="5"><textarea readonly cols=110 rows=15 class="code" name="questionContent">${Question.postContent}</textarea></td>
 			</tr>
 			<tr>
 				<td class="info">질문자:${Question.userId}</td>	<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
@@ -105,7 +105,7 @@ hr{
 				</td>
 			</tr>
 			<tr class="answerInfo">
-				<td colspan="2"><textarea cols=110 rows=15 class="code" name="answerCodes">${answer.answerContent}</textarea></td>
+				<td colspan="2"><textarea readonly cols=110 rows=15 class="code" name="answerCodes">${answer.answerContent}</textarea></td>
 			</tr>
 			<tr>
 				<td align="left" style="padding:10px 0px 10px 0px"><input class="btnSubmit" type="button" value="삭제"></td>
