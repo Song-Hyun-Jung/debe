@@ -1,13 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
 <html>
 <head>
+<script language = "JavaScript">
+function addAnswer(targetUri) {
+	questionInfo.action = targetUri;
+	questionInfo.method="GET";
+	questionInfo.submit();
+}
+</script>
 <meta charset="UTF-8">
-<title>질문 보기</title>
+<title>질문 조회</title>
 <style>
-#btnSubmit{
+.btnSubmit{
 	width:90px;
 	height:30px;
 	background-color:#a9173d;
@@ -54,7 +59,11 @@ function addAnswer(targetUri) {
 </head>
 <body>
 	<div align="center">
+<<<<<<< HEAD
+	<form name=questionInfo method=post action="<c:url value='/user/deletequestion'> <c:param name='questionCode' value='${Question.postId}' /> <c:param name='userId' value='${Question.userId}' /></c:url>" >
+=======
 	<form name="questionInfo">
+>>>>>>> completeConnect
 		<table>
 			<tr>
 				<td class="info">제목</td>
@@ -67,22 +76,40 @@ function addAnswer(targetUri) {
 				<td colspan="3"> </td>
 			</tr>
 			<tr>
-				<td colspan="5"><textarea cols=100 rows=15 class="code" name="questionCode">${Question.postContent}</textarea></td>
+				<td colspan="5"><textarea cols=100 rows=15 class="code" name="questionContent">${Question.postContent}</textarea></td>
 			</tr>
 			<tr>
+<<<<<<< HEAD
+				<td class="info">질문자:${Question.userId}</td>	<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
+				<td></td>		
+				<td> </td>
+				<td class="info-right" colspan="2">과목명:${Question.subjectTitle}  / 질문날짜:${Question.postDate} </td>
+=======
 				<td class="info">질문자:</td>
 				<td>${Question.userId}</td>		<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
 				<td> </td>						<!-- 과목명 수정해야함 -->
-				<td class="info-right" colspan="2">과목명:${Question.subjectTitle}&nbsp;/&nbsp;질문날짜: ${Question.postDate}</td>
+				<td class="info-right" colspan="2">과목명:${Question.subjectId}&nbsp;&nbsp;질문날짜: ${Question.postDate}</td>
+>>>>>>> completeConnect
 			</tr>
 			<tr>
-				<td style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="글 삭제"></td>
+				<td style="padding:10px 0px 0px 0px">
+					<input class="btnSubmit" type="submit" value="글 삭제">
+				</td>
 				<td colspan="3"></td>
+<<<<<<< HEAD
+				<td> <input class="btnSubmit" type="button" value="답변등록"
+							onclick="addAnswer('<c:url value ='/user/addanswer/form'>
+												<c:param name='questionCode' value='${Question.postId}'/>
+												</c:url>')">
+							
+				</td>		
+=======
 			
 				<td><input type="hidden" name="questionId" value="${Question.postId}" /><input id="btnSubmit" type="button" value="답변등록"
 							onclick="addAnswer('<c:url value ='/user/addanswer/form' />')">
 							
 				</td>
+>>>>>>> completeConnect
 			</tr>
 		</table>
 	</form>
@@ -114,8 +141,8 @@ function addAnswer(targetUri) {
 				<td colspan="2"><textarea cols=100 rows=15 class="code" name="answerCodes">${answer.answerContent}</textarea></td>
 			</tr>
 			<tr>
-				<td align="left" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="삭제"></td>
-				<td class="info-right" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="채택"></td>
+				<td align="left" style="padding:10px 0px 0px 0px"><input class="btnSubmit" type="button" value="삭제"></td>
+				<td class="info-right" style="padding:10px 0px 0px 0px"><input class="btnSubmit" type="button" value="채택"></td>
 			</tr>
 		</table>
 		</c:forEach> 
