@@ -1,13 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
 <html>
 <head>
+<script>
+function addAnswer(targetUri) {
+	alert(${Question.postId});
+	questionInfo.action = targetUri;
+	questionInfo.method="GET";
+	questionInfo.submit();
+}
+</script>
 <meta charset="UTF-8">
-<title>질문 보기</title>
+<title>질문 조회</title>
 <style>
-#btnSubmit{
+.btnSubmit{
 	width:90px;
 	height:30px;
 	background-color:#a9173d;
@@ -27,7 +33,6 @@ tr.answerInfo{
 table.answers{
 	border-collapse:collapse;
 }
-
 td.info{
 	font-weight:900;
 	font-size:20px;
@@ -40,21 +45,11 @@ td.info-right{
 hr{
 	color:#a9173d;
 }
-
 </style>
-<script type="text/javascript"></script>
-<script>
-function addAnswer(targetUri) {
-	alert(${Question.postId});
-	questionInfo.action = targetUri;
-	questionInfo.method="GET";
-	questionInfo.submit();
-}
-</script>
 </head>
 <body>
 	<div align="center">
-	<form name="questionInfo">
+	<form name=questionInfo method=post action="<c:url value='/user/deletequestion'> <c:param name='questionCode' value='${Question.postId}' /> <c:param name='userId' value='${Question.userId}' /></c:url>" >
 		<table>
 			<tr>
 				<td class="info">제목</td>
@@ -67,22 +62,22 @@ function addAnswer(targetUri) {
 				<td colspan="3"> </td>
 			</tr>
 			<tr>
-				<td colspan="5"><textarea cols=100 rows=15 class="code" name="questionCode">${Question.postContent}</textarea></td>
+				<td colspan="5"><textarea cols=100 rows=15 class="code" name="questionContent">${Question.postContent}</textarea></td>
 			</tr>
 			<tr>
-				<td class="info">질문자:</td>
-				<td>${Question.userId}</td>		<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
-				<td> </td>						<!-- 과목명 수정해야함 -->
-				<td class="info-right" colspan="2">과목명:${Question.subjectTitle}&nbsp;/&nbsp;질문날짜: ${Question.postDate}</td>
+				<td class="info">질문자:${Question.userId}</td>	<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
+				<td></td>		
+				<td> </td>
+				<td class="info-right" colspan="2">과목명:${Question.subjectTitle}  / 질문날짜:${Question.postDate} </td>
 			</tr>
 			<tr>
-				<td style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="글 삭제"></td>
-				<td colspan="3"></td>
-			
-				<td><input type="hidden" name="questionId" value="${Question.postId}" /><input id="btnSubmit" type="button" value="답변등록"
-							onclick="addAnswer('<c:url value ='/user/addanswer/form' />')">
-							
+				<td style="padding:10px 0px 0px 0px">
+					<input class="btnSubmit" type="submit" value="글 삭제">
 				</td>
+				<td colspan="3"></td>
+				<td><input type="hidden" name="questionCode" value="${Question.postId}" />
+					<input id="btnSubmit" type="button" value="답변등록" onclick="addAnswer('<c:url value ='/user/addanswer/form' />')">
+				</td>		
 			</tr>
 		</table>
 	</form>
@@ -97,7 +92,6 @@ function addAnswer(targetUri) {
 				<td>답변자:${answer.userId}  경험치: </td>
 				<td align="right">
 					<img src=<c:url value='/images/adoptButton.jpg' /> id="adoptState${answer.answerId}" style="max-width:10%" >
-					<!-- 
 					<script>
 					//조건별 이미지 뜨도록...아직 안됨...
 						var tmp = "<c:out value='${answer.answerAdopt}'/>";
@@ -106,16 +100,15 @@ function addAnswer(targetUri) {
 						if(tmp == 'y'){
 							alert('y');
 						}
-					</script>		
-					-->	
+					</script>			
 				</td>
 			</tr>
 			<tr class="answerInfo">
 				<td colspan="2"><textarea cols=100 rows=15 class="code" name="answerCodes">${answer.answerContent}</textarea></td>
 			</tr>
 			<tr>
-				<td align="left" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="삭제"></td>
-				<td class="info-right" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="채택"></td>
+				<td align="left" style="padding:10px 0px 0px 0px"><input class="btnSubmit" type="button" value="삭제"></td>
+				<td class="info-right" style="padding:10px 0px 0px 0px"><input class="btnSubmit" type="button" value="채택"></td>
 			</tr>
 		</table>
 		</c:forEach> 

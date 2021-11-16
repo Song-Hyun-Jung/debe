@@ -27,7 +27,7 @@ table.answers{
 </style>
 <script>
 function addAnswer(targetUri) {
-	alert(${requestScope.questionId});
+	alert(${requestScope.questionCode});
 	if (addMyAnswer.answerCodes.value == "") {
 		alert("내용을 입력하십시오.");
 		addMyAnswer.answerCodes.focus();
@@ -54,9 +54,9 @@ function addAnswer(targetUri) {
 				<td colspan="2"><textarea cols=100 rows=15 class="code" name="answerCodes"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right" style="padding:10px 0px 0px 0px">
+				<td colspan="2" align="right" style="padding:10px 0px 0px 0px">${requestScope.questionId}
 				<input id="btnSubmit" type="submit" value="등록" onclick="addAnswer('<c:url value ='/user/registeranswer'>
-												<c:param name='questionCode' value='${requestScope.questionId}'/>
+												<c:param name='questionCode' value='${requestScope.questionCode}'/>
 												</c:url>')"></td>
 			</tr>
 		</table>

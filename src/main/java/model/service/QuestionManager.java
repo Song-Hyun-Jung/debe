@@ -40,9 +40,14 @@ public class QuestionManager {
 	}
 	
 	public void deleteQuestion(int questionCode) throws SQLException {
-		int result = questionDAO.deleteQuestion(questionCode);
-		System.out.println("deleteQuestion result값 : "+ result);
+		int resultQuestionAnswer = questionDAO.deleteQuestionAnswer(questionCode);
+		int resultQuestion = questionDAO.deleteQuestion(questionCode);
+		int resultQuestionPost = questionDAO.deleteQuestionPost(questionCode);
+		System.out.println("deleteQuestionAnswer에서 지운 답변 갯수 : "+ resultQuestionAnswer);
+		System.out.println("deleteQuestion에서 지운 질문 갯수 : "+ resultQuestion);
+		System.out.println("deleteQuestionPost에서 지운 질문 갯수 : "+ resultQuestionPost);
 	}
+
 	
 	public Question displayQuestion(int questionCode) throws SQLException {
 		return questionDAO.displayQuestion(questionCode);

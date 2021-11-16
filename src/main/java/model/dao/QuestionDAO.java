@@ -87,21 +87,34 @@ public class QuestionDAO {
 		return null;
 	}
 	
-	public int deleteQuestion(int questionCode) throws SQLException {
+public int deleteQuestionAnswer(int questionCode) throws SQLException{
 		
 		int resultAnswer = 0;		//삭제된 답변 개수
-		int resultQuestion = 0;		//삭제된 행 개수
-		String deleteAnswerSql = "DELETE FROM Questionanswer WHERE postId = ?";
-		String deleteQuestionSql = "DELETE FROM Question WHERE postId = ?";
-    
-	    Object[] param = new Object[] {questionCode};
+		String deleteAnswerSql = "DELETE FROM Questionanswer WHERE postId = ?";		//questionCode에 해당하는 답변 지우기
+		Object[] param = new Object[] {questionCode};
 		
-					
 		try {
 			jdbcUtil.setSqlAndParameters(deleteAnswerSql, param);		
 			resultAnswer = jdbcUtil.executeUpdate();	//질문에 해당하는 답변들 삭제
-			jdbcUtil.close();	//이거 하는 건지 안 하는 건지 잘 몰겠음..
-			
+				
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return resultAnswer;		//답변 삭제 안 되면 0 반환, 삭제 됐으면 삭제된 답변 수 반환
+	}
+	
+	public int deleteQuestion(int questionCode) throws SQLException {
+
+		int resultQuestion = 0;		//삭제된 행 개수		
+		String deleteQuestionSql = "DELETE FROM Question WHERE postId = ?";			//questionCode에 해당하는 질문 지우기
+	    Object[] param = new Object[] {questionCode};
+				
+		try {
 			jdbcUtil.setSqlAndParameters(deleteQuestionSql, param);		
 			resultQuestion = jdbcUtil.executeUpdate();			//질문 삭제	
 				
@@ -113,9 +126,30 @@ public class QuestionDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();	
 		}
-		
 		return resultQuestion;		//질문 삭제 안 되면 0 반환, 삭제 됐으면 1 반환
 	}
+	
+	public int deleteQuestionPost(int questionCode) throws SQLException {
+
+		int resultQuestion = 0;		//삭제된 행 개수		
+		String deleteQuestionSql = "DELETE FROM Post WHERE postId = ?";			//questionCode에 해당하는 질문 지우기
+	    Object[] param = new Object[] {questionCode};
+				
+		try {
+			jdbcUtil.setSqlAndParameters(deleteQuestionSql, param);		
+			resultQuestion = jdbcUtil.executeUpdate();			//질문 삭제	
+				
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return resultQuestion;		//질문 삭제 안 되면 0 반환, 삭제 됐으면 1 반환
+	}
+
 	
 	public int addQuestionPost(Question question) throws SQLException {		//1.post table에 넣기
 		

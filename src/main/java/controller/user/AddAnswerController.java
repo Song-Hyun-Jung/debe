@@ -42,7 +42,7 @@ public class AddAnswerController implements Controller{
 	
 	
 		request.setAttribute("questionCode", request.getParameter("questionCode"));
-		return "/user/viewQuestion";	//ViewQuestion.jsp·Î redirect
+		return "/user/viewquestion";	
 	}
 
 }

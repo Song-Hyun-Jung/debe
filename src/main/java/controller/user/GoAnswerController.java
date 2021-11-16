@@ -21,9 +21,9 @@ public class GoAnswerController implements Controller{
 		}
 		System.out.println();
 		
-		String questionId = request.getParameter("questionId");
-		System.out.println(request.getParameter("questionId"));
-		request.setAttribute("questionId", questionId);
+		String questionCode = request.getParameter("questionCode");
+		System.out.println(request.getParameter("questionCode"));
+		request.setAttribute("questionCode", questionCode);
 		
 		return "/user/AddAnswer.jsp";	
 	}
