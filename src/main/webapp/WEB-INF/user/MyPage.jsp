@@ -22,6 +22,9 @@ hr.vertical-line{
 </head>
 <body>
 <div align="center">
+	<%@ include file="/WEB-INF/user/top.jsp" %>
+</div>
+<div align="center">
 	<table width="150%">
 		<tr>
 			<td><jsp:include page="/WEB-INF/user/MyInfo.jsp"></jsp:include></td>
