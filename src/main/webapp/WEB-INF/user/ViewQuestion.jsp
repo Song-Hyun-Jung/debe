@@ -4,7 +4,7 @@
 <head>
 <script>
 function addAnswer(targetUri) {
-	alert(${Question.postId});
+	//alert(${Question.postId});
 	questionInfo.action = targetUri;
 	questionInfo.method="GET";
 	questionInfo.submit();

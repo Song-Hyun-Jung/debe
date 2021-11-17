@@ -30,7 +30,7 @@ table.answers{
 </style>
 <script>
 function addAnswer(targetUri) {
-	alert(${requestScope.questionCode});
+	//alert(${requestScope.questionCode});
 	if (addMyAnswer.answerCodes.value == "") {
 		alert("내용을 입력하십시오.");
 		addMyAnswer.answerCodes.focus();
@@ -43,9 +43,7 @@ function addAnswer(targetUri) {
 </script>
 </head>
 <body>
-<%session.setAttribute("userNickname", "최"); %>
-<%session.setAttribute("userLevel", 2); %>
-<%session.setAttribute("userId", "20170001"); %>
+
 	
 	<div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>

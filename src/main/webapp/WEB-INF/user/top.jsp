@@ -14,8 +14,11 @@
 </style>
 </head>
 <body>
+	<%session.setAttribute("userNickname", "테스터"); %>
+	<%session.setAttribute("userLevel", 2); %>
+	<%session.setAttribute("userId", "20190000"); %>
 		<table id="topLayout">
-			<tr><td><img src="<c:url value='/images/schoolLogo.jpg' />" width="250px" height="100px"></td><td width="70%"></td><td>솜솜님, 안녕하세요</td></tr>
+			<tr><td><img src="<c:url value='/images/schoolLogo.jpg' />" width="250px" height="100px"></td><td width="70%"></td><td>${userNickname} 님, 안녕하세요</td></tr>
 		</table>
 		<nav>
 			<table id="menu">
