@@ -9,6 +9,12 @@ function addAnswer(targetUri) {
 	questionInfo.method="GET";
 	questionInfo.submit();
 }
+function deleteAnswer(form) {
+	//alert(${Question.postId});
+	questionInfo.action = "<c:url value ='/user/deleteanswer' />";
+	questionInfo.method="POST";
+	questionInfo.submit();
+}
 </script>
 <meta charset="UTF-8">
 <title>질문 조회</title>
@@ -19,14 +25,15 @@ function addAnswer(targetUri) {
 	background-color:#a9173d;
 	color:white;
 	font-size:15px;
+	visibility:visibility;
 }
 #title{
 	height:20px;
 }
-#showImg{
+#show{
 	visibility:visibility;
 }
-#noShowImg{
+#noShow{
 	visibility:hidden;
 }
 tr.answerInfo{
@@ -72,14 +79,14 @@ hr{
 				<td colspan="5"><textarea readonly cols=110 rows=15 class="code" name="questionContent">${Question.postContent}</textarea></td>
 			</tr>
 			<tr>
-				<td class="info">질문자:${Question.userId}</td>	<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->
-				<td></td>		
-				<td> </td>
-				<td class="info-right" colspan="2">과목명:${Question.subjectTitle}  / 질문날짜:${Question.postDate} </td>
+				<td class="info">질문자:${Question.userId}</td>	<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->	
+				<td class="info-right" colspan="4">과목명: ${Question.subjectTitle}  / 사용 언어: ${Question.questionLanguage } / 질문날짜: ${Question.postDate} </td>
 			</tr>
 			<tr>
 				<td style="padding:10px 0px 0px 0px">
-					<input class="btnSubmit" type="submit" value="글 삭제">
+					<c:if test="${(Question.userId eq userId) and (Question.solve eq 'n')}"><input class="btnSubmit" type="submit" id="show" value="글 삭제"></c:if>
+					<c:if test="${(Question.userId eq userId) and (Question.solve eq 'y')}"><input class="btnSubmit" type="submit" id="noShow" value="글 삭제"></c:if>
+					<c:if test="${Question.userId ne userId}"><input class="btnSubmit" type="submit" id="noShow" value="글 삭제"></c:if>
 				</td>
 				<td colspan="3"></td>
 				<td><input type="hidden" name="questionCode" value="${Question.postId}" />
@@ -92,27 +99,36 @@ hr{
 	<hr/>
 	
 	<div align="center">
-	<form name=othersAnswer method=post>
-		<c:forEach var="answer" items="${AnswerList}">
+	<c:forEach var="answer" items="${AnswerList}">
+	<form name="othersAnswer" method=post >
 		<table class="answers">
 			<tr class="answerInfo" style="padding:10px 0px 10px 0px">
 				<td>답변자:${answer.userId}  경험치: </td>
 				<td align="right">
-					<c:if test="${answer.answerAdopt eq 'y'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="showImg" style="max-width:10%"></c:if>	
-					<c:if test="${answer.answerAdopt eq 'n'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="noShowImg" style="max-width:10%"></c:if>	
+					<c:if test="${answer.answerAdopt eq 'y'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="show" style="max-width:10%"></c:if>	
+					<c:if test="${answer.answerAdopt eq 'n'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="noShow" style="max-width:10%"></c:if>	
 				</td>
 			</tr>
 			<tr class="answerInfo">
-				<td colspan="2"><textarea readonly cols=110 rows=15 class="code" name="answerCodes">${answer.answerContent}</textarea></td>
+				<td colspan="2"><textarea readonly cols=110 rows=15 class="code" name="answerContents">${answer.answerContent}</textarea></td>
 			</tr>
 			<tr>
-				<td align="left" style="padding:10px 0px 10px 0px"><input class="btnSubmit" type="button" value="삭제"></td>
-				<td class="info-right" style="padding:10px 0px 10px 0px"><input class="btnSubmit" type="button" value="채택"></td>
+				<td align="left" style="padding:10px 0px 10px 0px">
+					<input type="hidden" name="answerCode" value="${answer.answerId}" />
+					<input type="hidden" name="answerUserId" value="${answer.userId}" />
+					<input type="hidden" name="questionCode" value="${Question.postId}"/>
+					<c:if test="${(answer.userId eq userId) and (Question.solve eq 'n')}"><input class="btnSubmit" type="submit" value="삭제" formaction="<c:url value ='/user/deleteanswer' />"></c:if>
+					<c:if test="${(answer.userId ne userId) or (Question.solve eq 'y')}"><input id="noShow" type="submit" value="삭제" formaction="<c:url value ='/user/deleteanswer' />"></c:if>
+				</td>
+				<td class="info-right" style="padding:10px 0px 10px 0px">
+					<c:if test="${(Question.solve eq 'n') and (Question.userId eq userId)}"><input class="btnSubmit" type="submit" id="show" value="채택" formaction="<c:url value ='/user/adoptanswer' />"></c:if>
+					<c:if test="${(Question.solve eq 'y') or (Question.userId ne userId)}"><input class="btnSubmit" type="submit" id="noShow" value="채택" formaction="<c:url value ='/user/adoptanswer' />"></c:if>
+				</td>
 			</tr>
 		</table>
+		</form> 
 		<hr/>
-		</c:forEach> 
-	</form>
+	</c:forEach> 
 	</div>
 	
 	<hr/>

@@ -141,6 +141,7 @@ public class AnswerDAO {
 		return 0;
 	}
 	*/
+	
 	//∆Æ∑£¿Ëº«
 	public void adoptAnswer(int questionCode, int answerCode) {
 		PreparedStatement pStmt = null;
@@ -156,7 +157,7 @@ public class AnswerDAO {
 			if(pStmt.executeUpdate() != 1) { throw new Exception(); }
 			pStmt.close();
 			String sql2 = "UPDATE Question "
-					+ "SET questionAdopt='y' "
+					+ "SET questionAdopt='y', solve='y' "
 					+ "WHERE postId=?";
 			pStmt = conn.prepareStatement(sql2);
 			pStmt.setInt(1, questionCode);
