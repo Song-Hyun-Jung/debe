@@ -84,9 +84,11 @@ hr{
 			</tr>
 			<tr>
 				<td style="padding:10px 0px 0px 0px">
+					<input class="btnSubmit" type="submit" id="show" value="글 삭제">
+				<!-- 후에 질문버튼 이걸로 바꿀것 
 					<c:if test="${(Question.userId eq userId) and (Question.solve eq 'n')}"><input class="btnSubmit" type="submit" id="show" value="글 삭제"></c:if>
-					<c:if test="${(Question.userId eq userId) and (Question.solve eq 'y')}"><input class="btnSubmit" type="submit" id="noShow" value="글 삭제"></c:if>
-					<c:if test="${Question.userId ne userId}"><input class="btnSubmit" type="submit" id="noShow" value="글 삭제"></c:if>
+					<c:if test="${(Question.userId ne userId) or (Question.solve eq 'y')}"><input class="btnSubmit" type="submit" id="noShow" value="글 삭제"></c:if>
+				-->
 				</td>
 				<td colspan="3"></td>
 				<td><input type="hidden" name="questionCode" value="${Question.postId}" />
