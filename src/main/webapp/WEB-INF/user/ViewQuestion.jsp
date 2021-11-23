@@ -15,6 +15,10 @@ function deleteAnswer(form) {
 	questionInfo.method="POST";
 	questionInfo.submit();
 }
+function bookmarkQuestion(targetUri) {
+	questionInfo.action = "<c:url value ='/user/bookmarkQuestion' />";
+	questionInfo.submit;
+}
 </script>
 <meta charset="UTF-8">
 <title>질문 조회</title>
@@ -68,7 +72,10 @@ hr{
 			<tr>
 				<td class="info">제목</td>
 				<td align="center" colspan="3"><input readonly id="title" type="text" name="questionTitle" value="${Question.title}" size="75" style="height:25px"></td>
-				<td align="right" width="10px" height="10px"><input type="image" src="<c:url value='/images/beforeBookmark.jpg' />"  style="max-width:40%"></td>
+				<td align="right" width="10px" height="10px"><input type="image" 
+					<c:if test="${ exist eq 'false'}"> src=" <c:url value='/images/beforeBookmark.jpg' />" </c:if>
+					<c:if test="${ exist eq 'true'}"> src=" <c:url value='/images/afterBookmark.jpg' />" </c:if>
+				onclick="bookmarkQuestion()" style="max-width:40%"></td>
 			</tr>
 			<tr height="50">
 				<td class="info">해결상태</td>

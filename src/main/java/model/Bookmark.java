@@ -4,7 +4,7 @@ public class Bookmark{
 	private int userId;
 	private int postId;
 	
-	public Bookmark(int userId, int postId) {
+	public Bookmark(int postId, int userId) {
 		super();
 		this.userId = userId;
 		this.postId = postId;
