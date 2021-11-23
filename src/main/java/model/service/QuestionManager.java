@@ -4,10 +4,12 @@ import model.dao.BookmarkDAO;
 import model.dao.QuestionDAO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Bookmark;
 import model.Question;
+import model.Subject;
 
 public class QuestionManager {
 
@@ -54,7 +56,7 @@ public class QuestionManager {
 	}
 	
 	public void bookmarkQuestion(int questionCode, int userId) throws SQLException {	//북마크 된 상태면 북마크하고 아니면 북마크 해제하는 걸로 구현했는데 맞는지 잘 모르겠음
-		if(bookmarkDAO.existingBookmark(userId, questionCode)) {
+		if (bookmarkDAO.existingBookmark(userId, questionCode)) {
 			bookmarkDAO.deleteBookmark(userId, questionCode);
 		}
 		else {
@@ -62,5 +64,28 @@ public class QuestionManager {
 			bookmarkDAO.createBookmark(bookmark);
 		}
 	}
-	
+
+	public List<Question> filterQuestion(String filter, String language, String subjectName, String solved) throws SQLException {
+		
+		List<Question> questionList = new ArrayList<Question>();
+		
+		if (filter.equals("filterLS")) {
+			questionList = questionDAO.filterLS(language, subjectName);
+		}
+		else if (filter.equals("filterSolved")) {
+			questionList = questionDAO.filterSolved(solved);
+		}
+		
+		
+		return questionList;
+	}
+
+	public List<Subject> getAllSubject() {		//DisplayQuesiton.jsp에 표시하기 위해서
+		// TODO Auto-generated method stub
+		List<Subject> subjectList = new ArrayList<Subject>();
+		subjectList = questionDAO.getAllSubject();
+		
+		return subjectList;
+	}
+
 }

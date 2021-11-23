@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Question;
+import model.Subject;
 
 public class QuestionDAO {
 
@@ -52,9 +53,9 @@ public class QuestionDAO {
 	
 	public Question displayQuestion(int questionCode) throws SQLException {	//질문 반환, 이 질문에 해당하는 답은 AnswerDAO에서 findAnswers 호출
 		
-		String sql = "SELECT q.postid, p.title, p.postdate, p.postcontent, p.userid, q.questionlanguage, q.solve, q.questionadopt, s.subjectid, s.subjectTitle "
-				+ "FROM Question q, Post p, Subject s "
-    		    + "WHERE q.postId = p.postId and q.subjectId = s.subjectId and q.postId = ?"
+		String sql = "SELECT q.postid, p.title, p.postdate, p.postcontent, p.userid, q.questionlanguage, q.solve, q.questionadopt, s.subjectid, s.subjectTitle, u.userNickname "
+				+ "FROM Question q, Post p, Subject s, Serviceuser u "
+    		    + "WHERE q.postId = p.postId and q.subjectId = s.subjectId and u.userId = p.userId and q.postId = ? "
 				+ "ORDER BY p.postdate, q.postId";
     
 	    Object[] param = new Object[] {questionCode};
@@ -73,7 +74,8 @@ public class QuestionDAO {
 						rs.getString("solve"),
 						rs.getString("questionadopt"),
 						rs.getInt("subjectid"),
-						rs.getString("subjectTitle")
+						rs.getString("subjectTitle"),
+						rs.getString("userNickname")
 					);			
 		
 				return question;
@@ -158,7 +160,6 @@ public int deleteQuestionAnswer(int questionCode) throws SQLException{
 		
 		String sql1 = "INSERT INTO POST (postid, title, postcontent, userid) VALUES (SEQUENCEPOSTID.nextval, ?, ?, ?) ";
 		Object[] param = new Object[] {question.getTitle(), question.getPostContent(), question.getUserId()};
-		System.out.println("제목, 내용, userid : "+question.getTitle()+question.getPostContent()+question.getUserId());
 		jdbcUtil.setSqlAndParameters(sql1, param);	
 		String key[] = {"postId"};
 		
@@ -166,7 +167,6 @@ public int deleteQuestionAnswer(int questionCode) throws SQLException{
 			result = jdbcUtil.executeUpdate(key);
 			ResultSet rs = jdbcUtil.getGeneratedKeys();
 			if(rs.next()) { postId = rs.getInt(1); }
-			System.out.println("구한 postId 값: "+postId);
 		
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
@@ -181,7 +181,7 @@ public int deleteQuestionAnswer(int questionCode) throws SQLException{
 	}
 	
 	
-public int addQuestionQ(Question question, int postId) throws SQLException {		//2. question table에 넣기
+	public int addQuestionQ(Question question, int postId) throws SQLException {		//2. question table에 넣기
 		
 		int result = 0;
 
@@ -190,7 +190,6 @@ public int addQuestionQ(Question question, int postId) throws SQLException {		//
 		jdbcUtil.setSqlAndParameters(sql2, param2);
 		
 		try {
-			System.out.println("언어, postid, subjectid값 : "+question.getQuestionLanguage() + postId + question.getSubjectId());
 			result = jdbcUtil.executeUpdate();	
 			
 		} catch (Exception ex) { 
@@ -203,5 +202,121 @@ public int addQuestionQ(Question question, int postId) throws SQLException {		//
 		}
 		
 		return result;		//제대로 들어갔으면 1 아니면 0
+	}
+	
+	public List<Question> filterLS(String language, String subjectId) throws SQLException{
+	
+		String sql = "SELECT * FROM Question q, POST  p, SUBJECT s WHERE q.postid = p.postid and q.subjectId = s.subjectId ";
+		
+		if (language.equals("no") && subjectId.equals("no")) { //둘 다 선택 안 함 고르고 필터링 버튼 눌렀을 경우
+			sql += "ORDER BY postdate, q.postId";
+			jdbcUtil.setSqlAndParameters(sql, null);
+			
+		} else if (language.equals("no")) {		//language 선택 안 함 고른 경우
+			sql += "and s.subjectId = ? ORDER BY postdate, q.postId";
+			Object[] param = new Object[] {subjectId};
+			jdbcUtil.setSqlAndParameters(sql, param);	
+			
+		} else if(subjectId.equals("no")) {	//subjectName 선택 선택 안 함 고른 경우
+			sql += "and q.questionlanguage = ? ORDER BY postdate, q.postId";
+			Object[] param = new Object[] {language};
+			jdbcUtil.setSqlAndParameters(sql, param);	
+			
+		} else {	//language와 subjectName 둘 다 선택했을 경우
+			sql += "and q.questionlanguage = ? and s.subjectId = ? ORDER BY postdate, q.postId";
+			 Object[] param = new Object[] {language, subjectId};
+			 jdbcUtil.setSqlAndParameters(sql, param);	
+		}
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();					
+			List<Question> filterList = new ArrayList<Question>();	
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("postId"),
+						rs.getString("title"),
+						rs.getDate("postdate"),
+						rs.getString("postcontent"),
+						rs.getInt("userid"),
+						rs.getString("questionlanguage"),
+						rs.getString("solve"),
+						rs.getString("questionadopt"),
+						rs.getInt("subjectid"),
+						rs.getString("subjectTitle")
+					);
+				filterList.add(question);
+			}		
+			return filterList;					
+			
+		} catch (Exception ex) { 
+			ex.printStackTrace();} 
+		finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
+	
+	public List<Question> filterSolved(String solved) throws SQLException{
+		
+		 String sql = "SELECT * FROM Question q, POST  p, SUBJECT s "
+				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId and q.solve = ? ORDER BY postdate, q.postId";
+		Object[] param = new Object[] {solved};
+    
+		jdbcUtil.setSqlAndParameters(sql, param);		
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();					
+			List<Question> filterList = new ArrayList<Question>();	
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("postId"),
+						rs.getString("title"),
+						rs.getDate("postdate"),
+						rs.getString("postcontent"),
+						rs.getInt("userid"),
+						rs.getString("questionlanguage"),
+						rs.getString("solve"),
+						rs.getString("questionadopt"),
+						rs.getInt("subjectid"),
+						rs.getString("subjectTitle")
+					);
+				filterList.add(question);
+			}		
+			return filterList;					
+			
+		} catch (Exception ex) { 
+			ex.printStackTrace();} 
+		finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
+	
+	public List<Subject> getAllSubject() {
+		
+		 String sql = "SELECT subjectId, subjectTitle FROM SUBJECT s ORDER BY subjectId";
+	    
+		jdbcUtil.setSqlAndParameters(sql, null);		
+						
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();					
+				List<Subject> subjectList = new ArrayList<Subject>();	
+				while (rs.next()) {
+					Subject subject = new Subject(
+							rs.getInt("subjectId"),
+							rs.getString("subjectTitle")
+						);
+					subjectList.add(subject);
+				}		
+				return subjectList;					
+				
+			} catch (Exception ex) { 
+				ex.printStackTrace();} 
+			finally {
+				jdbcUtil.close();		
+			}
+			return null;
 	}
 }

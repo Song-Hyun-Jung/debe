@@ -13,6 +13,7 @@ import controller.user.DeleteAnswerController;
 import controller.user.DeleteQuestionController;
 import controller.user.GoAnswerController;
 import controller.user.ListQuestionController;
+import controller.user.QuestionFilterController;
 import controller.user.ViewQuestionController;
 
 /*//나중에 수정해야함
@@ -98,6 +99,8 @@ public class RequestMapping {
         mappings.put("/user/addquestion", new AddQuestionController());
         //질문 삭제
         mappings.put("/user/deletequestion", new DeleteQuestionController());
+        //질문 필터링
+        mappings.put("/user/filterquestion", new QuestionFilterController());
         
         
         

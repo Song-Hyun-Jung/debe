@@ -24,9 +24,9 @@ public class AnswerDAO {
 	
 	 //문제별 답변 조회
 	   public List<Answer> findAnswers(int questionCode) throws SQLException {
-	        String sql = "SELECT answerContent, answerAdopt, answerDate, userId, answerId, postId "
-	                + "FROM QuestionAnswer "
-	                  + "WHERE postId = ?"
+	        String sql = "SELECT a.answerContent, a.answerAdopt, a.answerDate, a.userId, a.answerId, a.postId, u.userNickname "
+	                + "FROM QuestionAnswer a, ServiceUser u "
+	                  + "WHERE a.userId = u.userId and a.postId = ? "
 	                + "ORDER BY answerAdopt DESC, answerId";
 	        Object[] param = new Object[] {questionCode};   
 	      jdbcUtil.setSqlAndParameters(sql, param);      
@@ -41,7 +41,8 @@ public class AnswerDAO {
 	                  rs.getString("answerContent"),
 	                  rs.getString("answerAdopt"),
 	                  rs.getDate("answerDate"),
-	                  rs.getInt("userId")
+	                  rs.getInt("userId"),
+	                  rs.getString("userNickname")
 	               );
 	            answers.add(answer);            
 	         }      

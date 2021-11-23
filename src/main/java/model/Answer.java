@@ -12,8 +12,15 @@ public class Answer{
 	private String answerAdopt; //질문 채택 상태
 	private Date answerDate; //질문 답변 작성일
 	private int userId; //질문 답변자
+	private String userNickname;
 	
 	
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
 	public int getAnswerId() {
 		return answerId;
 	}
@@ -61,6 +68,18 @@ public class Answer{
 		this.answerDate = answerDate;
 		this.userId = userId;
 	}
+	
+	public Answer(int answerId, int postId, String answerContent, String answerAdopt, Date answerDate, int userId, String userNickname) {
+		super();
+		this.answerId = answerId;
+		this.postId = postId;
+		this.answerContent = answerContent;
+		this.answerAdopt = answerAdopt;
+		this.answerDate = answerDate;
+		this.userId = userId;
+		this.userNickname = userNickname;
+	}
+	
 	public Answer(int postId, String answerContent, int userId) { //답변 등록시 사용하는 생성자.
 		// answerAdopt는 기본값 'n', answerDate는 sysdate, answerId에는 시퀀스 값이 들어감. 
 		this.postId = postId;

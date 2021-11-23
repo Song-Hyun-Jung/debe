@@ -4,6 +4,22 @@
 <head>
 <meta charset="UTF-8">
 <title>질문 목록</title>
+<script language = "JavaScript">
+function filterQuestion(targetUri) {
+	form1.action = targetUri;
+	form1.submit();
+}
+
+function filterSolved(targetUri) {
+	form2.action = targetUri
+	form2.submit();
+}
+
+function addQuestion(targetUri) {
+	form2.action = targetUri
+	form2.submit();
+}
+</script>
 <style>
 table.question{
 	border: 1px solid black;
@@ -37,24 +53,34 @@ div.filter{
 <h2>Q&A</h2>
 </div>
 
-<form name=displayQuestion method=post action="<c:url value='/user/addquestion/form' />">
+   <form name="form1" method=post>
 	<div align="right" class="filter">
-		<select id="Language">
-			<option value="C/C++">C/C++</option>
-			<option value="Java">Java</option>
+		<select id="Language" name="language">
+			<option value="no">선택 안 함</option>
+			<option value="C언어">C언어</option>
+			<option value="JAVA">Java</option>
 			<option value="Python">파이썬</option>
+			<option value="HTML">HTML</option>
+			<option value="SQL">SQL</option>
+			<option value="기타">기타</option>
 		</select>
 	
-		<select id="subjectName">
-			<option value="network">네트워크</option>
-			<option value="DBprogramming">데이터베이스프로그래밍</option>
-			<option value="mobileApp">모바일응용</option>
-			<option value="algorithm">알고리즘</option>
+		<select id="subjectName" name="subjectTitle">
+			<option value="no">선택 안 함</option>
+			<c:forEach var="subject" items="${subjectList}">
+				<option value="${subject.subjectId}">${subject.subjectTitle}</option>
+			</c:forEach>
 		</select>
 		
-		<button type="button" class="button">필터링</button>
+		
+		<button type="button" class="button" 
+			onClick="filterQuestion('<c:url value ='/user/filterquestion'>
+										<c:param name='filter' value='filterLS' /> 
+									</c:url>')">필터링</button>	<!-- filter 파라미터로 어떤 필터링 버튼인지 구분 -->
 	</div>
-	
+   </form>
+   
+   <form>
 	<table border="1" width="100%" class="question">
 		<colgroup>
 			<col style="width:20%">
@@ -84,17 +110,21 @@ div.filter{
 			</tr>
 		</c:forEach>
 	</table>
+   </form>
 	
+   <form name="form2" method=post>
 	<div align="right" class="add">
-		<select id="dataSort">
-			<option value="solved">해결완료</option>
-			<option value="notsolved">미해결</option>
+		<select id="dataSort" name="solved">
+			<option value="y">해결완료</option>
+			<option value="n">미해결</option>
 		</select>
-		<button type="button" class="button">필터링</button>
+		<button type="button" class="button" onclick="filterSolved('<c:url value ='/user/filterquestion'>
+																		<c:param name='filter' value='filterSolved' />
+																	</c:url> ')">필터링</button>
 	</div>
 	<div align="right" class="add">
-		<button type="submit" class="button">문제등록</button>
+		<button type="button" class="button" onclick="addQuestion('<c:url value='/user/addquestion/form' />')">문제등록</button>
 	</div>
-</form>
+   </form>
 </body>
 </html>
