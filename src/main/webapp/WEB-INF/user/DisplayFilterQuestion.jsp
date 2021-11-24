@@ -119,13 +119,15 @@ div.filter{
 	
 	<p><br>
 	<div align="center">
-		<c:forEach var="question" items="${questionList}" varStatus="status">
+	<c:forEach var="question" items="${questionList}" varStatus="status">
 			<c:if test="${status.count % 5 eq 1}">
-		  	<a href="<c:url value ='/user/questionlist'> <c:param name='questionIndex' value='${status.index}' /> </c:url>"  id="indexfont"> 
-		  		<font >${(status.index)/5 + 1}&nbsp;&nbsp;</font> </a>
+		  	<a href="<c:url value ='/user/filterquestion'>
+								<c:param name='questionIndex' value='${status.index}' />
+							</c:url>" id="indexfont"> <font id="indexfont"> ${(status.index)/5 + 1}&nbsp;&nbsp; </font>
+			</a>
 		  </c:if>
-		</c:forEach>
-	</div>
+	</c:forEach>
+	</div>	 
    </form>
 	
    <form name="form2" method=post>
