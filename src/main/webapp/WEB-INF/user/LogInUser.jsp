@@ -40,12 +40,6 @@ function login(targetUri) {
 		return false;
 	}	
 	
-	if(typeof loginForm.userId.value == "string"){
-		alert("아이디는 학번입니다.");
-		loginForm.userId.value = "";
-		return false;
-	}
-	
 	loginForm.action = targetUri;
 	loginForm.method="POST";
 	loginForm.submit();

@@ -13,14 +13,10 @@ public class LoginController implements Controller {
 		
 	    @Override
 	    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    	
-	    	
-	    	int userId = Integer.parseInt(request.getParameter("userId"));
-			String password = request.getParameter("userPassword");
-			
-			System.out.println(userId + " " + password);
 			
 			try {
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				String password = request.getParameter("userPassword");
 				UserManager manager = UserManager.getInstance();
 				manager.login(userId, password);
 				User user = manager.findUser(userId);
