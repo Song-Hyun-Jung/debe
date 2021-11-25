@@ -92,6 +92,11 @@ public class Recommend{
 		this.algorithm = algorithm;
 	}
 	
+	public Recommend(int postId, String title) {
+		super();
+		this.postId = postId;
+		this.title = title;
+	}
 	public Recommend() { }
 	
 	//문제 추천수 증가

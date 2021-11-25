@@ -160,10 +160,11 @@ public class UserDAO {
 			while (rs.next()) {
 				User user = new User(		
 						rs.getString("userNickname"),
-						rs.getInt("userLevel")				
+						rs.getInt("userLevel")
 					);
 				userList.add(user);			
 			}		
+			
 			return userList;					
 			
 		} catch (Exception ex) {

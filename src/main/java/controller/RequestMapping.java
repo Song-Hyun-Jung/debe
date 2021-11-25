@@ -11,7 +11,9 @@ import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.DeleteAnswerController;
 import controller.user.DeleteQuestionController;
+import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
+import controller.user.GoMainPageController;
 import controller.user.ListQuestionController;
 import controller.user.ViewQuestionController;
 
@@ -62,24 +64,22 @@ public class RequestMapping {
         mappings.put("/user/adminDeleteUserInfo", new DeleteUserController());
         //관리자-게시글 삭제
         mappings.put("/user/adminDeleteContent", new DeleteContentController());
+        */
         
         //메인페이지
         //메인페이지로 이동(로고 누르면 메인페이지로 이동)
-        mappings.put("/user/goMain", new ForwardController("/user/main.jsp"));
+        mappings.put("/user/goMain", new GoMainPageController());
         //키워드 검색
         mappings.put("/user/findKeyword", new FindKeywordController());
-        //나의 질문으로 이동
-        mappings.put("/user/goMyPage", new ForwardController("/user/MyPage.jsp"));
         
         
-        
-        
+        /*
         //마이페이지
         //마이페이지로 이동(메인페이지에서 닉네임, 나의질문, 북마크 클릭하면 마이페이지로 이동)-메인페이지에 정의
         //관심과목 조회, 나의 질문 조회, 나의 북마크 조회
         mappings.put("/user/myPage", new MyViewController());
         //관심과목 수정 폼으로 이동
-        mappings.put("/user/updateSubjcet/form", new ForwardController("UpdateMySubjects.jsp"));
+        mappings.put("/user/updateSubjcet/form", new ForwardController("UpdateMySubjects.jsp")); //이거 수정해야할듯 forward 안될거같아
         //관심과목 수정
         mappings.put("/user/updateSubject", new UpdateSubjectController());
         //북마크, 나의 질문에서 Q&A항목 선택
@@ -145,6 +145,12 @@ public class RequestMapping {
         mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());
         
         */
+         
+         /*
+         //한 추천문제 조회
+         mappings.put("/user/viewrecommend", new ViewRecommendController());
+         mappings.put("/WEB-INF/user/viewrecommend", new ViewRecommendController());		//답변 등록 후 viewRecommend으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
+          */
         
         
         logger.info("Initialized Request Mapping!");

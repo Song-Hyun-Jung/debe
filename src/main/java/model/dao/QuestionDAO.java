@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -181,7 +183,7 @@ public int deleteQuestionAnswer(int questionCode) throws SQLException{
 	}
 	
 	
-public int addQuestionQ(Question question, int postId) throws SQLException {		//2. question table에 넣기
+	public int addQuestionQ(Question question, int postId) throws SQLException {		//2. question table에 넣기
 		
 		int result = 0;
 
@@ -204,4 +206,64 @@ public int addQuestionQ(Question question, int postId) throws SQLException {		//
 		
 		return result;		//제대로 들어갔으면 1 아니면 0
 	}
+
+
+	public List<Question> displayNotSolveQuestion() throws SQLException {
+	    String sql = "SELECT * FROM (SELECT p.postid, p.title FROM Question q, POST  p "
+					+ "WHERE q.postid = p.postid AND q.solve='n' ORDER BY postdate DESC ) WHERE ROWNUM <= 10";
+	    
+		jdbcUtil.setSqlAndParameters(sql, null);		
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();					
+			List<Question> questions = new ArrayList<Question>();	
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("postId"),
+						rs.getString("title")
+						
+					);
+				questions.add(question);
+			}		
+			return questions;					
+			
+		} catch (Exception ex) { 
+			ex.printStackTrace();} 
+		finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
+
+	public List<Question> findQuestion(String searchKeyword) throws SQLException {
+	    String sql1 = "SELECT q.postid, p.title FROM POST p, Question q "
+					+ "WHERE q.postid = p.postid AND p.title LIKE (?) ORDER BY postdate DESC ";
+	    
+	    Object[] param1 = new Object[] {"%" + searchKeyword + "%"};
+		jdbcUtil.setSqlAndParameters(sql1, param1);
+
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();					
+			List<Question> questions = new ArrayList<Question>();	
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("postId"),
+						rs.getString("title")
+						
+					);
+				questions.add(question);
+			}		
+			return questions;					
+			
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		} 
+		finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
 }

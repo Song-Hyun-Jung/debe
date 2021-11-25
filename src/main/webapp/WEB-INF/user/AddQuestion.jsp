@@ -37,10 +37,6 @@ td.info{
 </style>
 </head>
 <body>
-<%session.setAttribute("userNickname", "김"); %>
-<%session.setAttribute("userLevel", 1); %>
-<%session.setAttribute("userId", "20190001"); %>
-	
 	<div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 	</div>

@@ -121,7 +121,7 @@ public class User{
 		this.subjectId = subjectId;
 	}
 	
-	public User(String userNickname, int userlevel) { //메인페이지 상위 레벨 3개 출력시 사용할 생성자
+	public User(String userNickname, int userLevel) { //메인페이지 상위 레벨 3개 출력시 사용할 생성자
 		super();
 		this.userNickname = userNickname;
 		this.userLevel = userLevel;

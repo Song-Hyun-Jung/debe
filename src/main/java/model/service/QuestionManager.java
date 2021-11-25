@@ -53,6 +53,14 @@ public class QuestionManager {
 		return questionDAO.displayQuestion(questionCode);
 	}
 	
+	public List<Question> displayNotSolveQuestion() throws SQLException {
+		return questionDAO.displayNotSolveQuestion();
+	}
+	
+	public List<Question> findQuestion(String keyword) throws SQLException {
+		return questionDAO.findQuestion(keyword);
+	}
+	
 	public void bookmarkQuestion(int questionCode, int userId) throws SQLException {	//북마크 된 상태면 북마크하고 아니면 북마크 해제하는 걸로 구현했는데 맞는지 잘 모르겠음
 		if(bookmarkDAO.existingBookmark(userId, questionCode)) {
 			bookmarkDAO.deleteBookmark(userId, questionCode);
