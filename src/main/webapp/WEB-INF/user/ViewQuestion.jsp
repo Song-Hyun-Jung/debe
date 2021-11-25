@@ -79,7 +79,11 @@ hr{
 			</tr>
 			<tr height="50">
 				<td class="info">해결상태</td>
-				<td>${Question.solve}</td>	<!-- y면 해결 n면 미해결으로 뜨도록 나중에 수정 -->
+				<td>
+					&nbsp;&nbsp;
+					<c:if test="${Question.solve eq 'y'}">해결됨</c:if>
+					<c:if test="${Question.solve eq 'n'}">미해결</c:if>
+				</td>
 				<td colspan="3"> </td>
 			</tr>
 			<tr>

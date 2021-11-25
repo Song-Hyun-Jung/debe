@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -122,7 +123,7 @@ div.filter{
 		<c:forEach var="question" items="${questionList}" varStatus="status">
 			<c:if test="${status.count % 5 eq 1}">
 		  	<a href="<c:url value ='/user/questionlist'> <c:param name='questionIndex' value='${status.index}' /> </c:url>"  id="indexfont"> 
-		  		<font >${(status.index)/5 + 1}&nbsp;&nbsp;</font> </a>
+		  		<font><fmt:formatNumber value="${(status.index)/5 + 1}" pattern="#" />&nbsp;|&nbsp;</font> </a>
 		  </c:if>
 		</c:forEach>
 	</div>

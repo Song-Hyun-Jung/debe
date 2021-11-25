@@ -34,10 +34,12 @@ public class RequestMapping {
     	
     	
         mappings.put("/", new ForwardController("index.jsp"));
+        //나중에 지울것
         //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
         //mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));		//답변등록 테스트
         //mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
-         mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
+        //mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
+        mappings.put("/user/login/form", new GoMainPageController()); //메인페이지 테스트
         
         
         /*
