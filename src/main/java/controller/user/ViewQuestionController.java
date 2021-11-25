@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.Question;
@@ -24,15 +25,17 @@ public class ViewQuestionController implements Controller{
 		AnswerManager answerManager = AnswerManager.getInstance();
 		Question question = null;
 		List<Answer> answerList = null;
+		boolean exist;
+		HttpSession session = request.getSession();
 		
 		LOG.info(String.valueOf(viewQuestionCode));
 		question = questionManager.displayQuestion(viewQuestionCode);
 		answerList = answerManager.displayAllAnswer(viewQuestionCode);	//questionCode에 해당하는 답변 모두 가져옴
+		exist = questionManager.existingBookmarkQuestion(viewQuestionCode, Integer.parseInt(UserSessionUtils.getLoginUserId(session)));
 		
-		//LOG.info(String.valueOf(answerList.get(0).getAnswerContent()));		//answer 없는 질문 조회 시 오류남
-		System.out.println("questionCode값, question제목: "+viewQuestionCode + question.getTitle());
+		System.out.println("questionCode값, question제목: "+viewQuestionCode + question.getTitle() + " 북마크: "+exist);
 		
-		
+		request.setAttribute("exist", exist);
 		request.setAttribute("Question", question);
 		request.setAttribute("AnswerList", answerList);
 		

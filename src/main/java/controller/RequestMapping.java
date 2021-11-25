@@ -15,6 +15,7 @@ import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
 import controller.user.GoMainPageController;
 import controller.user.ListQuestionController;
+import controller.user.QuestionFilterController;
 import controller.user.ViewQuestionController;
 
 /*//나중에 수정해야함
@@ -98,6 +99,8 @@ public class RequestMapping {
         mappings.put("/user/addquestion", new AddQuestionController());
         //질문 삭제
         mappings.put("/user/deletequestion", new DeleteQuestionController());
+        //질문 필터링
+        mappings.put("/user/filterquestion", new QuestionFilterController());
         
         
         
@@ -116,7 +119,7 @@ public class RequestMapping {
          mappings.put("/WEB-INF/user/viewquestion", new ViewQuestionController());		//답변 등록 후 viewQuestion으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
          
         //질문 북마크
-    	//mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
+    	mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
         
         
         /*

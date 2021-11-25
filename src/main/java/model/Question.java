@@ -16,7 +16,16 @@ public class Question{
 	private String questionAdopt; //질문 채택 상태
 	private int subjectId; //질문 관련 과목
 	private String subjectTitle; 	//질문 관련 과목 이름, subjectId에 대한 이름
+	private String userNickname;
 	
+	
+	
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
 	public String getSubjectTitle() {
 		return subjectTitle;
 	}
@@ -92,6 +101,22 @@ public class Question{
 		this.questionAdopt = questionAdopt;
 		this.subjectId = subjectId;
 		this.subjectTitle = subjectTitle;
+	}
+	
+	public Question(int postId, String title, Date postDate, String postContent, int userId, String questionLanguage,
+			String solve, String questionAdopt, int subjectId, String subjectTitle, String userNickname) {
+		super();
+		this.postId = postId;
+		this.title = title;
+		this.postDate = postDate;
+		this.postContent = postContent;
+		this.userId = userId;
+		this.questionLanguage = questionLanguage;
+		this.solve = solve;
+		this.questionAdopt = questionAdopt;
+		this.subjectId = subjectId;
+		this.subjectTitle = subjectTitle;
+		this.userNickname = userNickname;
 	}
 	
 	public Question(String title, String postContent, int userId, String questionLanguage, int subjectId) {

@@ -15,6 +15,10 @@ function deleteAnswer(form) {
 	questionInfo.method="POST";
 	questionInfo.submit();
 }
+function bookmarkQuestion(targetUri) {
+	questionInfo.action = "<c:url value ='/user/bookmarkQuestion' />";
+	questionInfo.submit;
+}
 </script>
 <meta charset="UTF-8">
 <title>질문 조회</title>
@@ -68,7 +72,10 @@ hr{
 			<tr>
 				<td class="info">제목</td>
 				<td align="center" colspan="3"><input readonly id="title" type="text" name="questionTitle" value="${Question.title}" size="75" style="height:25px"></td>
-				<td align="right" width="10px" height="10px"><input type="image" src="<c:url value='/images/beforeBookmark.jpg' />"  style="max-width:40%"></td>
+				<td align="right" width="10px" height="10px"><input type="image" 
+					<c:if test="${ exist eq 'false'}"> src=" <c:url value='/images/beforeBookmark.jpg' />" </c:if>
+					<c:if test="${ exist eq 'true'}"> src=" <c:url value='/images/afterBookmark.jpg' />" </c:if>
+				onclick="bookmarkQuestion()" style="max-width:40%"></td>
 			</tr>
 			<tr height="50">
 				<td class="info">해결상태</td>
@@ -79,7 +86,7 @@ hr{
 				<td colspan="5"><textarea readonly cols=110 rows=15 class="code" name="questionContent">${Question.postContent}</textarea></td>
 			</tr>
 			<tr>
-				<td class="info">질문자:${Question.userId}</td>	<!-- 일단 userId로 함 나중에 닉네임으로 수정 -->	
+				<td class="info">질문자:${Question.userNickname}</td>
 				<td class="info-right" colspan="4">과목명: ${Question.subjectTitle}  / 사용 언어: ${Question.questionLanguage } / 질문날짜: ${Question.postDate} </td>
 			</tr>
 			<tr>
@@ -105,7 +112,7 @@ hr{
 	<form name="othersAnswer" method=post >
 		<table class="answers">
 			<tr class="answerInfo" style="padding:10px 0px 10px 0px">
-				<td>답변자:${answer.userId}  경험치: </td>
+				<td>답변자:${answer.userNickname}  경험치: </td>
 				<td align="right">
 					<c:if test="${answer.answerAdopt eq 'y'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="show" style="max-width:10%"></c:if>	
 					<c:if test="${answer.answerAdopt eq 'n'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="noShow" style="max-width:10%"></c:if>	
