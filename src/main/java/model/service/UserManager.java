@@ -43,7 +43,7 @@ public class UserManager {
 		return user;
 	}
 	
-	public List findUserList()  throws SQLException {
+	public List<User> findUserList()  throws SQLException {
 		return userDAO.findUserList();
 	}
 	

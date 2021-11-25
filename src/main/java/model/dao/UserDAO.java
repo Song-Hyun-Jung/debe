@@ -96,6 +96,7 @@ public class UserDAO {
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
+			System.out.println(userId);
 			if (rs.next()) {						
 				User user = new User(		
 					rs.getInt("userId"),

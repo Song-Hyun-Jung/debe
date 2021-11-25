@@ -15,6 +15,7 @@ import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
 import controller.user.GoMainPageController;
 import controller.user.ListQuestionController;
+import controller.user.LoginController;
 import controller.user.QuestionFilterController;
 import controller.user.ViewQuestionController;
 
@@ -39,20 +40,23 @@ public class RequestMapping {
         //mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));		//답변등록 테스트
         //mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
         //mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
-        mappings.put("/user/login/form", new GoMainPageController()); //메인페이지 테스트
+        //mappings.put("/user/login/form", new GoMainPageController()); //메인페이지 테스트
         
         
-        /*
+        
         //로그인
         //로그인 폼으로 이동
         mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
-        //로그인 확인-세션에 등록?
-        mappings.put("/user/login", new LoginController());
+        //로그인 확인-세션에 등록
+        mappings.put("/user/tryLogin", new LoginController());
         
         //mappings.put("/user/logout", new LogoutController());
         
+        
         //회원가입 폼으로 이동
         mappings.put("/user/join/form", new ForwardController("/user/JoinUser.jsp"));
+        
+        /*
         //중복체크
         mappings.put("/user/checkNickname", new CheckNicknameController());
         //회원가입

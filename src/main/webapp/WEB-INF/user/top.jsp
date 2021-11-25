@@ -13,10 +13,7 @@
 	.menuhover:hover {background-color:#a9173d; color:white;}
 </style>
 </head>
-<body>
-	<%session.setAttribute("userNickname", "테스터"); %>
-	<%session.setAttribute("userLevel", 2); %>
-	<%session.setAttribute("userId", "20190000"); %>
+<body>	
 		<table id="topLayout">
 			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="250px" height="100px"></a></td><td width="70%"></td><td>${userNickname} 님, 안녕하세요</td></tr>
 		</table>
