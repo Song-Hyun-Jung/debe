@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import controller.user.AddAnswerController;
 import controller.user.AddQuestionController;
+import controller.user.AddSolutionController;
 import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.DeleteAnswerController;
 import controller.user.DeleteQuestionController;
+import controller.user.DeleteSolutionController;
 import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
 import controller.user.GoMainPageController;
@@ -18,6 +20,7 @@ import controller.user.ListQuestionController;
 import controller.user.LoginController;
 import controller.user.QuestionFilterController;
 import controller.user.ViewQuestionController;
+import controller.user.ViewRecommendController;
 
 /*//나중에 수정해야함
 import controller.user.*;
@@ -41,12 +44,14 @@ public class RequestMapping {
         //mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
         //mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
         //mappings.put("/user/login/form", new GoMainPageController()); //메인페이지 테스트
+        //mappings.put("/user/login/form", new ForwardController("/user/AddSolution.jsp")); //솔루션 등록 테스트
+        mappings.put("/user/login/form", new ViewRecommendController());
         
         
         
         //로그인
         //로그인 폼으로 이동
-        mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
+        //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
         //로그인 확인-세션에 등록
         mappings.put("/user/tryLogin", new LoginController());
         
@@ -142,10 +147,13 @@ public class RequestMapping {
         mappings.put("/user/deleteRecommend", new DeleteRecommendController());
         //답변(솔루션등록) 폼 이동
         mappings.put("/user/addRecommendSolution/form", new ForwardController("/user/AddSolution.jsp"));
+        */
+        
         //답변(솔루션) 등록
         mappings.put("/user/addRecommendSolution", new AddSolutionController());
         //답변 삭제
         mappings.put("/user/deleteSolution", new DeleteSolutionController());
+        /*
         //답변 별점 매기기
         mappings.put("/user/updateRecommendScore", new UpdateSolutionScoreController());
         //문제 추천하기

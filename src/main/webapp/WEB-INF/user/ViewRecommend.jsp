@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,12 @@
 	background-color:#a9173d;
 	color:white;
 	font-size:15px;
+}
+#show{
+	visibility:visibility;
+}
+#noShow{
+	visibility:hidden;
 }
 tr.recommendInfo{
 	border-collapse:collapse;
@@ -37,6 +44,11 @@ hr{
 </style>
 </head>
 <body>
+<% //나중에 지울것
+session.setAttribute("userId", 20190000); 
+session.setAttribute("userNickname", "최");
+session.setAttribute("userLevel", 2); 
+%>
 	<div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 	</div>
@@ -72,17 +84,29 @@ hr{
 	<hr/>
 	
 	<div align="center" style="padding:10px 0px 10px 0px">
+	<c:forEach var="solution" items="${SolutionList}">
 	<form name=otherSolution method=post>
 		<table class="collapse">
 			<tr class="recommendInfo">
-				<td>작성자:   &nbsp; 경험치:   &nbsp; 평가점수: </td>
+				<td>작성자:${solution.userNickname}   &nbsp; 경험치:   &nbsp; 평가점수:${solution.solutionScore} </td>
 			</tr>
 			<tr class="recommendInfo">
-				<td colspan="2"><textarea cols=100 rows=15 class="code" name="answerCodes"></textarea></td>
+				<td colspan="3"><textarea cols=100 rows=15 class="code" name="answerCodes">${solution.solutionContent}</textarea></td>
 			</tr>
 			<tr>
+				<td align="left" style="padding:10px 0px 10px 0px">
+					<c:if test="${(solution.userId eq userId)}"><input class="btnSubmit" type="submit" value="삭제" formaction="<c:url value ='/user/deleteSolution' />"></c:if>
+					<c:if test="${(solution.userId ne userId)}"><input id="noShow" type="submit" value="삭제" formaction="<c:url value ='/user/deleteSolution' />"></c:if>
+					<input type="hidden" name="solutionCode" value="${solution.solutionId}" />
+					<input type="hidden" name="solutionUserId" value="${solution.userId}" />
+					<!--  
+					<input type="hidden" name="recommendCode" value="${Recommend.postId}"/>
+					-->
+					<input type="hidden" name="recommendCode" value="35"/>
+					  
+				</td>
 				<td colspan="2" style="text-align:right">
-					<select name="subject" style="padding:5px 0px 5px 0px">
+					<select name="score" style="padding:5px 0px 5px 0px">
 						<option value="0" selected>평가점수</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -95,6 +119,7 @@ hr{
 			</tr>
 		</table>
 	</form>
+	</c:forEach>
 	</div>
 	
 	<hr/>

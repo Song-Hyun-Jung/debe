@@ -31,6 +31,7 @@ public class ViewQuestionController implements Controller{
 		LOG.info(String.valueOf(viewQuestionCode));
 		question = questionManager.displayQuestion(viewQuestionCode);
 		answerList = answerManager.displayAllAnswer(viewQuestionCode);	//questionCode에 해당하는 답변 모두 가져옴
+		//여기 오류남
 		exist = questionManager.existingBookmarkQuestion(viewQuestionCode, Integer.parseInt(UserSessionUtils.getLoginUserId(session)));
 		
 		System.out.println("questionCode값, question제목: "+viewQuestionCode + question.getTitle() + " 북마크: "+exist);

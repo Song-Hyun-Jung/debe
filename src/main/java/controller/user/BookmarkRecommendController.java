@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.service.RecommendManager;
 
 public class BookmarkRecommendController implements Controller{
 

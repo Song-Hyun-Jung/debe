@@ -12,6 +12,7 @@ public class Solution{
 	private float solutionScore; //추천문제 답변별 평가점수
 	private Date solutionDate; //추천문제 답변 날짜
 	private int userId; //추천문제 답변 작성자
+	private String userNickname;
 	
 	
 	public int getPostId() {
@@ -50,10 +51,16 @@ public class Solution{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
 	
 	//생성자
 	public Solution(int solutionId, int postId, String solutionContent, float solutionScore, Date solutionDate,
-			int userId) {
+			int userId, String userNickname) {
 		super();
 		this.solutionId = solutionId;
 		this.postId = postId;
@@ -61,8 +68,16 @@ public class Solution{
 		this.solutionScore = solutionScore;
 		this.solutionDate = solutionDate;
 		this.userId = userId;
+		this.userNickname = userNickname;
 	}
 	
+	
+	public Solution(int postId, String solutionContent, int userId) { //솔루션 등록시 사용하는 생성자
+		super();
+		this.postId = postId;
+		this.solutionContent = solutionContent;
+		this.userId = userId;
+	}
 	public Solution() { }
 	
 	//각 답변 별 평균 구해서 반환
