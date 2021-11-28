@@ -20,7 +20,7 @@ public class QuestionDAO {
 	
 	public List<Question> displayAllQuestion() throws SQLException {
         String sql = "SELECT * FROM Question q, POST  p, SUBJECT s "
-    				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId ORDER BY postdate, q.postId";
+    				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId ORDER BY q.postId";
         
 		jdbcUtil.setSqlAndParameters(sql, null);		
 					
@@ -58,7 +58,7 @@ public class QuestionDAO {
 		String sql = "SELECT q.postid, p.title, p.postdate, p.postcontent, p.userid, q.questionlanguage, q.solve, q.questionadopt, s.subjectid, s.subjectTitle, u.userNickname "
 				+ "FROM Question q, Post p, Subject s, Serviceuser u "
     		    + "WHERE q.postId = p.postId and q.subjectId = s.subjectId and u.userId = p.userId and q.postId = ? "
-				+ "ORDER BY p.postdate, q.postId";
+				+ "ORDER BY q.postId";
     
 	    Object[] param = new Object[] {questionCode};
 		jdbcUtil.setSqlAndParameters(sql, param);		
@@ -91,7 +91,7 @@ public class QuestionDAO {
 		return null;
 	}
 	
-public int deleteQuestionAnswer(int questionCode) throws SQLException{
+	public int deleteQuestionAnswer(int questionCode) throws SQLException{
 		
 		int resultAnswer = 0;		//삭제된 답변 개수
 		String deleteAnswerSql = "DELETE FROM Questionanswer WHERE postId = ?";		//questionCode에 해당하는 답변 지우기
@@ -263,7 +263,7 @@ public int deleteQuestionAnswer(int questionCode) throws SQLException{
 	public List<Question> filterSolved(String solved) throws SQLException{
 		
 		 String sql = "SELECT * FROM Question q, POST  p, SUBJECT s "
-				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId and q.solve = ? ORDER BY postdate, q.postId";
+				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId and q.solve = ? ORDER BY q.postId";
 		Object[] param = new Object[] {solved};
     
 		jdbcUtil.setSqlAndParameters(sql, param);		

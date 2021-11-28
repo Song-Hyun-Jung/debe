@@ -25,9 +25,9 @@
 					<td width="11%"></td>
 					<td class="menuhover"><a href="<c:url value ='/user/questionlist' />" id="menu_string">Q&A</a></td>
 					<td width="11%"></td>
-					<td class="menuhover"><a href="recommend.html" id="menu_string">추천 코딩 문제</a></td>
+					<td class="menuhover"><a href="<c:url value ='/user/recommendlist' />" id="menu_string">추천 코딩 문제</a></td>
 					<td width="11%"></td>
-					<td class="menuhover"><a href="bookmark.html" id="menu_string">북마크</a></td>
+					<td class="menuhover"><a href="<c:url value ='/user/bookmark' />" id="menu_string">북마크</a></td>
 					<td width="11%"></td>
 				</tr>
 			</table>

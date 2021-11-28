@@ -14,8 +14,16 @@ public class Recommend{
 	private String difficulty; //추천문제 난이도
 	private int recommendCount; //추천문제 추천수
 	private String algorithm; //추천문제 관련 알고리즘
+	private String userNickname;
 	
 	
+	
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
 	public int getPostId() {
 		return postId;
 	}
@@ -67,6 +75,20 @@ public class Recommend{
 	
 	//생성자
 	public Recommend(int postId, String title, Date postDate, String postContent, int userId, String difficulty,
+			int recommendCount, String algorithm, String userNickname) {
+		super();
+		this.postId = postId;
+		this.title = title;
+		this.postDate = postDate;
+		this.postContent = postContent;
+		this.userId = userId;
+		this.difficulty = difficulty;
+		this.recommendCount = recommendCount;
+		this.algorithm = algorithm;
+		this.userNickname = userNickname;
+	}
+	
+	public Recommend(int postId, String title, Date postDate, String postContent, String difficulty,
 			int recommendCount, String algorithm) {
 		super();
 		this.postId = postId;
@@ -78,6 +100,7 @@ public class Recommend{
 		this.recommendCount = recommendCount;
 		this.algorithm = algorithm;
 	}
+	
 	public Recommend(int postId, String title, Date postDate, String postContent) {
 		super();
 		this.postId = postId;
@@ -92,6 +115,15 @@ public class Recommend{
 		this.algorithm = algorithm;
 	}
 	
+	public Recommend(String title, int userId, String difficulty, String algorithm, String postContent) {	//addRecommend에서 사용하는 생성자
+		super();
+		this.title = title;
+		this.userId = userId;
+		this.difficulty = difficulty;
+		this.algorithm = algorithm;
+		this.postContent = postContent;
+	}	
+
 	public Recommend(int postId, String title) {
 		super();
 		this.postId = postId;
