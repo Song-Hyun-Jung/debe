@@ -20,7 +20,13 @@ public class ViewQuestionController implements Controller{
 		final Logger LOG = Logger.getGlobal();
 		LOG.info("불러왔음");
 
-		int viewQuestionCode = Integer.parseInt(request.getParameter("questionCode"));
+		int viewQuestionCode;
+		if (request.getParameter("questionCode") != null) {	//리스트에서 질문 제목 클릭해서 질문 조회할 때
+			viewQuestionCode = Integer.parseInt(request.getParameter("questionCode"));
+		} else {	//질문 등록 후 등록한 질문 조회할 때
+			viewQuestionCode = (int) request.getAttribute("questionCode");
+		}
+		
 		QuestionManager questionManager = QuestionManager.getInstance();
 		AnswerManager answerManager = AnswerManager.getInstance();
 		Question question = null;
@@ -31,9 +37,7 @@ public class ViewQuestionController implements Controller{
 		LOG.info(String.valueOf(viewQuestionCode));
 		question = questionManager.displayQuestion(viewQuestionCode);
 		answerList = answerManager.displayAllAnswer(viewQuestionCode);	//questionCode에 해당하는 답변 모두 가져옴
-		//여기 오류남
-		exist = questionManager.existingBookmarkQuestion(viewQuestionCode, Integer.parseInt(UserSessionUtils.getLoginUserId(session)));
-		
+		exist = questionManager.existingBookmarkQuestion(viewQuestionCode, UserSessionUtils.getLoginUserId(session));		
 		System.out.println("questionCode값, question제목: "+viewQuestionCode + question.getTitle() + " 북마크: "+exist);
 		
 		request.setAttribute("exist", exist);

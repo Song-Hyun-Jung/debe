@@ -7,18 +7,23 @@ import org.slf4j.LoggerFactory;
 
 import controller.user.AddAnswerController;
 import controller.user.AddQuestionController;
+import controller.user.AddRecommendController;
 import controller.user.AddSolutionController;
 import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
+import controller.user.BookmarkRecommendController;
 import controller.user.DeleteAnswerController;
 import controller.user.DeleteQuestionController;
+import controller.user.DeleteRecommendController;
 import controller.user.DeleteSolutionController;
 import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
 import controller.user.GoMainPageController;
 import controller.user.ListQuestionController;
+import controller.user.ListRecommendController;
 import controller.user.LoginController;
 import controller.user.QuestionFilterController;
+import controller.user.RecommendSortController;
 import controller.user.ViewQuestionController;
 import controller.user.ViewRecommendController;
 
@@ -38,16 +43,8 @@ public class RequestMapping {
     	
     	
         mappings.put("/", new ForwardController("index.jsp"));
-        //나중에 지울것
-        //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
-        //mappings.put("/user/login/form", new ForwardController("/user/AddAnswer.jsp"));		//답변등록 테스트
-        //mappings.put("/user/login/form", new ForwardController("/user/AddQuestion.jsp"));		//질문등록 테스트
-        //mappings.put("/user/login/form", new ListQuestionController());		//질문 목록 조회 테스트
-        //mappings.put("/user/login/form", new GoMainPageController()); //메인페이지 테스트
         //mappings.put("/user/login/form", new ForwardController("/user/AddSolution.jsp")); //솔루션 등록 테스트
         mappings.put("/user/login/form", new ViewRecommendController());
-        
-        
         
         //로그인
         //로그인 폼으로 이동
@@ -114,7 +111,6 @@ public class RequestMapping {
         mappings.put("/user/filterquestion", new QuestionFilterController());
         
         
-        
         //답변 폼 이동
         mappings.put("/user/addanswer/form", new GoAnswerController());
         //답변 등록
@@ -133,18 +129,19 @@ public class RequestMapping {
     	mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
         
         
-        /*
+        
         //추천문제
         //문제 리스트 조회
-        mappings.put("/user/list", new ListRecommendController());
+        mappings.put("/user/recommendlist", new ListRecommendController());
         //추천 문제 정렬(최신순, 추천순)
-        mappings.put("/user/sortList", new ListSortController());
+        mappings.put("/user/sortList", new RecommendSortController());
         //문제 등록하기로 이동
-        mappings.put("/user/addRecommend/form", new ForwardController("/user/DisplayRecommend.jsp"));
+        mappings.put("/user/addRecommend/form", new ForwardController("/user/AddRecommend.jsp"));
         //추천문제 등록
         mappings.put("/user/addRecommend", new AddRecommendController());
         //추천문제 삭제
         mappings.put("/user/deleteRecommend", new DeleteRecommendController());
+        /*
         //답변(솔루션등록) 폼 이동
         mappings.put("/user/addRecommendSolution/form", new ForwardController("/user/AddSolution.jsp"));
         */
@@ -156,18 +153,17 @@ public class RequestMapping {
         /*
         //답변 별점 매기기
         mappings.put("/user/updateRecommendScore", new UpdateSolutionScoreController());
+        */
         //문제 추천하기
-        mappings.put("/user/recommendCount", new UpdateRecommendCountController());
+        //mappings.put("/user/recommendCount", new UpdateRecommendCountController());
         //추천문제 북마크
         mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());
         
-        */
-         
-         /*
+  
          //한 추천문제 조회
          mappings.put("/user/viewrecommend", new ViewRecommendController());
          mappings.put("/WEB-INF/user/viewrecommend", new ViewRecommendController());		//답변 등록 후 viewRecommend으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
-          */
+         
         
         
         logger.info("Initialized Request Mapping!");

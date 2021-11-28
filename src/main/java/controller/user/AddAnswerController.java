@@ -32,9 +32,7 @@ public class AddAnswerController implements Controller{
 		Answer answer = new Answer(		//answerId, answerAdopt는 db에 insert 시에 sequence, 기본값으로 지정, answerDate는 insert시 sysdate로
 				Integer.parseInt(request.getParameter("questionCode")),		//답변 어느 질문에 달았는지, 해당 질문의 postId
 				request.getParameter("answerCodes"),
-				//Integer.parseInt(UserSessionUtils.getLoginUserId(session))
-				//Integer.parseInt("20170001")
-				Integer.parseInt((String)session.getAttribute("userId"))
+				(int)session.getAttribute("userId")
 				);
 		
 		AnswerManager manager = AnswerManager.getInstance();

@@ -24,7 +24,7 @@ public class BookmarkQuestionController implements Controller{
 		List<Answer> answerList = null;
 		int questionCode = Integer.parseInt(request.getParameter("questionCode"));
 		HttpSession session = request.getSession();		//UserSessionUtils.getLoginUserId()사용하기 위해 session 얻어옴
-		int userId = Integer.parseInt(UserSessionUtils.getLoginUserId(session));		//현재 로그인하고 있는 userId 가져옴
+		int userId = (int)UserSessionUtils.getLoginUserId(session);		//현재 로그인하고 있는 userId 가져옴
 		
 		manager.bookmarkQuestion(questionCode, userId);
 		boolean exist = manager.existingBookmarkQuestion(questionCode, userId);

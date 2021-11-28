@@ -1,11 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>솔루션 등록</title>
+<title>추천 코딩 문제 조회</title>
+
+<script>
+function deleteR(targetUri) {
+	recommendInfo.action = targetUri;
+	recommendInfo.method="POST";
+	recommendInfo.submit();
+}
+
+</script>
 <style>
 #btnSubmit{
 	width:90px;
@@ -41,6 +52,7 @@ td.info-right{
 hr{
 	color:#a9173d;
 }
+
 </style>
 </head>
 <body>
@@ -56,32 +68,38 @@ session.setAttribute("userLevel", 2);
 	<form name=recommendInfo method=post>
 		<table class="collapse">
 			<tr height="30" width="70">
-				<td class="info">문제</td>
-				<td align="center" colspan="2"><input type="text" name="title" size="70"></td>
-				<td width="40px" height="40px"><input type="image" src="../../images/beforeBookmark.jpg" class="imageAlign" style="max-width:80%"></td>
+				
+				<td class="info">제목</td>
+				<td align="center" colspan="2"><input readonly type="text" name="title" size="40" value="${Recommend.title}"></td>
+				<td width="40px" height="40px"><input type="image" src="/images/beforeBookmark.jpg" class="imageAlign" style="max-width:80%"></td>
 			</tr>
 			<tr class="recommendInfo" >
-				<td colspan="4">작성자:  &nbsp; 경험치:   </td>
+			
+				<td colspan="4">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치: </td>
 			</tr>
 			<tr class="recommendInfo">
-				<td colspan="4"><textarea cols=100 rows=15 class="code" name="answerCodes"></textarea></td>
+	
+				<td colspan="4"><textarea readonly cols=100 rows=15 class="code" name="recommendContent">${Recommend.postContent}</textarea></td>
 			</tr>
 			<tr>
-				<td class="info" colspan="2">난이도: &nbsp; 추천수:  </td>
-				<td class="info" colspan="2">알고리즘: </td>
+			
+				<td class="info" colspan="2">난이도: ${Recommend.difficulty } / 추천수: ${Recommend.recommendCount } / 작성 날짜: ${Recommend.postDate } / 알고리즘: ${Recommend.algorithm }</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="글 삭제"></td>
+		
+				<td colspan="2" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>
+												<c:param name='recommendCode' value='${Recommend.postId}'/><c:param name='userId' value='${Recommend.userId}'/></c:url>')"></td>
 				<td colspan="2"  align="right" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="답변하기"></td>
 			</tr>
-			<tr>
-				<td colspan="4" align="right"><input type="image" src="../../images/beforeEmpathize.jpg" style="max-width:100%"></td>				
+			<tr>			
+				<td colspan="4" align="right"><input type="image" src="/images/beforeEmpathize.jpg" style="max-width:100%"></td>				
 			</tr>
 		</table>
 	</form>
 	</div>
 	
 	<hr/>
+	
 	
 	<div align="center" style="padding:10px 0px 10px 0px">
 	<c:forEach var="solution" items="${SolutionList}">
