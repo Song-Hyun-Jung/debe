@@ -19,10 +19,10 @@ public class DeleteQuestionController implements Controller{
 		QuestionManager manager = QuestionManager.getInstance();		
 		HttpSession session = request.getSession();	
 		
-		if (UserSessionUtils.isLoginUser("admin", session)	// 로그인한 사용자가 관리자인 경우
+		if (UserSessionUtils.isLoginUser(11111111, session)	// 로그인한 사용자가 관리자(userId가 11111111)인 경우
 				   || 												// 또는 
-				(!UserSessionUtils.isLoginUser("admin", session) &&  // 로그인한 사용자가 관리자가 아니지만
-				  UserSessionUtils.isLoginUser(postUserId, session))) { // 로그인한 사용자가 작성한 질문인 경우
+				(!UserSessionUtils.isLoginUser(11111111, session) &&  // 로그인한 사용자가 관리자가 아니지만
+				  UserSessionUtils.isLoginUser(Integer.parseInt(postUserId), session))) { // 로그인한 사용자가 작성한 질문인 경우
 					
 				manager.deleteQuestion(questionCode);				// 질문 삭제
 				

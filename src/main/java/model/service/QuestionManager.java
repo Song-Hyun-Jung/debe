@@ -32,14 +32,13 @@ public class QuestionManager {
 	}
 	
 	public int addQuestion(Question question) throws SQLException {
-		//int result = questionDAO.addQuestion(question);
 		int questionCode = questionDAO.addQuestionPost(question);
 		int result = questionDAO.addQuestionQ(question, questionCode);
 
 		System.out.println("addQuestion questionCode°ª : "+questionCode);
 		System.out.println("addQuestion result°ª : "+result);
 		
-		return result;
+		return questionCode;
 	}
 	
 	public void deleteQuestion(int questionCode) throws SQLException {

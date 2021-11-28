@@ -162,6 +162,7 @@ public int deleteQuestionAnswer(int questionCode) throws SQLException{
 		
 		String sql1 = "INSERT INTO POST (postid, title, postcontent, userid) VALUES (SEQUENCEPOSTID.nextval, ?, ?, ?) ";
 		Object[] param = new Object[] {question.getTitle(), question.getPostContent(), question.getUserId()};
+		System.out.println("addQuestionPost: "+question.getTitle()+" "+question.getPostContent()+" "+question.getUserId());
 		jdbcUtil.setSqlAndParameters(sql1, param);	
 		String key[] = {"postId"};
 		
