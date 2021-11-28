@@ -380,4 +380,25 @@ public class QuestionDAO {
 		}
 		return null;
 	}
+
+	public int deleteQuestionBookmark(int questionCode) {		//글 삭제 할 때 북마크 되어있는 것도 삭제
+		int result = 0;
+		
+		String sql = "DELETE FROM Bookmark WHERE postId = ?";
+		Object[] param = new Object[] {questionCode};
+		
+		try {
+			jdbcUtil.setSqlAndParameters(sql, param);		
+			result = jdbcUtil.executeUpdate();			//추천문제 삭제	
+				
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return result;
+	}
 }

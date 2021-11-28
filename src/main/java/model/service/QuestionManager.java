@@ -45,6 +45,7 @@ public class QuestionManager {
 		int resultQuestionAnswer = questionDAO.deleteQuestionAnswer(questionCode);
 		int resultQuestion = questionDAO.deleteQuestion(questionCode);
 		int resultQuestionPost = questionDAO.deleteQuestionPost(questionCode);
+		int resultBookmark = questionDAO.deleteQuestionBookmark(questionCode);	//누군가 이 질문 북마크했으면 거기서도 지움
 		System.out.println("deleteQuestionAnswer에서 지운 답변 갯수 : "+ resultQuestionAnswer);
 		System.out.println("deleteQuestion에서 지운 질문 갯수 : "+ resultQuestion);
 		System.out.println("deleteQuestionPost에서 지운 질문 갯수 : "+ resultQuestionPost);

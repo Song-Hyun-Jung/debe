@@ -190,21 +190,65 @@ public class RecommendDAO {
 		}
 		return resultRecommend;		//추천문제 삭제 안 되면 0 반환, 삭제 됐으면 1 반환
 	}
+	
+	public int deleteRecommendBookmark(int recommendCode) {		//글 삭제 할 때 북마크 되어있는 것도 삭제
+		int result = 0;
+		
+		String sql = "DELETE FROM Bookmark WHERE postId = ?";
+		Object[] param = new Object[] {recommendCode};
+		
+		try {
+			jdbcUtil.setSqlAndParameters(sql, param);		
+			result = jdbcUtil.executeUpdate();			//추천문제 삭제	
+				
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return result;
+	}
 
 	public List<Recommend> sortRecommend(String sort) throws SQLException {
 		
-		String sql = "SELECT * FROM Recommend r, Post p WHERE r.postid = p.postid ";
+		String sql = "";
+		List<Recommend> recommends = new ArrayList<Recommend>();
 		
 		if(sort.equals("recent")) {		//최신순 정렬
-			sql += "ORDER BY p.postdate DESC";
-		} else if(sort.equals("recommend")) {	//추천순 정렬
-			sql += "ORDER BY r.recommendCount DESC";
-		}
-		jdbcUtil.setSqlAndParameters(sql, null);
-				
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();					
-			List<Recommend> recommends = new ArrayList<Recommend>();	
+			sql = "SELECT * FROM Recommend r, Post p WHERE r.postid = p.postid ORDER BY p.postdate DESC";
+			jdbcUtil.setSqlAndParameters(sql, null);
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();					
+				while (rs.next()) {
+					Recommend recommend = new Recommend(
+							rs.getInt("postId"),
+							rs.getString("title"),
+							rs.getDate("postdate"),
+							rs.getString("postcontent"),
+							rs.getString("difficulty"),
+							rs.getInt("recommendCount"),
+							rs.getString("algorithm")
+						);
+					recommends.add(recommend);
+					}		
+					return recommends;					
+			
+				} catch (Exception ex) { 
+					ex.printStackTrace();} 
+				finally {
+					jdbcUtil.close();		
+				}
+			
+			
+		} else if(sort.equals("difficulty")) {	//난이도순 정렬
+			ResultSet rs;
+			String sqlHigh = "SELECT * FROM Recommend r, Post p WHERE r.postid = p.postid and r.difficulty = 'high' ";
+			jdbcUtil.setSqlAndParameters(sqlHigh, null);
+			rs = jdbcUtil.executeQuery();	
 			while (rs.next()) {
 				Recommend recommend = new Recommend(
 						rs.getInt("postId"),
@@ -216,16 +260,66 @@ public class RecommendDAO {
 						rs.getString("algorithm")
 					);
 				recommends.add(recommend);
-				}		
-				return recommends;					
+			}	
+			String sqlMid = "SELECT * FROM Recommend r, Post p WHERE r.postid = p.postid and r.difficulty = 'mid' ";
+			jdbcUtil.setSqlAndParameters(sqlMid, null);
+			rs = jdbcUtil.executeQuery();	
+			while (rs.next()) {
+				Recommend recommend = new Recommend(
+						rs.getInt("postId"),
+						rs.getString("title"),
+						rs.getDate("postdate"),
+						rs.getString("postcontent"),
+						rs.getString("difficulty"),
+						rs.getInt("recommendCount"),
+						rs.getString("algorithm")
+					);
+				recommends.add(recommend);
+			}	
+			String sqlLow = "SELECT * FROM Recommend r, Post p WHERE r.postid = p.postid and r.difficulty = 'low' ";
+			jdbcUtil.setSqlAndParameters(sqlLow, null);
+			rs = jdbcUtil.executeQuery();	
+			while (rs.next()) {
+				Recommend recommend = new Recommend(
+						rs.getInt("postId"),
+						rs.getString("title"),
+						rs.getDate("postdate"),
+						rs.getString("postcontent"),
+						rs.getString("difficulty"),
+						rs.getInt("recommendCount"),
+						rs.getString("algorithm")
+					);
+				recommends.add(recommend);
+			}	
+			return recommends;
+		}
 		
-			} catch (Exception ex) { 
-				ex.printStackTrace();} 
-			finally {
-				jdbcUtil.close();		
-			}
-			return null;
+		
+		return null;
 	}
+	
+	/*
+	public int updateRecommendCount(int recommendCode) {
+		int update = 0;
+		String sql = "UPDATE Recommend SET recommendcount = recommendcount + 1 WHERE postid = ?";
+		Object[] param = new Object[] {recommendCode};
+		
+		try {
+			jdbcUtil.setSqlAndParameters(sql, param);		
+			update = jdbcUtil.executeUpdate();		
+				
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return update;
+		
+	}
+	*/
 	
 	public List<Recommend> display10Recommend() throws SQLException {
 	    String sql = "SELECT * FROM (SELECT p.postid, p.title FROM Recommend r, POST  p "
@@ -282,4 +376,6 @@ public class RecommendDAO {
 		}
 		return null;
 	}
+
+	
 }

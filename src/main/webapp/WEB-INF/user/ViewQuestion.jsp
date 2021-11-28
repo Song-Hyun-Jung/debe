@@ -17,7 +17,7 @@ function deleteAnswer(form) {
 }
 function bookmarkQuestion(targetUri) {
 	questionInfo.action = "<c:url value ='/user/bookmarkQuestion' />";
-	questionInfo.submit;
+	questionInfo.submit();
 }
 </script>
 <meta charset="UTF-8">

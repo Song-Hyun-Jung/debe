@@ -20,7 +20,6 @@ public class ViewRecommendController implements Controller{
 		LOG.info("viewRecommendController 불러왔음");
 
 		int viewRecommendCode;
-		//int viewRecommendCode = Integer.parseInt("35");
 		if (request.getParameter("recommendCode") != null) {	//리스트에서 추천문제 제목 클릭해서 추천문제 조회할 때
 			viewRecommendCode = Integer.parseInt(request.getParameter("recommendCode"));
 			System.out.println("파라미터로 코드: "+ viewRecommendCode);
@@ -40,9 +39,10 @@ public class ViewRecommendController implements Controller{
 		LOG.info(String.valueOf(viewRecommendCode));
 		recommend = recommendManager.displayRecommend(viewRecommendCode);
 		solutionList = solutionManager.displayAllSolution(viewRecommendCode);	//recommendCode에 해당하는 솔루션 모두 가져옴
-		//exist = questionManager.existingBookmarkQuestion(viewQuestionCode, Integer.parseInt(UserSessionUtils.getLoginUserId(session)));
-		//System.out.println("RecommendCode값, Recommend제목: "+viewRecommendCode + recommend.getTitle() + " 북마크: "+exist);
-		//request.setAttribute("exist", exist);
+		System.out.println("RecommendCode값, Recommend제목: "+viewRecommendCode + recommend.getTitle());
+		exist = recommendManager.existingBookmarkRecommend(viewRecommendCode, UserSessionUtils.getLoginUserId(session));
+		System.out.println("RecommendCode값, Recommend제목: "+viewRecommendCode + recommend.getTitle() + " 북마크: "+exist);
+		request.setAttribute("exist", exist);
 		System.out.println("Controller: "+recommend.getTitle()+" " +recommend.getPostContent());
 		request.setAttribute("Recommend", recommend);
 		request.setAttribute("SolutionList", solutionList);

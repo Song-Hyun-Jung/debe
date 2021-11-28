@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -18,6 +17,10 @@ function deleteR(targetUri) {
 function addSolution(targetUri) {
 	recommendInfo.action = targetUri;
 	recommendInfo.method="GET";
+	recommendInfo.submit();
+}
+function bookmarkRecommend(targetUri) {
+	recommendInfo.action = "<c:url value ='/user/bookmarkRecommend' />";
 	recommendInfo.submit();
 }
 </script>
@@ -77,7 +80,10 @@ hr{
 				
 				<td class="info">제목</td>
 				<td align="center" colspan="3"><input readonly type="text" name="title" size="40" value="${Recommend.title}"></td>
-				<td width="40px" height="40px"><input type="image" src="<c:url value='/images/beforeBookmark.jpg' />" style="max-width:80%"></td>
+				<td width="40px" height="40px"><input type="image" 
+					<c:if test="${ exist eq 'false'}"> src=" <c:url value='/images/beforeBookmark.jpg' />" </c:if>
+					<c:if test="${ exist eq 'true'}"> src=" <c:url value='/images/afterBookmark.jpg' />" </c:if>
+				onclick="bookmarkRecommend()" style="max-width:40%"></td>
 			</tr>
 			<tr class="recommendInfo" >
 			
@@ -89,7 +95,7 @@ hr{
 			</tr>
 			<tr>
 			
-				<td class="info" colspan="5">난이도: ${Recommend.difficulty } / 추천수: ${Recommend.recommendCount } / 작성 날짜: ${Recommend.postDate } / 알고리즘: ${Recommend.algorithm }</td>
+				<td class="info" colspan="5">난이도: ${Recommend.difficulty } / 작성 날짜: ${Recommend.postDate } / 알고리즘: ${Recommend.algorithm }</td>
 			</tr>
 			<tr>
 				<td colspan="2" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>

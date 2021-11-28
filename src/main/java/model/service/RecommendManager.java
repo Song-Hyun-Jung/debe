@@ -20,6 +20,7 @@ public class RecommendManager {
 	private RecommendManager() {
 		try {
 		recommendDAO = new RecommendDAO();
+		bookmarkDAO = new BookmarkDAO();
 		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
@@ -47,6 +48,7 @@ public class RecommendManager {
 		int resultRecommendSolution = recommendDAO.deleteRecommendSolution(recommendCode);
 		int resultRecommend = recommendDAO.deleteRecommend(recommendCode);
 		int resultRecommendPost = recommendDAO.deleteRecommendPost(recommendCode);
+		int resutRecommendBookmark = recommendDAO.deleteRecommendBookmark(recommendCode);
 		System.out.println("deleteRecommendSolution에서 지운 답변 갯수 : "+ resultRecommendSolution);
 		System.out.println("deleteRecommend에서 지운 질문 갯수 : "+ resultRecommend);
 		System.out.println("deleteRecommendPost에서 지운 질문 갯수 : "+ resultRecommendPost);
@@ -77,6 +79,13 @@ public class RecommendManager {
 		
 		return recommendList;
 	}
+	
+	/*
+	public int UpdateRecommendCount(int recommendCode) throws SQLException {
+		
+		return recommendDAO.updateRecommendCount(recommendCode);
+	}
+	*/
 	
 	
 	public List<Recommend> display10Recommend() throws SQLException{ //메인페이지 최신 10개 추천문제
