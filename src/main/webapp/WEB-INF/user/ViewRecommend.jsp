@@ -15,7 +15,11 @@ function deleteR(targetUri) {
 	recommendInfo.method="POST";
 	recommendInfo.submit();
 }
-
+function addSolution(targetUri) {
+	recommendInfo.action = targetUri;
+	recommendInfo.method="GET";
+	recommendInfo.submit();
+}
 </script>
 <style>
 #btnSubmit{
@@ -52,15 +56,17 @@ td.info-right{
 hr{
 	color:#a9173d;
 }
-
+.btnDelete{
+	width:90px;
+	height:30px;
+	background-color:#a9173d;
+	color:white;
+	font-size:15px;
+	visibility:visibility;
+}
 </style>
 </head>
 <body>
-<% //나중에 지울것
-session.setAttribute("userId", 20190000); 
-session.setAttribute("userNickname", "최");
-session.setAttribute("userLevel", 2); 
-%>
 	<div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 	</div>
@@ -70,29 +76,28 @@ session.setAttribute("userLevel", 2);
 			<tr height="30" width="70">
 				
 				<td class="info">제목</td>
-				<td align="center" colspan="2"><input readonly type="text" name="title" size="40" value="${Recommend.title}"></td>
-				<td width="40px" height="40px"><input type="image" src="/images/beforeBookmark.jpg" class="imageAlign" style="max-width:80%"></td>
+				<td align="center" colspan="3"><input readonly type="text" name="title" size="40" value="${Recommend.title}"></td>
+				<td width="40px" height="40px"><input type="image" src="<c:url value='/images/beforeBookmark.jpg' />" style="max-width:80%"></td>
 			</tr>
 			<tr class="recommendInfo" >
 			
-				<td colspan="4">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치: </td>
+				<td colspan="5">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치: </td>
 			</tr>
 			<tr class="recommendInfo">
 	
-				<td colspan="4"><textarea readonly cols=100 rows=15 class="code" name="recommendContent">${Recommend.postContent}</textarea></td>
+				<td colspan="5"><textarea readonly cols=100 rows=15 class="code" name="recommendContent">${Recommend.postContent}</textarea></td>
 			</tr>
 			<tr>
 			
-				<td class="info" colspan="2">난이도: ${Recommend.difficulty } / 추천수: ${Recommend.recommendCount } / 작성 날짜: ${Recommend.postDate } / 알고리즘: ${Recommend.algorithm }</td>
+				<td class="info" colspan="5">난이도: ${Recommend.difficulty } / 추천수: ${Recommend.recommendCount } / 작성 날짜: ${Recommend.postDate } / 알고리즘: ${Recommend.algorithm }</td>
 			</tr>
 			<tr>
-		
 				<td colspan="2" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>
 												<c:param name='recommendCode' value='${Recommend.postId}'/><c:param name='userId' value='${Recommend.userId}'/></c:url>')"></td>
-				<td colspan="2"  align="right" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="submit" value="답변하기"></td>
-			</tr>
-			<tr>			
-				<td colspan="4" align="right"><input type="image" src="/images/beforeEmpathize.jpg" style="max-width:100%"></td>				
+				<td colspan="3" align="right">
+					<input type="hidden" name="recommendCode" value="${Recommend.postId}" />
+					<input id="btnSubmit" type="button" value="답변등록" onclick="addSolution('<c:url value ='/user/addRecommendSolution/form' />')">
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -109,19 +114,15 @@ session.setAttribute("userLevel", 2);
 				<td>작성자:${solution.userNickname}   &nbsp; 경험치:   &nbsp; 평가점수:${solution.solutionScore} </td>
 			</tr>
 			<tr class="recommendInfo">
-				<td colspan="3"><textarea cols=100 rows=15 class="code" name="answerCodes">${solution.solutionContent}</textarea></td>
+				<td colspan="3"><textarea cols=100 readonly rows=15 class="code" name="answerCodes">${solution.solutionContent}</textarea></td>
 			</tr>
 			<tr>
 				<td align="left" style="padding:10px 0px 10px 0px">
-					<c:if test="${(solution.userId eq userId)}"><input class="btnSubmit" type="submit" value="삭제" formaction="<c:url value ='/user/deleteSolution' />"></c:if>
+					<c:if test="${(solution.userId eq userId)}"><input class="btnDelete" type="submit" value="삭제" formaction="<c:url value ='/user/deleteSolution' />"></c:if>
 					<c:if test="${(solution.userId ne userId)}"><input id="noShow" type="submit" value="삭제" formaction="<c:url value ='/user/deleteSolution' />"></c:if>
 					<input type="hidden" name="solutionCode" value="${solution.solutionId}" />
 					<input type="hidden" name="solutionUserId" value="${solution.userId}" />
-					<!--  
 					<input type="hidden" name="recommendCode" value="${Recommend.postId}"/>
-					-->
-					<input type="hidden" name="recommendCode" value="35"/>
-					  
 				</td>
 				<td colspan="2" style="text-align:right">
 					<select name="score" style="padding:5px 0px 5px 0px">
@@ -136,6 +137,7 @@ session.setAttribute("userLevel", 2);
 				</td>
 			</tr>
 		</table>
+		<hr/>
 	</form>
 	</c:forEach>
 	</div>

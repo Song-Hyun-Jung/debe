@@ -39,11 +39,6 @@ function addSolution(targetUri) {
 </script>
 </head>
 <body>
-<% //나중에 지울것
-session.setAttribute("userId", 20190000); 
-session.setAttribute("userNickname", "최");
-session.setAttribute("userLevel", 2); 
-%>
 	<div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 	</div>

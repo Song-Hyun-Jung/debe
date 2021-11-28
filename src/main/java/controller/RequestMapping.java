@@ -19,6 +19,7 @@ import controller.user.DeleteSolutionController;
 import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
 import controller.user.GoMainPageController;
+import controller.user.GoSolutionController;
 import controller.user.ListQuestionController;
 import controller.user.ListRecommendController;
 import controller.user.LoginController;
@@ -44,11 +45,12 @@ public class RequestMapping {
     	
         mappings.put("/", new ForwardController("index.jsp"));
         //mappings.put("/user/login/form", new ForwardController("/user/AddSolution.jsp")); //솔루션 등록 테스트
-        mappings.put("/user/login/form", new ViewRecommendController());
+       // mappings.put("/user/login/form", new ViewRecommendController());
+        //mappings.put("/user/login/form", new GoMainPageController());
         
         //로그인
         //로그인 폼으로 이동
-        //mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
+        mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
         //로그인 확인-세션에 등록
         mappings.put("/user/tryLogin", new LoginController());
         
@@ -63,10 +65,13 @@ public class RequestMapping {
         mappings.put("/user/checkNickname", new CheckNicknameController());
         //회원가입
         mappings.put("/user/join", new JoinController());
-        
+        */
         //관리자
         //관리자-사용자 리스트 조회
-        mappings.put("/user/adminList", new ListUserController());
+        mappings.put("/user/adminUserList", new ForwardController("/user/AdminUser.jsp"));
+        //관리자-게시글 조회
+        mappings.put("/user/adminPostList", new ForwardController("/user/AdminPost.jsp"));
+        /*
         //관리자-사용자 정보 수정 폼 요청과 수정 요청 처리 병합
         mappings.put("/user/adminUpdateUser", new UpdateUserController());
         //관리자-사용자 삭제
@@ -141,10 +146,9 @@ public class RequestMapping {
         mappings.put("/user/addRecommend", new AddRecommendController());
         //추천문제 삭제
         mappings.put("/user/deleteRecommend", new DeleteRecommendController());
-        /*
         //답변(솔루션등록) 폼 이동
-        mappings.put("/user/addRecommendSolution/form", new ForwardController("/user/AddSolution.jsp"));
-        */
+        mappings.put("/user/addRecommendSolution/form", new GoSolutionController());
+        
         
         //답변(솔루션) 등록
         mappings.put("/user/addRecommendSolution", new AddSolutionController());
@@ -154,7 +158,7 @@ public class RequestMapping {
         //답변 별점 매기기
         mappings.put("/user/updateRecommendScore", new UpdateSolutionScoreController());
         */
-        //문제 추천하기
+        //문제 추천하기-빼기
         //mappings.put("/user/recommendCount", new UpdateRecommendCountController());
         //추천문제 북마크
         mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());

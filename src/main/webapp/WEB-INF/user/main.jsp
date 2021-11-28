@@ -14,6 +14,17 @@
 		font-size:15px;
 		visibility:visibility;
 	}
+	.btnAdmin{
+		width:90px;
+		height:30px;
+		background-color:#a9173d;
+		color:white;
+		font-size:15px;
+		visibility:none;
+	}
+	#show{
+		visibility:visibility;
+	}
 	table.mainLayout{
 		position:static;
 		border-collapse:collapse;
@@ -105,7 +116,7 @@
 								<td>
 									<li>
 										<a href="<c:url value ='/user/viewrecommend'>
-												<c:param name='questionCode' value='${recommend.postId}' />
+												<c:param name='recommendCode' value='${recommend.postId}' />
 												</c:url>"> ${recommend.title}
 										</a>
 									</li>
@@ -128,6 +139,11 @@
 				</td>
 			</tr>
 		</table>
+	</div>
+	<div align="right" style="padding-right:200px">
+			<c:if test="${(userId eq 11111111)}"><a href="<c:url value ='/user/adminUserList' />"><input class="btnAdmin" type="button" id="show" value="사용자 관리" ></a></c:if>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${(userId eq 11111111)}"><a href="<c:url value ='/user/adminPostList' />"><input class="btnAdmin" type="button" id="show" value="게시글 관리" ></a></c:if>
 	</div>
 	<footer></footer>
 </body>
