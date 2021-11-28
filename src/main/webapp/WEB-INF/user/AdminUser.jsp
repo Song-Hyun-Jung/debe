@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용자 관리</title>
+<title>유저 관리</title>
 </head>
 <body>
+<!-- for each문으로 불러올것 페이징 인인덱스 해야함 -->
 사용자 관리
 </body>
 
