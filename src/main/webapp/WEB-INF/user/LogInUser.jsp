@@ -64,8 +64,9 @@ function userCreate(targetUri) {
 			<tr>
 	
 				<td colspan="2"><h1>LOGIN</h1></td>
-				<td rowspan="5" id="caution">주의사항<br/> 주의사항<br/> 주의사항<br/>주의사항<br/>주의사항<br/>주의사항<br/>주의사항<br/>주의사항<br/>주의사항<br/>주의사항<br/>
-				주의사항<br/>주의사항<br/> </td>
+				<td rowspan="5" id="caution">환영합니다.<br/> 동덕여대 코딩 문제 공유 <br/>
+				및 질문 사이트입니다.<br/> 아이디는 학번입니다.<br/> 
+				</td>
 			</tr>
 			<tr>
 				<td>아이디: </td>

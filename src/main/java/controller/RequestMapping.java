@@ -25,6 +25,7 @@ import controller.user.ListRecommendController;
 import controller.user.LoginController;
 import controller.user.QuestionFilterController;
 import controller.user.RecommendSortController;
+import controller.user.ScoreController;
 import controller.user.ViewQuestionController;
 import controller.user.ViewRecommendController;
 
@@ -154,11 +155,9 @@ public class RequestMapping {
         mappings.put("/user/addRecommendSolution", new AddSolutionController());
         //답변 삭제
         mappings.put("/user/deleteSolution", new DeleteSolutionController());
-        /*
         //답변 별점 매기기
-        mappings.put("/user/updateRecommendScore", new UpdateSolutionScoreController());
-        */
-        //문제 추천하기-빼기
+        mappings.put("/user/updateRecommendScore", new ScoreController());
+        //문제 추천하기
         //mappings.put("/user/recommendCount", new UpdateRecommendCountController());
         //추천문제 북마크
         mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());

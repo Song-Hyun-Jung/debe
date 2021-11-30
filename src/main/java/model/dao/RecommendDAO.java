@@ -18,7 +18,7 @@ public class RecommendDAO {
 	
 	public List<Recommend> displayAllRecommend() throws SQLException {
 		
-		String sql = "SELECT r.postid, p.title, p.postdate, p.postcontent, r.difficulty, r.recommendCount, r.algorithm FROM Recommend r, POST  p WHERE r.postid = p.postid ORDER BY r.postId";
+		String sql = "SELECT r.postid, p.title, p.postdate, p.postcontent, r.difficulty, r.recommendCount, r.algorithm FROM Recommend r, POST  p WHERE r.postid = p.postid ORDER BY r.postId DESC";
 		jdbcUtil.setSqlAndParameters(sql, null);		
 					
 		try {

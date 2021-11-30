@@ -55,8 +55,7 @@ public class SolutionManager {
 		return;
 		
 	}
-
-
+	
 
 	//솔루션 객체들 가져오기
 	public List<Solution> displayAllSolution(int viewRecommendCode) throws SQLException{
@@ -73,4 +72,28 @@ public class SolutionManager {
 		return null;
 	}
 		
+	//평가하기
+	public void giveScore(int solutionCode, int userId, int score) throws SQLException{
+			try {
+				solutionDAO.giveScore(solutionCode, userId, score);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}	
+		
+	}
+	
+	//이미 평가
+	public int alreadyScore(int solutionCode, int userId, int Score) throws SQLException{
+		int already = -1;
+		try {
+			already = solutionDAO.alreadyScore(solutionCode, userId);
+			if(already != 0) {
+				System.out.println("재평가를 할 수 없습니다.");
+				return -1;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return already;
+	}
 }

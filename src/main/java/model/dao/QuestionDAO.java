@@ -20,7 +20,7 @@ public class QuestionDAO {
 	
 	public List<Question> displayAllQuestion() throws SQLException {
         String sql = "SELECT * FROM Question q, POST  p, SUBJECT s "
-    				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId ORDER BY q.postId";
+    				+ "WHERE q.postid = p.postid and q.subjectId = s.subjectId ORDER BY q.postId DESC";
         
 		jdbcUtil.setSqlAndParameters(sql, null);		
 					

@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +118,7 @@ hr{
 	<form name=otherSolution method=post>
 		<table class="collapse">
 			<tr class="recommendInfo">
-				<td>작성자:${solution.userNickname}   &nbsp; 경험치:   &nbsp; 평가점수:${solution.solutionScore} </td>
+				<td>작성자:${solution.userNickname}   &nbsp; 경험치:   &nbsp; 평가점수: <fmt:formatNumber value="${solution.solutionScore}" pattern="0.0" /> </td>
 			</tr>
 			<tr class="recommendInfo">
 				<td colspan="3"><textarea cols=100 readonly rows=15 class="code" name="answerCodes">${solution.solutionContent}</textarea></td>
@@ -132,14 +133,14 @@ hr{
 				</td>
 				<td colspan="2" style="text-align:right">
 					<select name="score" style="padding:5px 0px 5px 0px">
-						<option value="0" selected>평가점수</option>
+						<option value="none" selected>평가점수</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
 						<option value="4">4</option>
 						<option value="5">5</option>
 					</select>&nbsp;&nbsp;
-					<input id="btnSubmit" type="submit" value="평가하기">
+					<input id="btnSubmit" type="submit" value="평가하기" formaction="<c:url value ='/user/updateRecommendScore' />">			
 				</td>
 			</tr>
 		</table>
