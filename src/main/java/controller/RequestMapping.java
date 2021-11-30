@@ -89,7 +89,7 @@ public class RequestMapping {
         
         
         /*
-        //마이페이지
+        //마이페이지-대부분 수정예정
         //마이페이지로 이동(메인페이지에서 닉네임, 나의질문, 북마크 클릭하면 마이페이지로 이동)-메인페이지에 정의
         //관심과목 조회, 나의 질문 조회, 나의 북마크 조회
         mappings.put("/user/myPage", new MyViewController());
