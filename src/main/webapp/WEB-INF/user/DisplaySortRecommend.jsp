@@ -54,6 +54,7 @@ td.info{
 		<select id="dataSort" name="sortRecommend">
 			<option value="recent">최신순</option>
 			<option value="difficulty">난이도순</option>
+			<option value="recommend">추천순</option>
 		</select>
 
 		<button type="button" class="button" 
@@ -76,6 +77,7 @@ td.info{
 			<th>글 제목</th>
 			<th>알고리즘</th>
 			<th>난이도</th>
+			<th>추천수</th>
 			<th>작성일자</th>
 		</tr>
 	
@@ -86,6 +88,7 @@ td.info{
 					${recommend.title}</a></td>
 			<td class="info">${recommend.algorithm}</td>
 			<td class="info">${recommend.difficulty}</td>
+			<td class="info">${recommend.recommendCount}</td>
 			<td class="info">${recommend.postDate}</td>
 		</tr>
 		</c:forEach>

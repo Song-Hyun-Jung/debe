@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *질문에 대한 답변 관리를 위해 필요한 도메인 클래스. QuestionAnswer 테이블과 대응
  */
-public class Answer{
+public class Answer implements Serializable{
 	private int answerId; //질문 답변 id
 	private int postId; //질문 게시글 id
 	private String answerContent; //질문 답변 내용
@@ -13,8 +14,14 @@ public class Answer{
 	private Date answerDate; //질문 답변 작성일
 	private int userId; //질문 답변자
 	private String userNickname;
+	private int userLevel; //답변자 경험치
 	
-	
+	public int getUserLevel() {
+		return userLevel;
+	}
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
+	}
 	public String getUserNickname() {
 		return userNickname;
 	}
@@ -58,6 +65,8 @@ public class Answer{
 		this.userId = userId;
 	}
 	
+	
+	
 	//생성자
 	public Answer(int answerId, int postId, String answerContent, String answerAdopt, Date answerDate, int userId) {
 		super();
@@ -69,7 +78,7 @@ public class Answer{
 		this.userId = userId;
 	}
 	
-	public Answer(int answerId, int postId, String answerContent, String answerAdopt, Date answerDate, int userId, String userNickname) {
+	public Answer(int answerId, int postId, String answerContent, String answerAdopt, Date answerDate, int userId, String userNickname, int userLevel) {
 		super();
 		this.answerId = answerId;
 		this.postId = postId;
@@ -78,6 +87,7 @@ public class Answer{
 		this.answerDate = answerDate;
 		this.userId = userId;
 		this.userNickname = userNickname;
+		this.userLevel = userLevel;
 	}
 	
 	public Answer(int postId, String answerContent, int userId) { //답변 등록시 사용하는 생성자.

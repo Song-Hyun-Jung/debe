@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *추천문제 관리를 위해 필요한 도메인 클래스. Recommend 테이블과 대응
  */
-public class Recommend{
+public class Recommend implements Serializable{
 	private int postId; //게시글 id
 	private String title; //추천문제 제목
 	private Date postDate; //추천문제 작성일
@@ -15,9 +16,15 @@ public class Recommend{
 	private int recommendCount; //추천문제 추천수
 	private String algorithm; //추천문제 관련 알고리즘
 	private String userNickname;
+	private int userLevel; //추천문제 작성자 경험치
 	
 	
-	
+	public int getUserLevel() {
+		return userLevel;
+	}
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
+	}
 	public String getUserNickname() {
 		return userNickname;
 	}
@@ -75,7 +82,7 @@ public class Recommend{
 	
 	//생성자
 	public Recommend(int postId, String title, Date postDate, String postContent, int userId, String difficulty,
-			int recommendCount, String algorithm, String userNickname) {
+			int recommendCount, String algorithm, String userNickname, int userLevel) {
 		super();
 		this.postId = postId;
 		this.title = title;
@@ -86,7 +93,8 @@ public class Recommend{
 		this.recommendCount = recommendCount;
 		this.algorithm = algorithm;
 		this.userNickname = userNickname;
-	}
+		this.userLevel= userLevel;
+		}
 	
 	public Recommend(int postId, String title, Date postDate, String postContent, String difficulty,
 			int recommendCount, String algorithm) {

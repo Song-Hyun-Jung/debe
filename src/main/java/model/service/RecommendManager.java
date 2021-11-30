@@ -80,12 +80,18 @@ public class RecommendManager {
 		return recommendList;
 	}
 	
-	/*
-	public int UpdateRecommendCount(int recommendCode) throws SQLException {
-		
-		return recommendDAO.updateRecommendCount(recommendCode);
+	
+	public void updateRecommendCount(int recommendCode, int userId) throws SQLException {
+		if (recommendDAO.existingEmpathizedRecommend(recommendCode, userId)) {
+			System.out.println("추천했던 상태라서 추천 취소");
+			recommendDAO.deleteRecommendCount(recommendCode, userId);
+		}
+		else {
+			recommendDAO.updateRecommendCount(recommendCode, userId);
+			System.out.println("추천하기");
+		}
 	}
-	*/
+	
 	
 	
 	public List<Recommend> display10Recommend() throws SQLException{ //메인페이지 최신 10개 추천문제
@@ -94,5 +100,9 @@ public class RecommendManager {
 	
 	public List<Recommend> findRecommend(String keyword) throws SQLException{ //추천문제 키워드검색결과
 		return recommendDAO.findRecommend(keyword);
+	}
+
+	public boolean existingEmpathizedRecommend(int recommendCode, int userId) {
+		return recommendDAO.existingEmpathizedRecommend(recommendCode, userId);
 	}
 }

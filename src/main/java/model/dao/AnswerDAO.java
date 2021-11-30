@@ -24,7 +24,7 @@ public class AnswerDAO {
 	
 	 //문제별 답변 조회
 	   public List<Answer> findAnswers(int questionCode) throws SQLException {
-	        String sql = "SELECT a.answerContent, a.answerAdopt, a.answerDate, a.userId, a.answerId, a.postId, u.userNickname "
+	        String sql = "SELECT a.answerContent, a.answerAdopt, a.answerDate, a.userId, a.answerId, a.postId, u.userNickname, u.userLevel "
 	                + "FROM QuestionAnswer a, ServiceUser u "
 	                  + "WHERE a.userId = u.userId and a.postId = ? "
 	                + "ORDER BY answerAdopt DESC, answerId";
@@ -42,7 +42,8 @@ public class AnswerDAO {
 	                  rs.getString("answerAdopt"),
 	                  rs.getDate("answerDate"),
 	                  rs.getInt("userId"),
-	                  rs.getString("userNickname")
+	                  rs.getString("userNickname"),
+	                  rs.getInt("userLevel")
 	               );
 	            answers.add(answer);            
 	         }      

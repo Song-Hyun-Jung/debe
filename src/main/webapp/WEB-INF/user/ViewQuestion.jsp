@@ -116,7 +116,7 @@ hr{
 	<form name="othersAnswer" method=post >
 		<table class="answers">
 			<tr class="answerInfo" style="padding:10px 0px 10px 0px">
-				<td>답변자:${answer.userNickname}  경험치: </td>
+				<td>답변자:${answer.userNickname}  경험치: ${answer.userLevel }</td>
 				<td align="right">
 					<c:if test="${answer.answerAdopt eq 'y'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="show" style="max-width:10%"></c:if>	
 					<c:if test="${answer.answerAdopt eq 'n'}"><img src=<c:url value='/images/adoptButton.jpg' /> id="noShow" style="max-width:10%"></c:if>	

@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *추천문제에 대한 답변(솔루션) 관리를 위해 필요한 도메인 클래스. RecommendSolution 테이블과 대응
  */
-public class Solution{
+public class Solution implements Serializable{
 	private int solutionId; //추천문제 답변 id
 	private int postId; //추천문제 게시글 id
 	private String solutionContent; //추천문제 답변 내용
@@ -13,8 +14,15 @@ public class Solution{
 	private Date solutionDate; //추천문제 답변 날짜
 	private int userId; //추천문제 답변 작성자
 	private String userNickname;
+	private int userLevel; //솔루션 작성자 경험치
 	
 	
+	public int getUserLevel() {
+		return userLevel;
+	}
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
+	}
 	public int getPostId() {
 		return postId;
 	}
@@ -60,7 +68,7 @@ public class Solution{
 	
 	//생성자
 	public Solution(int solutionId, int postId, String solutionContent, float solutionScore, Date solutionDate,
-			int userId, String userNickname) {
+			int userId, String userNickname, int userLevel) {
 		super();
 		this.solutionId = solutionId;
 		this.postId = postId;
@@ -69,8 +77,8 @@ public class Solution{
 		this.solutionDate = solutionDate;
 		this.userId = userId;
 		this.userNickname = userNickname;
+		this.userLevel = userLevel;
 	}
-	
 	
 	public Solution(int postId, String solutionContent, int userId) { //솔루션 등록시 사용하는 생성자
 		super();
@@ -78,6 +86,7 @@ public class Solution{
 		this.solutionContent = solutionContent;
 		this.userId = userId;
 	}
+	
 	public Solution() { }
 	
 	//각 답변 별 평균 구해서 반환

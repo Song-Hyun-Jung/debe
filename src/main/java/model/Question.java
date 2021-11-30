@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *질문 관리를 위해 필요한 도메인 클래스. Question 테이블과 대응
  */
-public class Question{
+public class Question implements Serializable{
 	private int postId; //게시글 id
 	private String title; //질문 제목
 	private Date postDate; //질문 작성일

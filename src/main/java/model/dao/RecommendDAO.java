@@ -63,7 +63,8 @@ public class RecommendDAO {
 						rs.getString("difficulty"),
 						rs.getInt("recommendCount"),
 						rs.getString("algorithm"),
-						rs.getString("userNickname")
+						rs.getString("userNickname"),
+						rs.getInt("userLevel")
 					);
 					System.out.println("DAO: "+recommend.getTitle());
 					return recommend;
@@ -292,34 +293,36 @@ public class RecommendDAO {
 				recommends.add(recommend);
 			}	
 			return recommends;
+		} else {	//추천수 정렬
+			sql = "SELECT * FROM Recommend r, Post p WHERE r.postid = p.postid ORDER BY r.recommendCount DESC";
+			jdbcUtil.setSqlAndParameters(sql, null);
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();					
+				while (rs.next()) {
+					Recommend recommend = new Recommend(
+							rs.getInt("postId"),
+							rs.getString("title"),
+							rs.getDate("postdate"),
+							rs.getString("postcontent"),
+							rs.getString("difficulty"),
+							rs.getInt("recommendCount"),
+							rs.getString("algorithm")
+						);
+					recommends.add(recommend);
+					}		
+					return recommends;					
+			
+				} catch (Exception ex) { 
+					ex.printStackTrace();} 
+				finally {
+					jdbcUtil.close();		
+				}
 		}
-		
 		
 		return null;
 	}
 	
-	/*
-	public int updateRecommendCount(int recommendCode) {
-		int update = 0;
-		String sql = "UPDATE Recommend SET recommendcount = recommendcount + 1 WHERE postid = ?";
-		Object[] param = new Object[] {recommendCode};
-		
-		try {
-			jdbcUtil.setSqlAndParameters(sql, param);		
-			update = jdbcUtil.executeUpdate();		
-				
-		} catch (Exception ex) { 
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-			} 
-		finally { 
-			jdbcUtil.commit();
-			jdbcUtil.close();	
-		}
-		return update;
-		
-	}
-	*/
 	
 	public List<Recommend> display10Recommend() throws SQLException {
 	    String sql = "SELECT * FROM (SELECT p.postid, p.title FROM Recommend r, POST  p "
@@ -375,6 +378,76 @@ public class RecommendDAO {
 			jdbcUtil.close();		
 		}
 		return null;
+	}
+
+	public boolean existingEmpathizedRecommend(int recommendCode, int userId) {		//추천 여부 확인
+		String sql = "SELECT * FROM CHECKCOUNT WHERE userid=? and postId=? ";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId, recommendCode});	
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			if (rs.next()) {	//검색 결과 값 있다 == 추천한 적 있다.
+				int PostId = rs.getInt("postid");
+				int UserId = rs.getInt("userid");
+				System.out.println("checkcount  postid값: "+ PostId + " userid값: "+UserId);
+				return true;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return false;
+	}
+	
+	public int updateRecommendCount(int recommendCode, int userId) {		//추천문제의 추천 수 증가하고 추천한 user 중복추천 못 하도록 CHECKCOUNT에 기록
+		int update = 0;
+		String sqlUpdateCount = "UPDATE Recommend SET recommendcount = recommendcount + 1 WHERE postid = ?";
+		String sqlCountUser = "INSERT INTO CHECKCOUNT(postid, userid) VALUES(?, ?) ";
+		Object[] paramUpdate = new Object[] {recommendCode};
+		Object[] paramUser = new Object[] {recommendCode, userId};
+		
+		try {
+			jdbcUtil.setSqlAndParameters(sqlUpdateCount, paramUpdate);	
+			update = jdbcUtil.executeUpdate();
+			jdbcUtil.setSqlAndParameters(sqlCountUser, paramUser);
+			update += jdbcUtil.executeUpdate();
+				
+		} catch (Exception ex) { 
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+			} 
+		finally { 
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return update;		//2면 모두 제대로 수행, 0이나 1이면 뭔가 수행 덜 됨
+		
+	}
+
+	public int deleteRecommendCount(int recommendCode, int userId) {
+		int result = 0;
+		String sqlDeleteRecommendUser = "DELETE FROM CHECKCOUNT WHERE userid=? and postId = ?";	
+		String sqlDeleteRecommendCount = "UPDATE Recommend SET recommendcount = recommendcount - 1 WHERE postid = ?";
+		
+		
+		try {			
+			jdbcUtil.setSqlAndParameters(sqlDeleteRecommendUser, new Object[] {userId, recommendCode});
+			result = jdbcUtil.executeUpdate();
+			jdbcUtil.setSqlAndParameters(sqlDeleteRecommendCount, new Object[] {recommendCode});
+			result += jdbcUtil.executeUpdate();
+			
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
+		
 	}
 
 	

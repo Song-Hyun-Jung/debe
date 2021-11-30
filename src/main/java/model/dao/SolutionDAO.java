@@ -25,7 +25,7 @@ public class SolutionDAO {
 	
 	 //문제별 답변 조회
 	   public List<Solution> findSolutions(int recommendCode) throws SQLException {
-	        String sql = "SELECT s.solutionContent, s.solutionScore, s.solutionDate, s.userId, s.solutionId, s.postId, u.userNickname "
+	        String sql = "SELECT s.solutionContent, s.solutionScore, s.solutionDate, s.userId, s.solutionId, s.postId, u.userNickname, u.userLevel "
 	                + "FROM RecommendSolution s, ServiceUser u "
 	                  + "WHERE s.userId = u.userId and s.postId = ? "
 	                + "ORDER BY solutionId";
@@ -43,7 +43,8 @@ public class SolutionDAO {
 	                  rs.getFloat("solutionScore"),
 	                  rs.getDate("solutionDate"),
 	                  rs.getInt("userId"),
-	                  rs.getString("userNickname")
+	                  rs.getString("userNickname"),
+	                  rs.getInt("userLevel")
 	               );
 	            solutions.add(solution);            
 	         }      

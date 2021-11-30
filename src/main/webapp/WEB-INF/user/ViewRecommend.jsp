@@ -24,6 +24,10 @@ function bookmarkRecommend(targetUri) {
 	recommendInfo.action = "<c:url value ='/user/bookmarkRecommend' />";
 	recommendInfo.submit();
 }
+function empathizedRecommend(targetUri) {
+	recommendInfo.action = "<c:url value ='/user/recommendCount' />";
+	recommendInfo.submit();
+}
 </script>
 <style>
 #btnSubmit{
@@ -39,6 +43,7 @@ function bookmarkRecommend(targetUri) {
 #noShow{
 	visibility:hidden;
 }
+
 tr.recommendInfo{
 	border-collapse:collapse;
 	border:1px solid black;
@@ -87,17 +92,25 @@ hr{
 				onclick="bookmarkRecommend()" style="max-width:40%"></td>
 			</tr>
 			<tr class="recommendInfo" >
-			
-				<td colspan="5">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치: </td>
+				<td colspan="5">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치:  ${Recommend.userLevel }</td>
 			</tr>
 			<tr class="recommendInfo">
 	
 				<td colspan="5"><textarea readonly cols=100 rows=15 class="code" name="recommendContent">${Recommend.postContent}</textarea></td>
 			</tr>
 			<tr>
-			
 				<td class="info" colspan="5">난이도: ${Recommend.difficulty } / 작성 날짜: ${Recommend.postDate } / 알고리즘: ${Recommend.algorithm }</td>
 			</tr>
+			<tr>
+				<td colspan="5" align="right"><input type="image" 
+					<c:if test="${ empathized eq 'false'}"> src=" <c:url value='/images/beforeEmpathize.jpg' />" </c:if>
+					<c:if test="${ empathized eq 'true'}"> src=" <c:url value='/images/afterEmpathize.jpg' />" </c:if>
+				onclick="empathizedRecommend()" style="max-width:40%"></td>
+			</tr>
+			<tr>
+				<td class="info" colspan="5" align="right">추천수: ${Recommend.recommendCount }</td>
+			</tr>
+			<tr><td height="20"></td></tr>
 			<tr>
 				<td colspan="2" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>
 												<c:param name='recommendCode' value='${Recommend.postId}'/><c:param name='userId' value='${Recommend.userId}'/></c:url>')"></td>
@@ -118,7 +131,7 @@ hr{
 	<form name=otherSolution method=post>
 		<table class="collapse">
 			<tr class="recommendInfo">
-				<td>작성자:${solution.userNickname}   &nbsp; 경험치:   &nbsp; 평가점수: <fmt:formatNumber value="${solution.solutionScore}" pattern="0.0" /> </td>
+				<td>작성자:${solution.userNickname}   &nbsp; 경험치: ${solution.userLevel }&nbsp; 평가점수: <fmt:formatNumber value="${solution.solutionScore}" pattern="0.0" /> </td>
 			</tr>
 			<tr class="recommendInfo">
 				<td colspan="3"><textarea cols=100 readonly rows=15 class="code" name="answerCodes">${solution.solutionContent}</textarea></td>
