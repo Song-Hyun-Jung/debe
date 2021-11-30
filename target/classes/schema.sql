@@ -1,3 +1,4 @@
+
 CREATE SEQUENCE sequenceAnswerId
 	INCREMENT BY 1
 	START WITH 1;
@@ -157,7 +158,8 @@ CREATE TABLE checkScore
 (
 	solutionId           INTEGER NOT NULL ,
 	userId               INTEGER NOT NULL ,
-	checked              CHAR(18) NULL  CONSTRAINT  checkScore CHECK (checked IN ('y', 'n'))
+	checked              CHAR(18) NULL  CONSTRAINT  checkScore CHECK (checked IN ('y', 'n')),
+	giveScore            INTEGER NULL 
 );
 
 CREATE UNIQUE INDEX XPKcheckScore ON checkScore
@@ -194,31 +196,3 @@ ALTER TABLE RecommendSolution
 	ADD (CONSTRAINT RecommendSolution FOREIGN KEY (postId) REFERENCES Recommend (postId));
 
 ALTER TABLE RecommendSolution
-	ADD (CONSTRAINT R_27 FOREIGN KEY (userId) REFERENCES ServiceUser (userId) ON DELETE SET NULL);
-
-ALTER TABLE ServiceUser
-	ADD (CONSTRAINT userSubject FOREIGN KEY (subjectId) REFERENCES Subject (subjectId) ON DELETE SET NULL);
-
-ALTER TABLE QuestionAnswer
-	ADD (CONSTRAINT questionAnswer FOREIGN KEY (postId) REFERENCES Question (postId));
-
-ALTER TABLE QuestionAnswer
-	ADD (CONSTRAINT R_28 FOREIGN KEY (userId) REFERENCES ServiceUser (userId) ON DELETE SET NULL);
-
-ALTER TABLE Bookmark
-	ADD (CONSTRAINT R_22 FOREIGN KEY (userId) REFERENCES ServiceUser (userId));
-
-ALTER TABLE Bookmark
-	ADD (CONSTRAINT R_25 FOREIGN KEY (postId) REFERENCES Post (postId));
-
-ALTER TABLE checkCount
-	ADD (CONSTRAINT R_31 FOREIGN KEY (userId) REFERENCES ServiceUser (userId));
-
-ALTER TABLE checkCount
-	ADD (CONSTRAINT R_32 FOREIGN KEY (postId) REFERENCES Recommend (postId));
-
-ALTER TABLE checkScore
-	ADD (CONSTRAINT R_33 FOREIGN KEY (solutionId) REFERENCES RecommendSolution (solutionId));
-
-ALTER TABLE checkScore
-	ADD (CONSTRAINT R_34 FOREIGN KEY (userId) REFERENCES ServiceUser (userId));
