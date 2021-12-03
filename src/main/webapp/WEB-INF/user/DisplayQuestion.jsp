@@ -47,6 +47,13 @@ div.filter{
 	color: black;
 	font-weight:bold;
 }
+#indexfont:hover{
+	color:red;
+}
+a { text-decoration:none !important }
+a:link{color:black;}
+a:visited{color:#a9173d;}
+a:hover{color:blue;}
 </style>
 
 </head>
@@ -58,7 +65,6 @@ div.filter{
 <div>
 <h2>Q&A</h2>
 </div>
-
    <form name="form1" method=post>
 	<div align="right" class="filter">
 		<select id="Language" name="language">

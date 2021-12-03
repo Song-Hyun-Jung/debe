@@ -23,7 +23,7 @@ function addR() {
 	background-color:#a9173d;
 	color:white;
 }
-#menu{
+#recommendMenu{
 	position: relative;
 	top:0px;
 	left:250px;
@@ -41,7 +41,7 @@ td.info{
 	<div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 	</div>
-	<div id="menu"><h2>추천 문제 작성</h2></div>
+	<div id="recommendMenu"><h2>추천 문제 작성</h2></div>
 	<div align="center">
 	<form name=form method=post action="<c:url value='/user/addRecommend' />">
 		<table class="recommend">

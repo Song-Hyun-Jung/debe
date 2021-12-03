@@ -8,6 +8,7 @@ import java.util.List;
 import model.Bookmark;
 import model.Question;
 import model.User;
+import model.Subject;
 
 /**
  * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
@@ -204,8 +205,8 @@ public class UserDAO {
 	}
 	
 	//사용자별 관심 과목 조회->마이페이지 출력. 과목명 반환
-		public String findUserSubjectName(int userId) throws SQLException {
-			String sql = "SELECT subjectTitle "
+		public Subject findUserSubjectName(int userId) throws SQLException {
+			String sql = "SELECT subjectTitle, s.subjectId AS subjectId "
 					+ "FROM ServiceUser u JOIN Subject s ON u.subjectId = s.subjectId "
 					+ "WHERE userId = ?";
 			Object[] param = new Object[] {userId};
@@ -214,9 +215,12 @@ public class UserDAO {
 				
 			try {				
 				ResultSet rs = jdbcUtil.executeQuery();	
-				String userSubject;
+				Subject userSubject = null;
 				if(rs.next()) {
-					userSubject = rs.getString("subjectTitle");
+					userSubject = new Subject(
+							rs.getInt("subjectId"),
+							rs.getString("subjectTitle")
+							);
 					return userSubject;
 				}
 			} catch (Exception ex) {
@@ -395,11 +399,12 @@ public class UserDAO {
 	//마이페이지 관련
 	//나의 질문 조회
 	public List<Question> findMyQuestions(int userId) throws SQLException {
-        String sql = "SELECT p.postId, p.title "
-    				+ "FROM Post p JOIN ServiceUser u ON p.userId = u.userId "
-        		    + "WHERE u.userId = ?"
-    				+ "ORDER BY p.postId";
-		jdbcUtil.setSqlAndParameters(sql, null);		
+        String sql = "SELECT p.postId, p.title, p.userId, p.postdate "
+        			+ "FROM Post p, Question q WHERE p.postId = q.postId and p.userId = ? "
+        			+ "ORDER BY p.postdate DESC";
+        		
+        Object[] param = new Object[] {userId};
+		jdbcUtil.setSqlAndParameters(sql, param);		
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();					
@@ -423,19 +428,20 @@ public class UserDAO {
 	
 	//+나의 북마크 조회-Q&A
 	public List<Bookmark> findMyQuestionBookmarks(int userId) throws SQLException {
-        String sql = "SELECT b.postId, b.userId "
+        String sql = "SELECT b.postId, title " 
     				+ "FROM Bookmark b, "
-    				+ "(SELECT p.postId, p.title, p.postdate FROM Post p, Question q WHERE p.postId = q.postId order by p.postdate DESC) t"
+    				+ "(SELECT p.postId, p.title, p.postdate FROM Post p, Question q WHERE p.postId = q.postId order by p.postdate DESC) t "
         		    + "WHERE t.postId = b.postId and b.userId = ? ";
-		jdbcUtil.setSqlAndParameters(sql, null);		
+        Object[] param = new Object[] {userId};
+		jdbcUtil.setSqlAndParameters(sql, param);		
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();				
 			List<Bookmark> myQuestionBookmarks = new ArrayList<Bookmark>();	
 			while (rs.next()) {
 				Bookmark bookmark = new Bookmark(			
-						rs.getInt("userId"),
-						rs.getInt("postId")
+						rs.getInt("postId"),
+						rs.getString("title")
 					);
 				myQuestionBookmarks.add(bookmark);				
 			}		
@@ -451,19 +457,21 @@ public class UserDAO {
 	
 	//+나의 북마크 조회-추천문제
 	public List<Bookmark> findMyRecommendBookmarks(int userId) throws SQLException {
-        String sql = "SELECT b.postId, b.userId "
+        String sql = "SELECT b.postId, title "
     				+ "FROM Bookmark b, "
-    				+ "(SELECT p.postId, p.title, p.postdate FROM Post p, Recommend r WHERE p.postId = r.postId order by p.postdate DESC) t"
+    				+ "(SELECT p.postId, p.title, p.postdate FROM Post p, Recommend r WHERE p.postId = r.postId order by p.postdate DESC) t "
         		    + "WHERE t.postId = b.postId and b.userId = ? ";
-		jdbcUtil.setSqlAndParameters(sql, null);		
+        
+        Object[] param = new Object[] {userId};
+		jdbcUtil.setSqlAndParameters(sql, param);		
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();				
 			List<Bookmark> myRecommendBookmarks = new ArrayList<Bookmark>();	
 			while (rs.next()) {
 				Bookmark bookmark = new Bookmark(			
-						rs.getInt("userId"),
-						rs.getInt("postId")
+						rs.getInt("postId"),
+						rs.getString("title")
 					);
 				myRecommendBookmarks.add(bookmark);				
 			}		

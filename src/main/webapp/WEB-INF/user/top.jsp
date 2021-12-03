@@ -8,14 +8,14 @@
 <title>데베</title>
 <style>
 	#menu {list-style-type:none;}
-	#menu td {font-size:20px; font-weight:bold;}
+	#menu td {font-size:20px; font-weight:bold; padding:5px 5px 5px 5px;}
 	#menu_string {text-decoration:none; color:black;}
-	.menuhover:hover {background-color:#a9173d; color:white;}
+	.menuhover:hover { outline:3px solid #a9173d; border-radius:4px;}
 </style>
 </head>
 <body>	
 		<table id="topLayout">
-			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="250px" height="100px"></a></td><td width="70%"></td><td>${userNickname} 님, 안녕하세요</td></tr>
+			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td><td width="70%"></td><td><span style="color:#a9173d; font-weight:bold;">${userNickname}</span> 님, 안녕하세요</td></tr>
 		</table>
 		<nav>
 			<table id="menu">
@@ -27,7 +27,7 @@
 					<td width="11%"></td>
 					<td class="menuhover"><a href="<c:url value ='/user/recommendlist' />" id="menu_string">추천 코딩 문제</a></td>
 					<td width="11%"></td>
-					<td class="menuhover"><a href="<c:url value ='/user/bookmark' />" id="menu_string">북마크</a></td>
+					<td class="menuhover"><a href="<c:url value ='/user/myPage' />" id="menu_string">북마크</a></td>
 					<td width="11%"></td>
 				</tr>
 			</table>

@@ -56,6 +56,10 @@
 		border: 2px solid #a9173d;
 		height:30px;
 	}
+	a { text-decoration:none !important }
+	a:link{color:black;}
+	a:visited{color:#a9173d;}
+	a:hover{color:blue;}
 </style>
 </head>
 <body>

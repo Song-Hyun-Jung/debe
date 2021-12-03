@@ -38,6 +38,13 @@ td.info{
 	color: black;
 	font-weight:bold;
 }
+#indexfont:hover{
+	color:red;
+}
+a { text-decoration:none !important }
+a:link{color:black;}
+a:visited{color:#a9173d;}
+a:hover{color:blue;}
 </style>
 
 </head>
@@ -46,7 +53,7 @@ td.info{
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 </div>
 <div>
-<b>추천 코딩 문제</b>
+<h2>추천 코딩 문제</h2>
 </div>
 
 <form name="form" method="post">

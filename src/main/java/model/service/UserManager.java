@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Bookmark;
+import model.Question;
+import model.Subject;
 import model.User;
 import model.dao.UserDAO;
 
@@ -56,12 +59,35 @@ public class UserManager {
 		return true;
 	}
 	
-	
+	//사용자 랭킹 top3
 	public List<User> findTop3User() throws SQLException {
 		return userDAO.findTop3User();
 	}
 	
+	//사용자 관심과목명, 코드 조회
+	public Subject findUserSubjectName(int userId) throws SQLException{
+		return userDAO.findUserSubjectName(userId);
+	}
 	
+	//사용자 질문 조회
+	public List<Question> findMyQuestions(int userId) throws SQLException{
+		return userDAO.findMyQuestions(userId);
+	}
+	
+	//사용자 Q&A 북마크 조회
+	public List<Bookmark> findMyQuestionBookmarks(int userId) throws SQLException{
+		return userDAO.findMyQuestionBookmarks(userId);
+	}
+	
+	//사용자 추천문제 북마크 조회
+	public List<Bookmark> findMyRecommendBookmarks(int userId) throws SQLException{
+		return userDAO.findMyRecommendBookmarks(userId);
+	}
+	
+	//사용자 과목 수정
+	public int updateUserSubject(int userId, int subjectId) throws SQLException{
+		return userDAO.updateUserSubject(userId, subjectId);
+	}
 	
 	
 }

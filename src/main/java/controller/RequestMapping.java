@@ -20,12 +20,15 @@ import controller.user.FindKeywordController;
 import controller.user.GoAnswerController;
 import controller.user.GoMainPageController;
 import controller.user.GoSolutionController;
+import controller.user.GoUpdateSubjectController;
 import controller.user.ListQuestionController;
 import controller.user.ListRecommendController;
 import controller.user.LoginController;
+import controller.user.MyViewController;
 import controller.user.QuestionFilterController;
 import controller.user.RecommendSortController;
 import controller.user.ScoreController;
+import controller.user.UpdateSubjectController;
 import controller.user.ViewQuestionController;
 import controller.user.ViewRecommendController;
 
@@ -88,21 +91,16 @@ public class RequestMapping {
         mappings.put("/user/findKeyword", new FindKeywordController());
         
         
-        /*
-        //마이페이지-대부분 수정예정
+        
+        //마이페이지
         //마이페이지로 이동(메인페이지에서 닉네임, 나의질문, 북마크 클릭하면 마이페이지로 이동)-메인페이지에 정의
         //관심과목 조회, 나의 질문 조회, 나의 북마크 조회
         mappings.put("/user/myPage", new MyViewController());
         //관심과목 수정 폼으로 이동
-        mappings.put("/user/updateSubjcet/form", new ForwardController("UpdateMySubjects.jsp")); //이거 수정해야할듯 forward 안될거같아
+        mappings.put("/user/updateSubject/form", new GoUpdateSubjectController()); 
         //관심과목 수정
         mappings.put("/user/updateSubject", new UpdateSubjectController());
-        //북마크, 나의 질문에서 Q&A항목 선택
-        mappings.put("/user/goQuestion", new goQuestionController());
-        //북마크에서 추천문제 항목 선택
-        mappings.put("/user/goRecommend", new goRecommendController());
-        
-        */
+    
         
         //질문하기
         //질문 리스트 조회
