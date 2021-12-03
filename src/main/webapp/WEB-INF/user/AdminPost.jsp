@@ -46,6 +46,10 @@ td.info{
 	color: black;
 	font-weight:bold;
 }
+a { text-decoration:none !important }
+a:link{color:black;}
+a:visited{color:black;}
+a:hover{color:blue;}
 </style>
 </head>
 
