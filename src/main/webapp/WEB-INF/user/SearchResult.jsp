@@ -47,7 +47,10 @@
 		border:1px solid;
 		height:40px;
 	}
-
+	a { text-decoration:none !important }
+	a:link{color:black;}
+	a:visited{color:black;}
+	a:hover{color:blue;}
 </style>
 </head>
 <body>
