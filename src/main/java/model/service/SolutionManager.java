@@ -49,6 +49,7 @@ public class SolutionManager {
 	
 	//솔루션 삭제
 	public void deleteSolution(int solutionCode) throws SQLException {
+		solutionDAO.deleteSolutionCheck(solutionCode);
 		if (solutionDAO.deleteSolution(solutionCode) == 0) {
 			System.out.println("솔루션이 삭제되지 않았습니다.");
 		}
@@ -71,6 +72,21 @@ public class SolutionManager {
 		}
 		return null;
 	}
+	
+	//solutionId들 가져오기
+		public List<Integer> findSolutionIds(int viewRecommendCode) throws SQLException{
+			try {
+				List<Integer> solutionIds = new ArrayList<Integer>();
+				solutionIds = solutionDAO.findSolutionIds(viewRecommendCode);
+				if(solutionIds != null)
+					return solutionIds;
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("솔루션들을 찾지 못했습니다.");
+			}
+			return null;
+		}
 		
 	//평가하기
 	public void giveScore(int solutionCode, int userId, int score) throws SQLException{

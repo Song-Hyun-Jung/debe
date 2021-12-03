@@ -9,6 +9,7 @@ import controller.user.AddAnswerController;
 import controller.user.AddQuestionController;
 import controller.user.AddRecommendController;
 import controller.user.AddSolutionController;
+import controller.user.AdminPostListController;
 import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.BookmarkRecommendController;
@@ -74,7 +75,7 @@ public class RequestMapping {
         //관리자-사용자 리스트 조회
         mappings.put("/user/adminUserList", new ForwardController("/user/AdminUser.jsp"));
         //관리자-게시글 조회
-        mappings.put("/user/adminPostList", new ForwardController("/user/AdminPost.jsp"));
+        mappings.put("/user/adminPostList", new AdminPostListController());
         /*
         //관리자-사용자 정보 수정 폼 요청과 수정 요청 처리 병합
         mappings.put("/user/adminUpdateUser", new UpdateUserController());

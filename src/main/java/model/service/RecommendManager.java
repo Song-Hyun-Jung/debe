@@ -2,6 +2,7 @@ package model.service;
 
 import model.dao.BookmarkDAO;
 import model.dao.RecommendDAO;
+import model.dao.SolutionDAO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,10 +17,12 @@ public class RecommendManager {
 	
 	private RecommendDAO recommendDAO;
 	private BookmarkDAO bookmarkDAO;
+	private SolutionDAO solutionDAO;
 
 	private RecommendManager() {
 		try {
 		recommendDAO = new RecommendDAO();
+		solutionDAO = new SolutionDAO();
 		bookmarkDAO = new BookmarkDAO();
 		} catch (Exception e) { e.printStackTrace(); }
 	}
@@ -45,13 +48,20 @@ public class RecommendManager {
 	}
 	
 	public void deleteRecommend(int recommendCode) throws SQLException {
-		int resultRecommendSolution = recommendDAO.deleteRecommendSolution(recommendCode);
+		
+		List<Integer> solutionIds = new ArrayList<>();
+		solutionIds = solutionDAO.findSolutionIds(recommendCode);
+		
+		for(Integer id : solutionIds) {
+			solutionDAO.deleteSolutionCheck(id);
+			solutionDAO.deleteSolution(id);
+		}
+		
+		int resultRecommendCheck = recommendDAO.deleteRecommendCheck(recommendCode);
+		int resutRecommendBookmark = recommendDAO.deleteRecommendBookmark(recommendCode);
 		int resultRecommend = recommendDAO.deleteRecommend(recommendCode);
 		int resultRecommendPost = recommendDAO.deleteRecommendPost(recommendCode);
-		int resutRecommendBookmark = recommendDAO.deleteRecommendBookmark(recommendCode);
-		System.out.println("deleteRecommendSolution에서 지운 답변 갯수 : "+ resultRecommendSolution);
-		System.out.println("deleteRecommend에서 지운 질문 갯수 : "+ resultRecommend);
-		System.out.println("deleteRecommendPost에서 지운 질문 갯수 : "+ resultRecommendPost);
+		
 	}
 	
 	

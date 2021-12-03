@@ -128,15 +128,16 @@ public class RecommendDAO {
 		return result;		//제대로 들어갔으면 1 아니면 0
 	}
 	
-	public int deleteRecommendSolution(int recommendCode) throws SQLException{
-		
-		int resultSolution = 0;		//삭제된 솔루션 개수
-		String deleteSolutionSql = "DELETE FROM RECOMMENDSOLUTION WHERE postId = ?";		//RecommendCode에 해당하는 솔루션 지우기
+	
+	
+	public int deleteRecommendCheck(int recommendCode) throws SQLException {
+		int result = 0;
+		String sql = "DELETE FROM CHECKCOUNT WHERE postId = ?";
 		Object[] param = new Object[] {recommendCode};
 		
 		try {
-			jdbcUtil.setSqlAndParameters(deleteSolutionSql, param);		
-			resultSolution = jdbcUtil.executeUpdate();	//질문에 해당하는 답변들 삭제
+			jdbcUtil.setSqlAndParameters(sql, param);		
+			result= jdbcUtil.executeUpdate();	//질문에 해당하는 답변들 삭제
 				
 		} catch (Exception ex) { 
 			jdbcUtil.rollback();
@@ -146,9 +147,9 @@ public class RecommendDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();	
 		}
-		return resultSolution;		//솔루션 삭제 안 되면 0 반환, 삭제 됐으면 삭제된 솔루션 수 반환
+		return result;		//솔루션 삭제 안 되면 0 반환, 삭제 됐으면 삭제된 솔루션 수 반환
+		
 	}
-	
 	
 	public int deleteRecommendPost(int recommendCode) throws SQLException {
 		

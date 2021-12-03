@@ -81,6 +81,25 @@ public class SolutionDAO {
 	}
 	
 	
+	//해당 솔루션이 checkScore에 있는 것 삭제
+		public int deleteSolutionCheck(int solutionCode) throws SQLException {
+			String sql = "DELETE FROM CheckScore WHERE solutionId=?";		
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {solutionCode});	// JDBCUtil에 delete문과 매개 변수 설정
+
+			try {				
+				int result = jdbcUtil.executeUpdate();	
+				return result;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			}
+			finally {
+				jdbcUtil.commit();
+				jdbcUtil.close();	
+			}		
+			return 0;
+		}
+	
 	//솔루션 삭제
 	public int deleteSolution(int solutionCode) throws SQLException {
 		String sql = "DELETE FROM RecommendSolution WHERE solutionId=?";		
@@ -100,6 +119,34 @@ public class SolutionDAO {
 		return 0;
 	}
 	
+	
+	public List<Integer> findSolutionIds(int recommendCode) throws SQLException {
+		String sql = "SELECT solutionId FROM RecommendSolution "
+                  + "WHERE postId = ? ";
+        Object[] param = new Object[] {recommendCode};   
+      jdbcUtil.setSqlAndParameters(sql, param);      
+               
+      try {
+         ResultSet rs = jdbcUtil.executeQuery();               
+         List<Integer> solutions = new ArrayList<Integer>();   
+         while (rs.next()) {
+        	 int id = rs.getInt("solutionId");
+            solutions.add(id);            
+         }      
+         return solutions;             
+         
+      } catch (Exception ex) {
+         ex.printStackTrace();
+      } finally {
+         jdbcUtil.close();      
+      }
+      return null;
+		
+		
+	}
+	
+
+
 	
 	/*
 	//솔루션 평가하기

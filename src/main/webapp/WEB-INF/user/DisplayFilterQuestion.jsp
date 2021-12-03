@@ -124,7 +124,7 @@ div.filter{
 			<c:if test="${status.count % 5 eq 1}">
 		  	<a href="<c:url value ='/user/filterquestion'>
 								<c:param name='questionIndex' value='${status.index}' />
-							</c:url>" id="indexfont"> <font id="indexfont"><fmt:formatNumber value="${(status.index)/5 + 1}" pattern="#" />&nbsp;|&nbsp;</font>
+							</c:url>" id="indexfont"> <font id="indexfont"><fmt:formatNumber value="${(status.index)/5 + 1}" pattern="#" />&nbsp;&nbsp;|</font>
 			</a>
 		  </c:if>
 	</c:forEach>

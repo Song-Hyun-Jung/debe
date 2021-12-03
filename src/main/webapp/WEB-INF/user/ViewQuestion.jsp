@@ -15,7 +15,7 @@ function deleteAnswer(form) {
 	questionInfo.method="POST";
 	questionInfo.submit();
 }
-function bookmarkQuestion(targetUri) {
+function bookmarkQuestion() {
 	questionInfo.action = "<c:url value ='/user/bookmarkQuestion' />";
 	questionInfo.submit();
 }

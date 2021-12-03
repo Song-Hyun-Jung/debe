@@ -20,11 +20,11 @@ function addSolution(targetUri) {
 	recommendInfo.method="GET";
 	recommendInfo.submit();
 }
-function bookmarkRecommend(targetUri) {
+function bookmarkRecommend() {
 	recommendInfo.action = "<c:url value ='/user/bookmarkRecommend' />";
 	recommendInfo.submit();
 }
-function empathizedRecommend(targetUri) {
+function empathizedRecommend() {
 	recommendInfo.action = "<c:url value ='/user/recommendCount' />";
 	recommendInfo.submit();
 }

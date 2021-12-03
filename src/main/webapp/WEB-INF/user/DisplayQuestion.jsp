@@ -129,7 +129,7 @@ a:hover{color:blue;}
 		<c:forEach var="question" items="${questionList}" varStatus="status">
 			<c:if test="${status.count % 5 eq 1}">
 		  	<a href="<c:url value ='/user/questionlist'> <c:param name='questionIndex' value='${status.index}' /> </c:url>"  id="indexfont"> 
-		  		<font><fmt:formatNumber value="${(status.index)/5 + 1}" pattern="#" />&nbsp;|&nbsp;</font> </a>
+		  		<font><fmt:formatNumber value="${(status.index)/5 + 1}" pattern="#" />&nbsp;&nbsp;|</font> </a>
 		  </c:if>
 		</c:forEach>
 	</div>
