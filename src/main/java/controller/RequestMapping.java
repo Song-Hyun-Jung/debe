@@ -157,7 +157,7 @@ public class RequestMapping {
         //답변 별점 매기기
         mappings.put("/user/updateRecommendScore", new ScoreController());
         //문제 추천하기
-        //mappings.put("/user/recommendCount", new UpdateRecommendCountController());
+        mappings.put("/user/recommendCount", new UpdateRecommendCountController());
         //추천문제 북마크
         mappings.put("/user/bookmarkRecommend", new BookmarkRecommendController());
         

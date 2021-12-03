@@ -65,6 +65,14 @@ td.info-right{
 hr{
 	color:#a9173d;
 }
+.btnSubmit{
+	width:90px;
+	height:30px;
+	background-color:#a9173d;
+	color:white;
+	font-size:15px;
+	visibility:visibility;
+}
 .btnDelete{
 	width:90px;
 	height:30px;
@@ -85,14 +93,15 @@ hr{
 			<tr height="30" width="70">
 				
 				<td class="info">제목</td>
-				<td align="center" colspan="3"><input readonly type="text" name="title" size="40" value="${Recommend.title}"></td>
-				<td width="40px" height="40px"><input type="image" 
+				<td align="center" colspan="3"><input readonly type="text" name="title" size="75"  style="height:25px;" value="${Recommend.title}"></td>
+				<td width="40px" height="40px"><input type="image"
 					<c:if test="${ exist eq 'false'}"> src=" <c:url value='/images/beforeBookmark.jpg' />" </c:if>
 					<c:if test="${ exist eq 'true'}"> src=" <c:url value='/images/afterBookmark.jpg' />" </c:if>
-				onclick="bookmarkRecommend()" style="max-width:40%"></td>
+				onclick="bookmarkRecommend()" style="max-width:100%"></td>
 			</tr>
+			<tr><td>&nbsp;</td></tr>
 			<tr class="recommendInfo" >
-				<td colspan="5">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치:  ${Recommend.userLevel }</td>
+				<td colspan="5" style="padding-top:10px; padding-bottom:10px;">작성자:  ${Recommend.userNickname} &nbsp; &nbsp; &nbsp; 경험치:  ${Recommend.userLevel }</td>
 			</tr>
 			<tr class="recommendInfo">
 	
@@ -112,8 +121,14 @@ hr{
 			</tr>
 			<tr><td height="20"></td></tr>
 			<tr>
-				<td colspan="2" style="padding:10px 0px 0px 0px"><input id="btnSubmit" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>
-												<c:param name='recommendCode' value='${Recommend.postId}'/><c:param name='userId' value='${Recommend.userId}'/></c:url>')"></td>
+				<td colspan="2" style="padding:10px 0px 0px 0px">
+					<c:if test="${(Recommend.userId eq userId)}"><input class="btnSubmit" id="show" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>
+												<c:param name='recommendCode' value='${Recommend.postId}'/><c:param name='userId' value='${Recommend.userId}'/></c:url>')">
+					</c:if>
+					<c:if test="${(Recommend.userId ne userId)}"><input class="btnSubmit" id="noShow" type="button" value="글 삭제" onclick="deleteR('<c:url value ='/user/deleteRecommend'>
+												<c:param name='recommendCode' value='${Recommend.postId}'/><c:param name='userId' value='${Recommend.userId}'/></c:url>')">
+					</c:if>
+				</td>
 				<td colspan="3" align="right">
 					<input type="hidden" name="recommendCode" value="${Recommend.postId}" />
 					<input id="btnSubmit" type="button" value="답변등록" onclick="addSolution('<c:url value ='/user/addRecommendSolution/form' />')">
@@ -131,7 +146,7 @@ hr{
 	<form name=otherSolution method=post>
 		<table class="collapse">
 			<tr class="recommendInfo">
-				<td>작성자:${solution.userNickname}   &nbsp; 경험치: ${solution.userLevel }&nbsp; 평가점수: <fmt:formatNumber value="${solution.solutionScore}" pattern="0.0" /> </td>
+				<td style="padding-top:10px; padding-bottom:10px;">작성자:${solution.userNickname}   &nbsp; 경험치: ${solution.userLevel }&nbsp; 평가점수: <fmt:formatNumber value="${solution.solutionScore}" pattern="0.0" /> </td>
 			</tr>
 			<tr class="recommendInfo">
 				<td colspan="3"><textarea cols=100 readonly rows=15 class="code" name="answerCodes">${solution.solutionContent}</textarea></td>
