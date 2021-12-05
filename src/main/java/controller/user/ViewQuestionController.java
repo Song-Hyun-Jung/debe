@@ -31,18 +31,21 @@ public class ViewQuestionController implements Controller{
 		AnswerManager answerManager = AnswerManager.getInstance();
 		Question question = null;
 		List<Answer> answerList = null;
+		List<Question> relationQuestion = null;
 		boolean exist;
 		HttpSession session = request.getSession();
 		
 		LOG.info(String.valueOf(viewQuestionCode));
 		question = questionManager.displayQuestion(viewQuestionCode);
 		answerList = answerManager.displayAllAnswer(viewQuestionCode);	//questionCode에 해당하는 답변 모두 가져옴
+		relationQuestion = questionManager.relationQuestion(question.getSubjectId(), viewQuestionCode);
 		exist = questionManager.existingBookmarkQuestion(viewQuestionCode, UserSessionUtils.getLoginUserId(session));		
 		System.out.println("questionCode값, question제목: "+viewQuestionCode + question.getTitle() + " 북마크: "+exist);
 		
 		request.setAttribute("exist", exist);
 		request.setAttribute("Question", question);
 		request.setAttribute("AnswerList", answerList);
+		request.setAttribute("relationQuestion", relationQuestion);
 		
 		return "/user/ViewQuestion.jsp";		//ViewQuestion.jsp로 forwarding
 	}

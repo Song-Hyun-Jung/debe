@@ -62,9 +62,6 @@ td.info-right{
 	font-size:20px;
 	text-align:right;
 }
-hr{
-	color:#a9173d;
-}
 .btnSubmit{
 	width:90px;
 	height:30px;
@@ -138,7 +135,7 @@ hr{
 	</form>
 	</div>
 	
-	<hr/>
+	<hr color="#a9173d"/>
 	
 	
 	<div align="center" style="padding:10px 0px 10px 0px">
@@ -172,12 +169,11 @@ hr{
 				</td>
 			</tr>
 		</table>
-		<hr/>
+		<hr color="#a9173d"/>
 	</form>
 	</c:forEach>
 	</div>
 	
-	<hr/>
 	
 </body>
 </html>

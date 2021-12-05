@@ -102,5 +102,11 @@ public class QuestionManager {
 		
 		return subjectList;
 	}
+	
+	public List<Question> relationQuestion(int subjectId, int postId) throws SQLException{
+		List<Question> relationQuestion = new ArrayList<Question>();
+		relationQuestion = questionDAO.relationQuestion(subjectId, postId);
+		return relationQuestion;
+	}
 
 }

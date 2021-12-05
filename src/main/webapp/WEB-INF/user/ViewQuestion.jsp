@@ -40,12 +40,12 @@ function bookmarkQuestion() {
 #noShow{
 	visibility:hidden;
 }
-tr.answerInfo{
+td.answerInfo{
 	border-collapse:collapse;
 	border:1px solid black;
+	width:100%
 }
 table.answers{
-	position:static;
 	border-collapse:collapse;
 }
 td.info{
@@ -57,9 +57,10 @@ td.info-right{
 	font-size:20px;
 	text-align:right;
 }
-hr{
-	color:#a9173d;
-}
+a { text-decoration:none !important }
+a:link{color:black;}
+a:visited{color:black;}
+a:hover{color:blue;}
 </style>
 </head>
 <body>
@@ -107,7 +108,7 @@ hr{
 		</table>
 	</form>
 	</div>
-	<hr/>
+	<hr color="#a9173d"/>
 	
 	<div align="center">
 	<c:forEach var="answer" items="${AnswerList}">
@@ -138,22 +139,25 @@ hr{
 			</tr>
 		</table>
 		</form> 
-		<hr/>
+		<hr color="#a9173d"/>
 	</c:forEach> 
 	</div>
-	
-	<hr/>
+
 	<div align="center">
-	<table class="answers" width="50%">
+	<table class="answers" style="width:50%">
 			<tr style="padding:10px 0px 10px 0px">
 				<td class="info">관련 질문 </td>
 			</tr>
-			<tr class="answerInfo" height="30px">
-				<td>                 </td>
-			</tr>
-			<tr class="answerInfo" height="30px">
-				<td>                 </td>
-			</tr>
+			<c:forEach var="relation" items="${relationQuestion}">
+				<tr height="30px">
+					<td class="answerInfo">
+						<a href="<c:url value ='/user/viewquestion'>
+								<c:param name='questionCode' value='${relation.postId}' />
+								</c:url>"> ${relation.title}
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 </body>

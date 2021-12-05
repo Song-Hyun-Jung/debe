@@ -351,7 +351,7 @@ public class QuestionDAO {
 	}
 	
 
-	public List<Question> findQuestion(String searchKeyword) throws SQLException {
+	public List<Question> findQuestion(String searchKeyword) throws SQLException { //키워드 검색
 	    String sql1 = "SELECT q.postid, p.title FROM POST p, Question q "
 					+ "WHERE q.postid = p.postid AND p.title LIKE (?) ORDER BY postdate DESC ";
 	    
@@ -400,5 +400,36 @@ public class QuestionDAO {
 			jdbcUtil.close();	
 		}
 		return result;
+	}
+	
+	public List<Question> relationQuestion(int subjectId, int postId) throws SQLException { //관련질문 2개-현재 질문글보다 과거에 작성된 과목이 같은 2개의 글
+	    String sql = "SELECT * FROM "
+	    			 +"(SELECT q.postId, p.title FROM POST p, Question q "
+					 + "WHERE q.postId = p.postId AND q.subjectId = ? AND q.postId <= ? ORDER BY postdate DESC) WHERE ROWNUM <= 2 "
+					 + "AND NOT postId IN ? ";
+	    
+	    Object[] param = new Object[] {subjectId, postId, postId};
+		jdbcUtil.setSqlAndParameters(sql, param);
+
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();					
+			List<Question> questions = new ArrayList<Question>();	
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("postId"),
+						rs.getString("title")
+					);
+				questions.add(question);
+			}		
+			return questions;					
+			
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		} 
+		finally {
+			jdbcUtil.close();		
+		}
+		return null;
 	}
 }

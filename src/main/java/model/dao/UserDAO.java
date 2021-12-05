@@ -25,7 +25,7 @@ public class UserDAO {
 	//사용자 정보 추가
 	public int createUser(User user) throws SQLException {
 		String sql = "INSERT INTO SERVICEUSER(userid, userpassword, username, usernickname, subjectid) "
-				+ "VALUES (?, ?, ?, ?, ?, ?)";		
+				+ "VALUES (?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {user.getUserId(), user.getUserPassword(), 
 						user.getUserName(), user.getUserNickname(), user.getSubjectId() };				
 		jdbcUtil.setSqlAndParameters(sql, param);	

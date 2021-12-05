@@ -18,7 +18,9 @@ import controller.user.DeleteQuestionController;
 import controller.user.DeleteRecommendController;
 import controller.user.DeleteSolutionController;
 import controller.user.FindKeywordController;
+import controller.user.GoAddQuestionController;
 import controller.user.GoAnswerController;
+import controller.user.GoJoinController;
 import controller.user.GoMainPageController;
 import controller.user.GoSolutionController;
 import controller.user.GoUpdateSubjectController;
@@ -28,6 +30,7 @@ import controller.user.LoginController;
 import controller.user.MyViewController;
 import controller.user.QuestionFilterController;
 import controller.user.RecommendSortController;
+import controller.user.RegisterUserController;
 import controller.user.ScoreController;
 import controller.user.UpdateSubjectController;
 import controller.user.ViewQuestionController;
@@ -63,14 +66,12 @@ public class RequestMapping {
         
         
         //회원가입 폼으로 이동
-        mappings.put("/user/join/form", new ForwardController("/user/JoinUser.jsp"));
-        
-        /*
+        mappings.put("/user/join/form", new GoJoinController());    
         //중복체크
-        mappings.put("/user/checkNickname", new CheckNicknameController());
+       // mappings.put("/user/checkNickname", new CheckNicknameController());
         //회원가입
-        mappings.put("/user/join", new JoinController());
-        */
+        mappings.put("/user/join", new RegisterUserController());
+        
         //관리자
         //관리자-사용자 리스트 조회
         mappings.put("/user/adminUserList", new ForwardController("/user/AdminUser.jsp"));
@@ -107,7 +108,7 @@ public class RequestMapping {
         //질문 리스트 조회
         mappings.put("/user/questionlist", new ListQuestionController());
         //질문하기로 이동
-        mappings.put("/user/addquestion/form", new ForwardController("/user/AddQuestion.jsp"));
+        mappings.put("/user/addquestion/form", new GoAddQuestionController());
         //질문 등록
         mappings.put("/user/addquestion", new AddQuestionController());
         //질문 삭제

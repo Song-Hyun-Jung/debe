@@ -23,9 +23,13 @@ public class UserManager {
 	
 	public static UserManager getInstance() { return userMan; }
 	
+	//회원가입
 	public int create(User user) throws SQLException, ExistingUserException {
 		if (userDAO.existingUser(user.getUserId())) {
 			throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
+		}
+		if (userDAO.existingNickname(user.getUserNickname())) {
+			throw new ExistingUserException(user.getUserNickname() + "는 존재하는 닉네임입니다.");
 		}
 		return userDAO.createUser(user);
 	}

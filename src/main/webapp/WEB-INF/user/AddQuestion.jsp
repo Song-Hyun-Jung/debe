@@ -55,12 +55,9 @@ td.info{
 				<td style="padding:0px 0px 0px 20px">
 					<select name="subjectId" style="padding:5px 0px 5px 0px">
 						<option value="0" selected>과목명</option>
-						<option value="323">알고리즘</option>
-						<option value="324">빅데이터처리</option>
-						<option value="321">모바일응용</option>
-						<option value="313">네트워크</option>
-						<option value="221">자료구조</option>
-						<option value="322">데이터베이스프로그래밍</option>
+						<c:forEach var="subject" items="${findAllSubjects}">
+							<option value="${subject.subjectId}">${subject.subjectTitle}</option>
+						</c:forEach>
 					</select>
 				</td>
 				<td class="info">사용언어</td>
