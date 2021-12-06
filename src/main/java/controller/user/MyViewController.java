@@ -28,10 +28,21 @@ public class MyViewController implements Controller {
 		 List<Bookmark> findMyQuestionBookmarks = userManager.findMyQuestionBookmarks(UserSessionUtils.getLoginUserId(session)); //사용자 질문 북마크 조회
 		 List<Bookmark> findMyRecommendBookmarks = userManager.findMyRecommendBookmarks(UserSessionUtils.getLoginUserId(session)); //사용자 추천문제 북마크 조회
 		 
+		 int bqIndex = 0;
+		 if (request.getParameter("bqIndex") != null) { bqIndex = Integer.parseInt(request.getParameter("bqIndex")); }
+		 int mqIndex = 0;
+		 if (request.getParameter("mqIndex") != null) { mqIndex = Integer.parseInt(request.getParameter("mqIndex")); }
+		 int brIndex = 0;
+		 if (request.getParameter("brIndex") != null) { brIndex = Integer.parseInt(request.getParameter("brIndex")); }
+			
+
 		 request.setAttribute("userSubject", userSubject);
 		 request.setAttribute("findMyQuestions", findMyQuestions);
 		 request.setAttribute("findMyQuestionBookmarks", findMyQuestionBookmarks);
 		 request.setAttribute("findMyRecommendBookmarks", findMyRecommendBookmarks);
+		 request.setAttribute("bqIndex", bqIndex);
+		 request.setAttribute("mqIndex", mqIndex);
+		 request.setAttribute("brIndex", brIndex);
 		 
 		 return "/user/MyPage.jsp";
 	 }

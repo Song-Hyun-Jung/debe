@@ -47,9 +47,9 @@ public class UserDAO {
 	//사용자 정보 수정
 	public int updateUser(User user) throws SQLException {
 		String sql = "UPDATE SERVICEUSER "
-					+ "SET userid=?, userpassword=?, usernickname=?, username=? "
+					+ "SET userpassword=?, usernickname=?, username=? "
 					+ "WHERE userid=?";
-		Object[] param = new Object[] {user.getUserId(), user.getUserPassword(), 
+		Object[] param = new Object[] {user.getUserPassword(), 
 					user.getUserNickname(), user.getUserName(), 
 					user.getUserId()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	
@@ -74,7 +74,8 @@ public class UserDAO {
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	
+			int result = jdbcUtil.executeUpdate();
+			System.out.println(userId+" dao deleteUser 삭제 : "+result);
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

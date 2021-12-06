@@ -10,6 +10,7 @@ import controller.user.AddQuestionController;
 import controller.user.AddRecommendController;
 import controller.user.AddSolutionController;
 import controller.user.AdminPostListController;
+import controller.user.AdminUserListController;
 import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.BookmarkRecommendController;
@@ -75,17 +76,13 @@ public class RequestMapping {
         
         //관리자
         //관리자-사용자 리스트 조회
-        mappings.put("/user/adminUserList", new ForwardController("/user/AdminUser.jsp"));
+        mappings.put("/user/adminUserList", new AdminUserListController());
         //관리자-게시글 조회
         mappings.put("/user/adminPostList", new AdminPostListController());
-        /*
-        //관리자-사용자 정보 수정 폼 요청과 수정 요청 처리 병합
+        
+        //관리자-사용자 정보 수정 폼 요청과 수정,삭제 요청 처리 병합
         mappings.put("/user/adminUpdateUser", new UpdateUserController());
-        //관리자-사용자 삭제
-        mappings.put("/user/adminDeleteUserInfo", new DeleteUserController());
-        //관리자-게시글 삭제
-        mappings.put("/user/adminDeleteContent", new DeleteContentController());
-        */
+        
         
         //메인페이지
         //메인페이지로 이동(로고 누르면 메인페이지로 이동)

@@ -110,6 +110,14 @@ public class User{
 		this.userPasswordCheck = userPasswordCheck;
 	}
 	
+	public User(int userId, String userPassword, String userNickname, String userName) { //회원정보 수정 시 사용
+		super();
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userNickname = userNickname;
+		this.userName = userName;
+	}
+	
 	
 	
 	public User(int userId, String userPassword, String userNickname, String userName, int subjectId) {
