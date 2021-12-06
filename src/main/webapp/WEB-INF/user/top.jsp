@@ -15,7 +15,9 @@
 </head>
 <body>	
 		<table id="topLayout">
-			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td><td width="70%"></td><td><span style="color:#a9173d; font-weight:bold;">${userNickname}</span> 님, 안녕하세요</td></tr>
+			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td>
+			<td width="70%"></td>
+			<td><span style="color:#a9173d; font-weight:bold;">${userNickname}</span> 님, 안녕하세요</td></tr>
 		</table>
 		<nav>
 			<table id="menu">
@@ -27,7 +29,7 @@
 					<td width="11%"></td>
 					<td class="menuhover"><a href="<c:url value ='/user/recommendlist' />" id="menu_string">추천 코딩 문제</a></td>
 					<td width="11%"></td>
-					<td class="menuhover"><a href="<c:url value ='/user/myPage' />" id="menu_string">북마크</a></td>
+					<td class="menuhover"><a href="<c:url value ='/user/myPage' />" id="menu_string">My Page</a></td>
 					<td width="11%"></td>
 				</tr>
 			</table>

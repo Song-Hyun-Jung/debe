@@ -82,6 +82,20 @@ public class AnswerManager {
 		return null;
 	}
 	
+	public Integer getAnswerUserId(int answerCode) throws SQLException {
+		try {
+			Integer userId;
+			userId = answerDAO.getAnswerUserId(answerCode);
+			if(userId != null)
+				return userId;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("답변에 해당하는 사용자를 찾지 못했습니다.");
+		}
+		return null;
+	}
+	
 
 	
 }

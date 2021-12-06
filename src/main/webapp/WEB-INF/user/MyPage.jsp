@@ -67,7 +67,7 @@ a:hover{color:blue;}
 			</td>
 			<td class="bigLayoutRight" rowspan="3" height="300px"> <!-- question 북마크 --> 
 				<table style="width:100%">
-					<tr><td><h3>-나의 질문 북마크</h3></td></tr>
+					<tr><td><h3>- 나의 북마크 : 질문 </h3></td></tr>
 					<c:forEach var="questionBookmark" items="${findMyQuestionBookmarks}">
 							<tr>
 								<td class="bookmarkTable">
@@ -102,7 +102,7 @@ a:hover{color:blue;}
 		<tr>
 			<td class="bigLayoutRight" rowspan="3" height="300px"> <!-- recommend 북마크 -->
 				<table style="width:100%">
-					<tr><td><h3>-나의 추천문제 북마크</h3></td></tr>
+					<tr><td><h3>-나의 북마크 : 추천 코딩 문제</h3></td></tr>
 					<c:forEach var="recommendBookmark" items="${findMyRecommendBookmarks}">
 							<tr>
 								<td class="bookmarkTable">

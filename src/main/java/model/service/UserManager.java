@@ -93,5 +93,10 @@ public class UserManager {
 		return userDAO.updateUserSubject(userId, subjectId);
 	}
 	
+	//levelUp
+	public int levelUpUser(int userId) throws SQLException{
+		return userDAO.levelUpUser(userId);
+	}
+	
 	
 }

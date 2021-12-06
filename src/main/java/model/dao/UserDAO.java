@@ -283,7 +283,7 @@ public class UserDAO {
 	}
 	
 	//레벨업->레벨업 후 결과 반환.(변경된 개수)
-	public int levelUp(int userId) throws SQLException {
+	public int levelUpUser(int userId) throws SQLException {
 		int level = getLevel(userId); //현재 레벨 가져오기
 		String sql = "UPDATE SERVICEUSER "
 					+ "SET userlevel=? "

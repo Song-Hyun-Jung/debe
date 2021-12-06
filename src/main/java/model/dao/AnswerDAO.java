@@ -201,6 +201,25 @@ public class AnswerDAO {
 		}
 		return null;
 	}
+
+	public Integer getAnswerUserId(int answerCode) {	//답변 채택 시 답변자 아이디 구해오기
+		String sql = "SELECT userId "
+    			+ "FROM QuestionAnswer "
+	    			+ "WHERE answerId=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {answerCode});
 	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {						
+				int userId = rs.getInt("userId");
+				return userId;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
 	
 }

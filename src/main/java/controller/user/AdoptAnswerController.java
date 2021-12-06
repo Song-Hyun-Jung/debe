@@ -10,6 +10,7 @@ import controller.Controller;
 import model.Answer;
 import model.Question;
 import model.service.AnswerManager;
+import model.service.UserManager;
 
 public class AdoptAnswerController implements Controller{
 
@@ -34,6 +35,9 @@ public class AdoptAnswerController implements Controller{
 				//html에서 설정 못 하면 여기서 구현하기.
 		answerManager.AdoptAnswer(questionCode, answerCode);
 		//userManager levelup 추가
+		int answerUserId = answerManager.getAnswerUserId(answerCode);
+		UserManager userManager = UserManager.getInstance();
+		userManager.levelUpUser(answerUserId);
 		
 		request.setAttribute("questionCode", request.getParameter("questionCode"));
 		return "/user/viewquestion";

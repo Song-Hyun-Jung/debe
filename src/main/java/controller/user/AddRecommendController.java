@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.Recommend;
 import model.service.RecommendManager;
+import model.service.UserManager;
 
 public class AddRecommendController implements Controller{
 
@@ -27,6 +28,9 @@ public class AddRecommendController implements Controller{
 		RecommendManager manager = RecommendManager.getInstance();
 		
 		int recommendCode = manager.addRecommend(recommend);		//질문 추가하고 해당 질문의 questionCode 값 가져옴
+		
+		UserManager userManager = UserManager.getInstance();
+		userManager.levelUpUser(UserSessionUtils.getLoginUserId(session));	//추천문제 작성 시 질문 작성자 레벨업
 		
 		request.setAttribute("recommendCode", recommendCode);		//viewrecommend으로 가서 이 questionCode에 해당하는 질문 조회
 		System.out.println("addrecommendController에서 recommendCode값: "+recommendCode);
