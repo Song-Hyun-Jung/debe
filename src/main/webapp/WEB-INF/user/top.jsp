@@ -17,7 +17,7 @@
 		<table id="topLayout">
 			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td>
 			<td width="70%"></td>
-			<td><span style="color:#a9173d; font-weight:bold;">${userNickname}</span> 님, 안녕하세요</td></tr>
+			<td><a href="<c:url value='/user/myPage' />"><span style="color:#a9173d; font-weight:bold;">${userNickname}</span></a> 님, 안녕하세요</td></tr>
 		</table>
 		<nav>
 			<table id="menu">
