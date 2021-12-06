@@ -27,6 +27,7 @@ import controller.user.GoUpdateSubjectController;
 import controller.user.ListQuestionController;
 import controller.user.ListRecommendController;
 import controller.user.LoginController;
+import controller.user.LogoutController;
 import controller.user.MyViewController;
 import controller.user.QuestionFilterController;
 import controller.user.RecommendSortController;
@@ -61,8 +62,8 @@ public class RequestMapping {
         mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));
         //로그인 확인-세션에 등록
         mappings.put("/user/tryLogin", new LoginController());
-        
-        //mappings.put("/user/logout", new LogoutController());
+        //로그아웃
+        mappings.put("/user/logout", new LogoutController());
         
         
         //회원가입 폼으로 이동

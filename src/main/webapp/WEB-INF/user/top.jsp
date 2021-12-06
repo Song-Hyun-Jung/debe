@@ -6,18 +6,36 @@
 <head>
 <meta charset="EUC-KR">
 <title>데베</title>
+<script>
+function logout(targetUri) {
+	alert("로그아웃하였습니다.");
+	topForm.action = targetUri;
+	topForm.submit();
+}
+</script>
 <style>
 	#menu {list-style-type:none;}
 	#menu td {font-size:20px; font-weight:bold; padding:5px 5px 5px 5px;}
 	#menu_string {text-decoration:none; color:black;}
 	.menuhover:hover { outline:3px solid #a9173d; border-radius:4px;}
+	.btnLogout{
+	width:70px;
+	height:25px;
+	background-color:#a9173d;
+	color:white;
+	font-size:13px;
+}
 </style>
 </head>
 <body>	
+<form name="topForm">
 		<table id="topLayout">
-			<tr><td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td>
-			<td width="70%"></td>
-			<td><a href="<c:url value='/user/myPage' />"><span style="color:#a9173d; font-weight:bold;">${userNickname}</span></a> 님, 안녕하세요</td></tr>
+			<tr>
+				<td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td>
+				<td width="70%"></td>
+				<td><a href="<c:url value='/user/myPage' />"><span style="color:#a9173d; font-weight:bold;">${userNickname}</span></a> 님, 안녕하세요</td>
+				<td><input class="btnLogout" type="button" value="로그아웃" onClick="logout('<c:url value='/user/logout'/>')"></td>
+			</tr>
 		</table>
 		<nav>
 			<table id="menu">
@@ -35,5 +53,6 @@
 			</table>
 	</nav>
 	<hr size="5" width="100%" align="left" color="#a9173d" noshade>
+</form>
 </body>
 </html>
