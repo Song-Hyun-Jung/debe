@@ -80,7 +80,7 @@ public class RequestMapping {
         //관리자-게시글 조회
         mappings.put("/user/adminPostList", new AdminPostListController());
         
-        //관리자-사용자 정보 수정 폼 요청과 수정,삭제 요청 처리 병합
+        //관리자-사용자 정보 수정 폼 요청과 수정 요청 처리 병합
         mappings.put("/user/adminUpdateUser", new UpdateUserController());
         
         

@@ -49,10 +49,8 @@ function updateUser(targetUri) {
 				<tr>
 					<td colspan="2" id="td_button" class="info"><br>
 						<input type="button" value="수정" class="Button" onClick="updateUser('<c:url value ='/user/adminUpdateUser'>
-										<c:param name='button' value='modify' /> <c:param name='userId' value='${user.userId}' /> 
-									</c:url>')" > &nbsp; &nbsp; <input type="button" value="삭제" class="Button" onClick="updateUser('<c:url value ='/user/adminUpdateUser'>
-										<c:param name='button' value='delete' /> <c:param name='userId' value='${user.userId}' />
-									</c:url>')">
+										<c:param name='userId' value='${user.userId}' /> 
+									</c:url>')" >
 					</td>
 				</tr>
 			</table>
