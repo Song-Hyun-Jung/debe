@@ -95,8 +95,8 @@ CREATE TABLE ServiceUser
 (
 	userId               INTEGER NOT NULL  CONSTRAINT  studentNo CHECK (userId BETWEEN 10000000 AND 20999999),
 	userPassword         VARCHAR2(20) NOT NULL ,
-	userName             VARCHAR2(10) NOT NULL ,
-	userNickname         VARCHAR2(20) NOT NULL ,
+	userName             VARCHAR2(20) NOT NULL ,
+	userNickname         VARCHAR2(30) NOT NULL ,
 	userLevel            INTEGER DEFAULT  1  NOT NULL  CONSTRAINT  userLevel_486682058 CHECK (userLevel >= 1),
 	subjectId            INTEGER NOT NULL 
 );
@@ -144,7 +144,6 @@ ALTER TABLE Bookmark
 CREATE TABLE checkCount
 (
 	userId               INTEGER NOT NULL ,
-	checked              CHAR(18) NULL  CONSTRAINT  checkCount_2078261443 CHECK (checked IN ('y', 'n')),
 	postId               INTEGER NOT NULL 
 );
 
@@ -196,3 +195,31 @@ ALTER TABLE RecommendSolution
 	ADD (CONSTRAINT RecommendSolution FOREIGN KEY (postId) REFERENCES Recommend (postId));
 
 ALTER TABLE RecommendSolution
+	ADD (CONSTRAINT R_27 FOREIGN KEY (userId) REFERENCES ServiceUser (userId) ON DELETE SET NULL);
+
+ALTER TABLE ServiceUser
+	ADD (CONSTRAINT userSubject FOREIGN KEY (subjectId) REFERENCES Subject (subjectId) ON DELETE SET NULL);
+
+ALTER TABLE QuestionAnswer
+	ADD (CONSTRAINT questionAnswer FOREIGN KEY (postId) REFERENCES Question (postId));
+
+ALTER TABLE QuestionAnswer
+	ADD (CONSTRAINT R_28 FOREIGN KEY (userId) REFERENCES ServiceUser (userId) ON DELETE SET NULL);
+
+ALTER TABLE Bookmark
+	ADD (CONSTRAINT R_22 FOREIGN KEY (userId) REFERENCES ServiceUser (userId));
+
+ALTER TABLE Bookmark
+	ADD (CONSTRAINT R_25 FOREIGN KEY (postId) REFERENCES Post (postId));
+
+ALTER TABLE checkCount
+	ADD (CONSTRAINT R_31 FOREIGN KEY (userId) REFERENCES ServiceUser (userId));
+
+ALTER TABLE checkCount
+	ADD (CONSTRAINT R_32 FOREIGN KEY (postId) REFERENCES Recommend (postId));
+
+ALTER TABLE checkScore
+	ADD (CONSTRAINT R_33 FOREIGN KEY (solutionId) REFERENCES RecommendSolution (solutionId));
+
+ALTER TABLE checkScore
+	ADD (CONSTRAINT R_34 FOREIGN KEY (userId) REFERENCES ServiceUser (userId));
