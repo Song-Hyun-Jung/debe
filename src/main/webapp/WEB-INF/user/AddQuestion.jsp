@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>질문 작성</title>
+<head><title>질문 작성</title>
+<script language = "JavaScript">
+function addQuestion() {
+	if(addQuesiton.title == "") { alert("제목을 입력하십시오."); } 
+	if(addQuesiton.subjectId == "") { alert("과목을 선택하십시오."); }
+	if(addQuesiton.questionLanguage == "") { alert("언어를 선택하십시오."); } 
+	if(addQuesiton.questionContent == "") { 
+		alert("질문 내용을 입력하십시오.");
+		form.textarea.focus();
+	}
+	form.submit();
+}
+</script>
 <style>
 #btnSubmit{
 	width:90px;
@@ -12,12 +22,12 @@
 	background-color:#a9173d;
 	color:white;
 }
-#menu{
+#question{
 	position: relative;
 	top:0px;
 	left:250px;
 }
-table{
+table.answers{
 	position: static;
 }
 td.info{
@@ -27,46 +37,46 @@ td.info{
 </style>
 </head>
 <body>
-	<div id="menu"><h2>질문하기</h2></div>
 	<div align="center">
-	<form name=addQuestion method=post>
-		<table>
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+	</div>
+
+	<div id="question"><h2>질문하기</h2></div>
+	<div align="center">
+	<form name=addQuestion method=post action="<c:url value='/user/addquestion' />">
+		<table class="answers">
 			<tr height="30" width="70">
 				<td class="info">제목</td>
-				<td align="center" colspan="4"><input type="text" name="title" size="70"></td>
-				<td><input id="btnSubmit" type="submit" value="등록"></td>
+				<td align="center" colspan="4"><input type="text" name="title" size="70" style="height:25px"></td>
+				<td><input id="btnSubmit" type="submit" value="등록" onclick="addQuestion()"></td>
 			</tr>
 			<tr height="50">
 				<td class="info">과목</td>
 				<td style="padding:0px 0px 0px 20px">
-					<select name="subject" style="padding:5px 0px 5px 0px">
+					<select name="subjectId" style="padding:5px 0px 5px 0px">
 						<option value="0" selected>과목명</option>
-						<option value="1">알고리즘</option>
-						<option value="2">빅데이터처리</option>
-						<option value="3">모바일응용</option>
-						<option value="4">네트워크</option>
-						<option value="5">자료구조</option>
-						<option value="6">데이터베이스프로그래밍</option>
-						<option value="7">기타</option>
+						<c:forEach var="subject" items="${findAllSubjects}">
+							<option value="${subject.subjectId}">${subject.subjectTitle}</option>
+						</c:forEach>
 					</select>
 				</td>
 				<td class="info">사용언어</td>
 				<td colspan="2">
-					<select name="language" style="padding:5px 0px 5px 0px">
+					<select name="questionLanguage" style="padding:5px 0px 5px 0px">
 						<option value="0" selected>사용언어</option>
-						<option value="1">C언어</option>
-						<option value="2">JAVA</option>
-						<option value="3">Python</option>
-						<option value="4">SQL</option>
-						<option value="5">HTML</option>
-						<option value="6">C++</option>
-						<option value="7">기타</option>
+						<option value="C언어">C언어</option>
+						<option value="JAVA">JAVA</option>
+						<option value="Python">Python</option>
+						<option value="SQL">SQL</option>
+						<option value="HTML">HTML</option>
+						<option value="C++">C++</option>
+						<option value="기타">기타</option>
 					</select>
 				</td>
 				<td> </td>
 			</tr>
 			<tr>
-				<td colspan="6"><textarea cols=100 rows=20 class="code" name="inputCode"></textarea></td>
+				<td colspan="6"><textarea cols=100 rows=20 class="code" name="questionContent"></textarea></td>
 			</tr>
 		</table>
 	</form>

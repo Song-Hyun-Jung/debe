@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>DeleteQuestion</title>
 <style>
-table {
+table.manage{
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
-td {
+td.info{
 	height: 20px;
 }
 
@@ -25,14 +25,16 @@ td {
 </style>
 </head>
 <body>
-
+<div align="center">
+	<%@ include file="/WEB-INF/user/top.jsp" %>
+</div>
 <div>
 	<b>관리자 게시판 관리</b>
 	<p>
 	게시판 정보
 </div>
 
-<table border="1" width="100%">
+<table border="1" width="100%" class="manage">
 	<colgroup>
 		<col style="width:20%">
 		<col style="width:40%">
@@ -47,10 +49,10 @@ td {
 	</tr>
 	
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info">
 			<button type="button" class="button">글 삭제</button>
 		</td>
 	</tr>

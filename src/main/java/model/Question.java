@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *질문 관리를 위해 필요한 도메인 클래스. Question 테이블과 대응
  */
-public class Question{
+public class Question implements Serializable{
 	private int postId; //게시글 id
 	private String title; //질문 제목
 	private Date postDate; //질문 작성일
@@ -15,7 +16,23 @@ public class Question{
 	private String solve; //질문 해결 상태
 	private String questionAdopt; //질문 채택 상태
 	private int subjectId; //질문 관련 과목
+	private String subjectTitle; 	//질문 관련 과목 이름, subjectId에 대한 이름
+	private String userNickname;
 	
+	
+	
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+	public String getSubjectTitle() {
+		return subjectTitle;
+	}
+	public void setSubjectTitle(String subjectTitle) {
+		this.subjectTitle = subjectTitle;
+	}
 	public int getPostId() {
 		return postId;
 	}
@@ -73,7 +90,7 @@ public class Question{
 	
 	//생성자
 	public Question(int postId, String title, Date postDate, String postContent, int userId, String questionLanguage,
-			String solve, String questionAdopt, int subjectId) {
+			String solve, String questionAdopt, int subjectId, String subjectTitle) {
 		super();
 		this.postId = postId;
 		this.title = title;
@@ -84,6 +101,23 @@ public class Question{
 		this.solve = solve;
 		this.questionAdopt = questionAdopt;
 		this.subjectId = subjectId;
+		this.subjectTitle = subjectTitle;
+	}
+	
+	public Question(int postId, String title, Date postDate, String postContent, int userId, String questionLanguage,
+			String solve, String questionAdopt, int subjectId, String subjectTitle, String userNickname) {
+		super();
+		this.postId = postId;
+		this.title = title;
+		this.postDate = postDate;
+		this.postContent = postContent;
+		this.userId = userId;
+		this.questionLanguage = questionLanguage;
+		this.solve = solve;
+		this.questionAdopt = questionAdopt;
+		this.subjectId = subjectId;
+		this.subjectTitle = subjectTitle;
+		this.userNickname = userNickname;
 	}
 	
 	public Question(String title, String postContent, int userId, String questionLanguage, int subjectId) {

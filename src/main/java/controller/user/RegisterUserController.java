@@ -1,33 +1,55 @@
 package controller.user;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.User;
+import model.service.ExistingUserException;
+import model.service.UserManager;
 
 public class RegisterUserController implements Controller {
 		
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
+		
+		Enumeration params = request.getParameterNames();
+		while(params.hasMoreElements()) {
+		  String name = (String) params.nextElement();
+		  System.out.print(name + " : " + request.getParameter(name) + "     "); 
+		}
+		System.out.println();
+		HttpSession session = request.getSession();	
+		
 		User user = new User(
-				request.getParameter("userId"),
-				request.getParameter("userPassword"),
-				request.getParameter("userNickname"),
-				request.getParameter("userName"));
+						Integer.parseInt(request.getParameter("userId")),
+						request.getParameter("userPassword"),
+						request.getParameter("userNickname"),
+						request.getParameter("userName"),
+						Integer.parseInt(request.getParameter("subjectId"))
+					);
 		
 		try {
-			UserManager manager = UserManager.getInstance();
-			manager.create(user);
+			UserManager userManager = UserManager.getInstance();
+			userManager.create(user);
+			session.setAttribute("registerFailed", false);
 			
-			return "redirect:/user/list";
+			session.setAttribute("userId", "");
+			session.setAttribute("userPassword", "");
+			session.setAttribute("userPasswordCheck", "");
+			session.setAttribute("userNickname", "");
+			session.setAttribute("userName", "");
+			session.setAttribute("subjectId", "");
+			
+			return "/user/LogInUser.jsp";
 		} catch (ExistingUserException e) {
-			
-			request.setAttribute("registerFailed", true);
+			session.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);
-			return "/user/JoinUser.jsp";
+			return "redirect:/user/join/form";
 		}
 		
 	}

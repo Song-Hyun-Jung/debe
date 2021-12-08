@@ -110,6 +110,14 @@ public class User{
 		this.userPasswordCheck = userPasswordCheck;
 	}
 	
+	public User(int userId, String userPassword, String userNickname, String userName) { //회원정보 수정 시 사용
+		super();
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userNickname = userNickname;
+		this.userName = userName;
+	}
+	
 	
 	
 	public User(int userId, String userPassword, String userNickname, String userName, int subjectId) {
@@ -121,7 +129,7 @@ public class User{
 		this.subjectId = subjectId;
 	}
 	
-	public User(String userNickname, int userlevel) { //메인페이지 상위 레벨 3개 출력시 사용할 생성자
+	public User(String userNickname, int userLevel) { //메인페이지 상위 레벨 3개 출력시 사용할 생성자
 		super();
 		this.userNickname = userNickname;
 		this.userLevel = userLevel;

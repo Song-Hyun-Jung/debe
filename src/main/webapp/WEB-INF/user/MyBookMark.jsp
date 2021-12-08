@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>MyBookMark</title>
 <style>
-table {
+table.bookmark{
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
-td {
+td.info{
 	height: 20px;
 }
 </style>
@@ -26,48 +26,48 @@ td {
 	
 	<b>Q&A</b> 
 	<p>
-	<table border="1" width="60%">
+	<table border="1" width="60%" class="bookmark">
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 	</table> 
 	<p><p>
 		
 	<b>코딩문제</b> 
 	<p>
-	<table border="1" width="60%">
+	<table border="1" width="60%" class="bookmark">
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td class="info"></td>
 		</tr>
 	</table> 
 

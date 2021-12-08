@@ -6,26 +6,28 @@
 <meta charset="UTF-8">
 <title>DeleteUser</title>
 <style>
-table {
+table.manage{
 	border: 1px solid black;
 	border-collapse: collapse;
 	text-align: center;
 }
-td {
+td.info{
 	height: 20px;
 }
 
 </style>
 </head>
 <body>
-
+<div align="center">
+		<%@ include file="/WEB-INF/user/top.jsp" %>
+</div>
 <div>
 	<b>관리자 회원 관리</b>
 	<p>
 	회원정보
 </div>
 
-<table border="1" width="100%">
+<table border="1" width="100%" class="manage">
 	<colgroup>
 		<col style="width:25%">
 		<col style="width:25%">
@@ -40,10 +42,10 @@ td {
 	</tr>
 	
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info"></td>
+		<td class="info"></td>
 	</tr>
 	<tr>
 		<td></td>

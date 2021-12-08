@@ -67,7 +67,7 @@ public class AnswerManager {
 		return;
 	}
 
-	//답변 객체들 가져오기->구현해야함
+	//답변 객체들 가져오기
 	public List<Answer> displayAllAnswer(int viewQuestionCode) throws SQLException{
 		try {
 			List<Answer> answers = new ArrayList<Answer>();
@@ -78,6 +78,20 @@ public class AnswerManager {
 		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("답변들을 찾지 못했습니다.");
+		}
+		return null;
+	}
+	
+	public Integer getAnswerUserId(int answerCode) throws SQLException {
+		try {
+			Integer userId;
+			userId = answerDAO.getAnswerUserId(answerCode);
+			if(userId != null)
+				return userId;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("답변에 해당하는 사용자를 찾지 못했습니다.");
 		}
 		return null;
 	}

@@ -24,9 +24,9 @@ public class AnswerDAO {
 	
 	 //문제별 답변 조회
 	   public List<Answer> findAnswers(int questionCode) throws SQLException {
-	        String sql = "SELECT answerContent, answerAdopt, answerDate, userId, answerId, postId "
-	                + "FROM QuestionAnswer "
-	                  + "WHERE postId = ?"
+	        String sql = "SELECT a.answerContent, a.answerAdopt, a.answerDate, a.userId, a.answerId, a.postId, u.userNickname, u.userLevel "
+	                + "FROM QuestionAnswer a, ServiceUser u "
+	                  + "WHERE a.userId = u.userId and a.postId = ? "
 	                + "ORDER BY answerAdopt DESC, answerId";
 	        Object[] param = new Object[] {questionCode};   
 	      jdbcUtil.setSqlAndParameters(sql, param);      
@@ -41,7 +41,9 @@ public class AnswerDAO {
 	                  rs.getString("answerContent"),
 	                  rs.getString("answerAdopt"),
 	                  rs.getDate("answerDate"),
-	                  rs.getInt("userId")
+	                  rs.getInt("userId"),
+	                  rs.getString("userNickname"),
+	                  rs.getInt("userLevel")
 	               );
 	            answers.add(answer);            
 	         }      
@@ -141,6 +143,7 @@ public class AnswerDAO {
 		return 0;
 	}
 	*/
+	
 	//트랜잭션
 	public void adoptAnswer(int questionCode, int answerCode) {
 		PreparedStatement pStmt = null;
@@ -156,7 +159,7 @@ public class AnswerDAO {
 			if(pStmt.executeUpdate() != 1) { throw new Exception(); }
 			pStmt.close();
 			String sql2 = "UPDATE Question "
-					+ "SET questionAdopt='y' "
+					+ "SET questionAdopt='y', solve='y' "
 					+ "WHERE postId=?";
 			pStmt = conn.prepareStatement(sql2);
 			pStmt.setInt(1, questionCode);
@@ -198,6 +201,25 @@ public class AnswerDAO {
 		}
 		return null;
 	}
+
+	public Integer getAnswerUserId(int answerCode) {	//답변 채택 시 답변자 아이디 구해오기
+		String sql = "SELECT userId "
+    			+ "FROM QuestionAnswer "
+	    			+ "WHERE answerId=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {answerCode});
 	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {						
+				int userId = rs.getInt("userId");
+				return userId;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
 	
 }

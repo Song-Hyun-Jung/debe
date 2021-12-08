@@ -1,3 +1,4 @@
+
 CREATE SEQUENCE sequenceAnswerId
 	INCREMENT BY 1
 	START WITH 1;
@@ -94,8 +95,8 @@ CREATE TABLE ServiceUser
 (
 	userId               INTEGER NOT NULL  CONSTRAINT  studentNo CHECK (userId BETWEEN 10000000 AND 20999999),
 	userPassword         VARCHAR2(20) NOT NULL ,
-	userName             VARCHAR2(10) NOT NULL ,
-	userNickname         VARCHAR2(20) NOT NULL ,
+	userName             VARCHAR2(20) NOT NULL ,
+	userNickname         VARCHAR2(30) NOT NULL ,
 	userLevel            INTEGER DEFAULT  1  NOT NULL  CONSTRAINT  userLevel_486682058 CHECK (userLevel >= 1),
 	subjectId            INTEGER NOT NULL 
 );
@@ -143,7 +144,6 @@ ALTER TABLE Bookmark
 CREATE TABLE checkCount
 (
 	userId               INTEGER NOT NULL ,
-	checked              CHAR(18) NULL  CONSTRAINT  checkCount_2078261443 CHECK (checked IN ('y', 'n')),
 	postId               INTEGER NOT NULL 
 );
 
@@ -157,7 +157,8 @@ CREATE TABLE checkScore
 (
 	solutionId           INTEGER NOT NULL ,
 	userId               INTEGER NOT NULL ,
-	checked              CHAR(18) NULL  CONSTRAINT  checkScore CHECK (checked IN ('y', 'n'))
+	checked              CHAR(18) NULL  CONSTRAINT  checkScore CHECK (checked IN ('y', 'n')),
+	giveScore            INTEGER NULL 
 );
 
 CREATE UNIQUE INDEX XPKcheckScore ON checkScore
