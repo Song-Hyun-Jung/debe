@@ -36,14 +36,12 @@ import controller.user.QuitJoinController;
 import controller.user.RecommendSortController;
 import controller.user.RegisterUserController;
 import controller.user.ScoreController;
+import controller.user.UpdateRecommendCountController;
 import controller.user.UpdateSubjectController;
+import controller.user.UpdateUserController;
 import controller.user.ViewQuestionController;
 import controller.user.ViewRecommendController;
 
-/*//나중에 수정해야함
-import controller.user.*;
-import controller.comm.*;
-*/
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -54,12 +52,8 @@ public class RequestMapping {
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
     	
-    	
         mappings.put("/", new ForwardController("index.jsp"));
-        //mappings.put("/user/login/form", new ForwardController("/user/AddSolution.jsp")); //솔루션 등록 테스트
-       // mappings.put("/user/login/form", new ViewRecommendController());
-        //mappings.put("/user/login/form", new GoMainPageController());
-        
+      
         //로그인
         //로그인 폼으로 이동
         mappings.put("/user/login/form", new ForwardController("/user/LogInUser.jsp"));

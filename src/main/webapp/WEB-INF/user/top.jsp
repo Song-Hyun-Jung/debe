@@ -33,9 +33,9 @@ function logout(targetUri) {
 		<table id="topLayout">
 			<tr>
 				<td><a href="<c:url value='/user/goMain' />"><img src="<c:url value='/images/schoolLogo.jpg' />" width="280px" height="100px"></a></td>
-				<td width="70%"></td>
+				<td width="65%"></td>
 				<td><a href="<c:url value='/user/myPage' />"><span style="color:#a9173d; font-weight:bold;">${userNickname}</span></a> 님, 안녕하세요</td>
-				<td><input class="btnLogout" type="button" value="로그아웃" onClick="logout('<c:url value='/user/logout'/>')"></td>
+				<td style="padding-left:10px"><input class="btnLogout" type="button" value="로그아웃" onClick="logout('<c:url value='/user/logout'/>')"></td>
 			</tr>
 		</table>
 		<nav>
