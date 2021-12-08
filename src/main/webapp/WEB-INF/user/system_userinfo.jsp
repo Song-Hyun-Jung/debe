@@ -33,14 +33,17 @@ function updateUser(targetUri) {
 				<tr>
 					<th class="info">이름: </th>
 					<td class="info"><input type="text" name="name" size="20" value="${user.userName}" required></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th class="info">아이디: </th>
 					<td class="info"><font>${user.userId}</font></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th class="info">비밀번호: </th>
 					<td class="info"><input type="text" value="${user.userPassword}" name="password" size="20" placeholder="8자 이상 권장" required></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th class="info">닉네임: </th>
@@ -52,6 +55,7 @@ function updateUser(targetUri) {
 										<c:param name='userId' value='${user.userId}' /> 
 									</c:url>')" >
 					</td>
+					<td></td>
 				</tr>
 			</table>
 		</form>

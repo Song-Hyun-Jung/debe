@@ -36,6 +36,14 @@ public class RegisterUserController implements Controller {
 			UserManager userManager = UserManager.getInstance();
 			userManager.create(user);
 			session.setAttribute("registerFailed", false);
+			
+			session.setAttribute("userId", "");
+			session.setAttribute("userPassword", "");
+			session.setAttribute("userPasswordCheck", "");
+			session.setAttribute("userNickname", "");
+			session.setAttribute("userName", "");
+			session.setAttribute("subjectId", "");
+			
 			return "/user/LogInUser.jsp";
 		} catch (ExistingUserException e) {
 			session.setAttribute("registerFailed", true);

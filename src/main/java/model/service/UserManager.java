@@ -98,5 +98,10 @@ public class UserManager {
 		return userDAO.levelUpUser(userId);
 	}
 	
+	//닉네임 중복 확인
+	public boolean existingNickname(String userNickname) throws SQLException { //true일 경우 이미 존재하는 닉네임인것.
+		return userDAO.existingNickname(userNickname);
+	}
+	
 	
 }

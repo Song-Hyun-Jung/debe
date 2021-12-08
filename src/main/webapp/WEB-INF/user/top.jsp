@@ -19,12 +19,13 @@ function logout(targetUri) {
 	#menu_string {text-decoration:none; color:black;}
 	.menuhover:hover { outline:3px solid #a9173d; border-radius:4px;}
 	.btnLogout{
-	width:70px;
-	height:25px;
-	background-color:#a9173d;
-	color:white;
-	font-size:13px;
-}
+		width:70px;
+		height:25px;
+		background-color:#a9173d;
+		color:white;
+		font-size:13px;
+	}
+	a { text-decoration:none !important }
 </style>
 </head>
 <body>	

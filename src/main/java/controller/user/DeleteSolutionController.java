@@ -33,16 +33,6 @@ public class DeleteSolutionController implements Controller{
 		SolutionManager manager = SolutionManager.getInstance();		
 		HttpSession session = request.getSession();	
 		
-		/*if (UserSessionUtils.isLoginUser("admin", session)	// 로그인한 사용자가 관리자인 경우
-				   || 												// 또는 
-				(!UserSessionUtils.isLoginUser("admin", session) &&  // 로그인한 사용자가 관리자가 아니지만
-				  UserSessionUtils.isLoginUser(postUserId, session))) { // 로그인한 사용자가 작성한 답변인 경우
-					
-				manager.deleteSolution(solutionCode);				// 답변 삭제
-				
-				return "redirect:/user/viewrecommend";
-			}*/
-		
 		manager.deleteSolution(solutionCode);	
 		
 		request.setAttribute("recommendCode", request.getParameter("recommendCode"));

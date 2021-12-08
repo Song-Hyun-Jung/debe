@@ -14,6 +14,7 @@ import controller.user.AdminUserListController;
 import controller.user.AdoptAnswerController;
 import controller.user.BookmarkQuestionController;
 import controller.user.BookmarkRecommendController;
+import controller.user.CheckNicknameController;
 import controller.user.DeleteAnswerController;
 import controller.user.DeleteQuestionController;
 import controller.user.DeleteRecommendController;
@@ -31,6 +32,7 @@ import controller.user.LoginController;
 import controller.user.LogoutController;
 import controller.user.MyViewController;
 import controller.user.QuestionFilterController;
+import controller.user.QuitJoinController;
 import controller.user.RecommendSortController;
 import controller.user.RegisterUserController;
 import controller.user.ScoreController;
@@ -70,9 +72,11 @@ public class RequestMapping {
         //회원가입 폼으로 이동
         mappings.put("/user/join/form", new GoJoinController());    
         //중복체크
-       // mappings.put("/user/checkNickname", new CheckNicknameController());
+        mappings.put("/user/checkNickname", new CheckNicknameController());
         //회원가입
         mappings.put("/user/join", new RegisterUserController());
+        //회원가입 중 세션 삭제
+        mappings.put("/user/quitJoin", new QuitJoinController());
         
         //관리자
         //관리자-사용자 리스트 조회
