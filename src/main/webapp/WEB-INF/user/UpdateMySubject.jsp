@@ -39,8 +39,8 @@ function updateSubject(targetUri) {
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 </div>
 <div align="left" style="margin-left:200px;">
-	 <h2>수강 과목 수정</h2>
-	 <h3>-수강 과목</h3>
+	 <h2>관심 과목 수정</h2>
+	 <h3>-관심 과목</h3>
  </div>
   <div align="center">
    <form name="update">
