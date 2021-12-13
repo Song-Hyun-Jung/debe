@@ -59,7 +59,7 @@ a:hover{color:#a9173d;}
 			<td class="bigLayoutLeft" rowspan="2" height="200px" width="50%"> <!-- 사용자 과목 수정 -->
 				<form name="updateSubject">
 					<table class="userSubjectInfo" style="width:100%; padding-right:100px">
-						<tr><td><h3>-수강 과목</h3></td></tr>
+						<tr><td><h3>-관심 과목</h3></td></tr>
 						<tr><td class="subjectTitle"><h4>${userSubject.subjectTitle}</h4></td></tr>
 						<tr><td align="right"><input class="btnSubmit" type="submit" value="수정" formaction="<c:url value ='/user/updateSubject/form' />"></td></tr>
 						
