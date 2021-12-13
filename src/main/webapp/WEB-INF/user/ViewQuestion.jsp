@@ -40,7 +40,8 @@ function bookmarkQuestion() {
 #noShow{
 	visibility:hidden;
 }
-td.answerInfo{
+
+.answerInfo{
 	border-collapse:collapse;
 	border:1px solid black;
 	width:100%
