@@ -43,8 +43,7 @@ td.subjectTitle{
 	}
 a { text-decoration:none !important }
 a:link{color:black;}
-a:visited{color:#a9173d;}
-a:hover{color:blue;}
+a:hover{color:#a9173d;}
 </style>
 </head>
 <body>
@@ -63,7 +62,14 @@ a:hover{color:blue;}
 						<tr><td><h3>-수강 과목</h3></td></tr>
 						<tr><td class="subjectTitle"><h4>${userSubject.subjectTitle}</h4></td></tr>
 						<tr><td align="right"><input class="btnSubmit" type="submit" value="수정" formaction="<c:url value ='/user/updateSubject/form' />"></td></tr>
+						
 					</table>
+					<c:if test="${!empty interestingQuestion.title}">
+						<a href="<c:url value ='/user/viewquestion'>
+									<c:param name='questionCode' value='${interestingQuestion.postId}' />
+								</c:url>"> - ${interestingQuestion.title}
+						</a>
+					</c:if>
 				</form>
 			</td>
 			<td class="bigLayoutRight" rowspan="3" height="300px"> <!-- question 북마크 --> 

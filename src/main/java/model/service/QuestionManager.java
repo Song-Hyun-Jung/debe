@@ -108,5 +108,10 @@ public class QuestionManager {
 		relationQuestion = questionDAO.relationQuestion(subjectId, postId);
 		return relationQuestion;
 	}
+	
+	public Question interestingQuestion(int subjectId) throws SQLException{
+		Question interestingQuestion = questionDAO.interestingQuestion(subjectId);
+		return interestingQuestion;
+	}
 
 }

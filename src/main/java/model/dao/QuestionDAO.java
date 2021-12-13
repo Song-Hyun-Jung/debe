@@ -432,4 +432,34 @@ public class QuestionDAO {
 		}
 		return null;
 	}
+	
+	public Question interestingQuestion(int subjectId) throws SQLException { //관심 과목 중 최근 글 1개
+	    String sql = "SELECT * FROM "
+	    			 +"(SELECT q.postId, p.title FROM POST p, Question q "
+					 + "WHERE q.postId = p.postId AND q.subjectId = ? ORDER BY postdate DESC) WHERE ROWNUM <= 1 ";
+				
+	    Object[] param = new Object[] {subjectId};
+		jdbcUtil.setSqlAndParameters(sql, param);
+
+		;		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			Question question;
+			if (rs.next()) {
+				 	question = new Question( 
+				 			rs.getInt("postId"),
+				 			rs.getString("title")
+					);
+				 	return question;
+			}		
+						
+			
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		} 
+		finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
 }

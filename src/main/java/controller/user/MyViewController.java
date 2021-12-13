@@ -11,6 +11,7 @@ import model.Subject;
 import model.User;
 import model.Bookmark;
 import model.Question;
+import model.service.QuestionManager;
 import model.service.UserManager;
 
 public class MyViewController implements Controller {
@@ -22,8 +23,10 @@ public class MyViewController implements Controller {
 		 
 		 
 		 UserManager userManager = UserManager.getInstance();
+		 QuestionManager questionManager = QuestionManager.getInstance();
 		 
 		 Subject userSubject = userManager.findUserSubjectName(UserSessionUtils.getLoginUserId(session)); //사용자 관심 과목 조회
+		 Question interestingQuestion = questionManager.interestingQuestion(userSubject.getSubjectId());
 		 List<Question> findMyQuestions = userManager.findMyQuestions(UserSessionUtils.getLoginUserId(session)); //사용자 질문 조회
 		 List<Bookmark> findMyQuestionBookmarks = userManager.findMyQuestionBookmarks(UserSessionUtils.getLoginUserId(session)); //사용자 질문 북마크 조회
 		 List<Bookmark> findMyRecommendBookmarks = userManager.findMyRecommendBookmarks(UserSessionUtils.getLoginUserId(session)); //사용자 추천문제 북마크 조회
@@ -43,6 +46,7 @@ public class MyViewController implements Controller {
 		 request.setAttribute("bqIndex", bqIndex);
 		 request.setAttribute("mqIndex", mqIndex);
 		 request.setAttribute("brIndex", brIndex);
+		 request.setAttribute("interestingQuestion", interestingQuestion);
 		 
 		 return "/user/MyPage.jsp";
 	 }
