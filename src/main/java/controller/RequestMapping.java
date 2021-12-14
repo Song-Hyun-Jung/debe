@@ -125,7 +125,7 @@ public class RequestMapping {
         
         //한 질문 조회
          mappings.put("/user/viewquestion", new ViewQuestionController());
-         mappings.put("/WEB-INF/user/viewquestion", new ViewQuestionController());		//답변 등록 후 viewQuestion으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
+         mappings.put("/WEB-INF/user/viewquestion", new ViewQuestionController());
          
         //질문 북마크
     	mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
@@ -161,10 +161,9 @@ public class RequestMapping {
   
          //한 추천문제 조회
          mappings.put("/user/viewrecommend", new ViewRecommendController());
-         mappings.put("/WEB-INF/user/viewrecommend", new ViewRecommendController());		//답변 등록 후 viewRecommend으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
-         
+         mappings.put("/WEB-INF/user/viewrecommend", new ViewRecommendController());
         
-        
+       
         logger.info("Initialized Request Mapping!");
         
     }
