@@ -34,10 +34,40 @@ td{
 </style>
 <script>
 function addUser(targetUri) {
+	if (joinForm.userId.value == "") {
+		alert("사용자 ID를 입력하십시오.");
+		joinForm.userId.focus();
+		return false;
+	} 
+	if (joinForm.userPassword.value == "") {
+		alert("비밀번호를 입력하십시오.");
+		joinForm.userPassword.focus();
+		return false;
+	} 
+	if (joinForm.userPasswordCheck.value == "") {
+		alert("비밀번호 재확인을 입력하십시오.");
+		joinForm.userPasswordCheck.focus();
+		return false;
+	} 
+	if (joinForm.userNickname.value == "") {
+		alert("닉네임을 입력하십시오.");
+		joinForm.userNickname.focus();
+		return false;
+	}
+	if (joinForm.userName.value == "") {
+		alert("이름을 입력하십시오.");
+		joinForm.userName.focus();
+		return false;
+	}
 	if(joinForm.userPasswordCheck.value != joinForm.userPassword.value){
 		alert('비밀번호를 확인해주세요');
 		return false;
 	}	
+	if (isNaN(joinForm.userId.value) == true) {
+		alert("아이디는 숫자로 된 학번입니다.");
+		joinForm.userId.focus();
+		return false;
+	} 
 	<c:if test="${existNickname ne 'false' or check ne 1}"> 
 		alert('닉네임 중복체크를 해주세요'); 
 		return false;

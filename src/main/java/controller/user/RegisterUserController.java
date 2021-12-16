@@ -50,6 +50,9 @@ public class RegisterUserController implements Controller {
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);
 			return "redirect:/user/join/form";
+		} catch(Exception ex) {
+			session.setAttribute("registerFailed", true);
+			return "redirect:/user/join/form";
 		}
 		
 	}
