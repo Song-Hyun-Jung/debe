@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.service.QuestionManager;
+import controller.user.UserSessionUtils;
 
 public class DeleteQuestionController implements Controller{
 

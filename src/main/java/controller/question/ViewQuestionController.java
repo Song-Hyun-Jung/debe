@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.Question;
 import model.service.QuestionManager;
 import model.service.AnswerManager;
@@ -47,7 +48,7 @@ public class ViewQuestionController implements Controller{
 		request.setAttribute("AnswerList", answerList);
 		request.setAttribute("relationQuestion", relationQuestion);
 		
-		return "/user/ViewQuestion.jsp";		//ViewQuestion.jsp·Î forwarding
+		return "/question/ViewQuestion.jsp";		//ViewQuestion.jsp·Î forwarding
 	}
 
 }

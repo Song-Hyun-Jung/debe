@@ -5,42 +5,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.user.AddAnswerController;
-import controller.user.AddQuestionController;
-import controller.user.AddRecommendController;
-import controller.user.AddSolutionController;
-import controller.user.AdminPostListController;
-import controller.user.AdminUserListController;
-import controller.user.AdoptAnswerController;
-import controller.user.BookmarkQuestionController;
-import controller.user.BookmarkRecommendController;
-import controller.user.CheckNicknameController;
-import controller.user.DeleteAnswerController;
-import controller.user.DeleteQuestionController;
-import controller.user.DeleteRecommendController;
-import controller.user.DeleteSolutionController;
-import controller.user.FindKeywordController;
-import controller.user.GoAddQuestionController;
-import controller.user.GoAnswerController;
-import controller.user.GoJoinController;
-import controller.user.GoMainPageController;
-import controller.user.GoSolutionController;
-import controller.user.GoUpdateSubjectController;
-import controller.user.ListQuestionController;
-import controller.user.ListRecommendController;
-import controller.user.LoginController;
-import controller.user.LogoutController;
-import controller.user.MyViewController;
-import controller.user.QuestionFilterController;
-import controller.user.QuitJoinController;
-import controller.user.RecommendSortController;
-import controller.user.RegisterUserController;
-import controller.user.ScoreController;
-import controller.user.UpdateRecommendCountController;
-import controller.user.UpdateSubjectController;
-import controller.user.UpdateUserController;
-import controller.user.ViewQuestionController;
-import controller.user.ViewRecommendController;
+import controller.question.*;
+import controller.user.*;
 
 
 public class RequestMapping {

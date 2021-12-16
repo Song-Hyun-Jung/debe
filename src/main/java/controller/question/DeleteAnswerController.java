@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.Enumeration;
 import java.util.logging.Logger;
