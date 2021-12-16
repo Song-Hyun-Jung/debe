@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.question.*;
+import controller.recommend.*;
 import controller.user.*;
 
 
@@ -104,7 +105,7 @@ public class RequestMapping {
         //추천 문제 정렬(최신순, 추천순)
         mappings.put("/user/sortList", new RecommendSortController());
         //문제 등록하기로 이동
-        mappings.put("/user/addRecommend/form", new ForwardController("/user/AddRecommend.jsp"));
+        mappings.put("/user/addRecommend/form", new ForwardController("/recommend/AddRecommend.jsp"));
         //추천문제 등록
         mappings.put("/user/addRecommend", new AddRecommendController());
         //추천문제 삭제
