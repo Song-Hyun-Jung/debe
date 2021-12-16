@@ -47,14 +47,13 @@ a:hover{color:blue;}
 </style>
 </head>
 <body>
-<!-- for each문으로 불러올것 페이징 인인덱스 해야함 -->
 
 <div align="center">
 		<%@ include file="/WEB-INF/user/top.jsp" %>
 </div>
-<h2>관리자 게시판 관리</h2>
+<h2>관리자 사용자 관리</h2>
 
-<h3>질문 목록</h3>
+<h3>사용자 목록</h3>
   <form name="userForm">
 	<table border="1" width="100%" class="post">
 		<colgroup>

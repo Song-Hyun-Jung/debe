@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.Enumeration;
 import java.util.List;
@@ -23,7 +23,7 @@ public class GoAddQuestionController implements Controller{
 		
 		request.setAttribute("findAllSubjects", findAllSubjects);
 		
-		return "/user/AddQuestion.jsp";	
+		return "/question/AddQuestion.jsp";	
 	}
 
 }

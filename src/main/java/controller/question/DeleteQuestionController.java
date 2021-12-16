@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.service.QuestionManager;
+import controller.user.UserSessionUtils;
 
 public class DeleteQuestionController implements Controller{
 
@@ -35,8 +36,6 @@ public class DeleteQuestionController implements Controller{
 				return redirect;	
 			}
 			
-		//관리자 아니고 로그인한 사용자가 작성한 질문이 아닌 경우 질문 삭제 못하는데 html에서 삭제 버튼 안 보이게 설정할 거면 따로 안 해도 되고
-		//html에서 설정 못 하면 여기서 구현하기.
 		
 		return redirect;
 	}

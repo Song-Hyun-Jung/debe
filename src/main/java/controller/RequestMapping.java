@@ -5,42 +5,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.user.AddAnswerController;
-import controller.user.AddQuestionController;
-import controller.user.AddRecommendController;
-import controller.user.AddSolutionController;
-import controller.user.AdminPostListController;
-import controller.user.AdminUserListController;
-import controller.user.AdoptAnswerController;
-import controller.user.BookmarkQuestionController;
-import controller.user.BookmarkRecommendController;
-import controller.user.CheckNicknameController;
-import controller.user.DeleteAnswerController;
-import controller.user.DeleteQuestionController;
-import controller.user.DeleteRecommendController;
-import controller.user.DeleteSolutionController;
-import controller.user.FindKeywordController;
-import controller.user.GoAddQuestionController;
-import controller.user.GoAnswerController;
-import controller.user.GoJoinController;
-import controller.user.GoMainPageController;
-import controller.user.GoSolutionController;
-import controller.user.GoUpdateSubjectController;
-import controller.user.ListQuestionController;
-import controller.user.ListRecommendController;
-import controller.user.LoginController;
-import controller.user.LogoutController;
-import controller.user.MyViewController;
-import controller.user.QuestionFilterController;
-import controller.user.QuitJoinController;
-import controller.user.RecommendSortController;
-import controller.user.RegisterUserController;
-import controller.user.ScoreController;
-import controller.user.UpdateRecommendCountController;
-import controller.user.UpdateSubjectController;
-import controller.user.UpdateUserController;
-import controller.user.ViewQuestionController;
-import controller.user.ViewRecommendController;
+import controller.question.*;
+import controller.user.*;
 
 
 public class RequestMapping {
@@ -125,7 +91,7 @@ public class RequestMapping {
         
         //한 질문 조회
          mappings.put("/user/viewquestion", new ViewQuestionController());
-         mappings.put("/WEB-INF/user/viewquestion", new ViewQuestionController());		//답변 등록 후 viewQuestion으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
+         mappings.put("/WEB-INF/user/viewquestion", new ViewQuestionController());
          
         //질문 북마크
     	mappings.put("/user/bookmarkQuestion", new BookmarkQuestionController());
@@ -161,10 +127,9 @@ public class RequestMapping {
   
          //한 추천문제 조회
          mappings.put("/user/viewrecommend", new ViewRecommendController());
-         mappings.put("/WEB-INF/user/viewrecommend", new ViewRecommendController());		//답변 등록 후 viewRecommend으로 갈 때 WEB-INF 붙어서 uri전달됨 왜인지 몰겠음
-         
+         mappings.put("/WEB-INF/user/viewrecommend", new ViewRecommendController());
         
-        
+       
         logger.info("Initialized Request Mapping!");
         
     }

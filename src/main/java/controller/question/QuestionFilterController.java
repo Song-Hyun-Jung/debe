@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ public class QuestionFilterController implements Controller{
 		request.setAttribute("subjectList", subjectList);
 		request.setAttribute("questionIndex", questionIndex);
 	
-		return "/user/DisplayFilterQuestion.jsp";		// DisplayFilterQuestion.jsp·Î forwarding
+		return "/question/DisplayFilterQuestion.jsp";		// DisplayFilterQuestion.jsp·Î forwarding
 	}
 
 }

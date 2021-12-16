@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.Enumeration;
 
@@ -25,7 +25,7 @@ public class GoAnswerController implements Controller{
 		System.out.println(request.getParameter("questionCode"));
 		request.setAttribute("questionCode", questionCode);
 		
-		return "/user/AddAnswer.jsp";	
+		return "/question/AddAnswer.jsp";	
 	}
 
 }

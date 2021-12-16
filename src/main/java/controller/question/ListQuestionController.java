@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class ListQuestionController implements Controller{
 		request.setAttribute("subjectList", subjectList);
 		request.setAttribute("questionIndex", questionIndex);
 		
-		return "/user/DisplayQuestion.jsp";		// DisplayQuestion.jsp·Î forwarding
+		return "/question/DisplayQuestion.jsp";		// DisplayQuestion.jsp·Î forwarding
 	}
 
 }

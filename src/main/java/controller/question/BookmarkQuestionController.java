@@ -1,4 +1,4 @@
-package controller.user;
+package controller.question;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class BookmarkQuestionController implements Controller{
 		request.setAttribute("AnswerList", answerList);
 		request.setAttribute("exist", exist);
 		
-		return "/user/ViewQuestion.jsp";		//ViewQuestion.jsp·Î forwarding	
+		return "/question/ViewQuestion.jsp";		//ViewQuestion.jsp·Î forwarding	
 	}
 
 }
